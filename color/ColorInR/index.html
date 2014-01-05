@@ -603,10 +603,10 @@ display.brewer.all(type=&quot;div&quot;)
     <h2>R Color Basics:  Points</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">palette(&quot;default&quot;)[1:5]
+    <pre><code class="r">palette()[1:5]   # First five elements of default palette
 </code></pre>
 
-<pre><code>[1] &quot;black&quot;   &quot;#111111&quot; &quot;#222222&quot; &quot;gray20&quot;  &quot;#444444&quot;
+<pre><code>[1] &quot;black&quot;  &quot;red&quot;    &quot;green3&quot; &quot;blue&quot;   &quot;cyan&quot;  
 </code></pre>
 
 <pre><code class="r">x &lt;- -2:2
@@ -614,7 +614,7 @@ y &lt;- x^2
 plot(x,y, col=1:5, pch=CIRCLE&lt;-16, cex=2)
 </code></pre>
 
-<div class="rimage center"><img src="fig/unnamed-chunk-19.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" class="plot" /></div>
+<div class="rimage center"><img src="fig/unnamed-chunk-20.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" class="plot" /></div>
 
   </article>
   <!-- Presenter Notes -->
@@ -644,7 +644,7 @@ plot(x,y, col=1:5, pch=CIRCLE&lt;-16, cex=2)
     <h2>R Color Basics:  Points, Axes, Text</h2>
   </hgroup>
   <article data-timings="">
-    <div class="rimage center"><img src="fig/unnamed-chunk-20.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" class="plot" /></div>
+    <div class="rimage center"><img src="fig/unnamed-chunk-21.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" class="plot" /></div>
 
 <p>See code on next slide.</p>
 
@@ -681,7 +681,7 @@ axis(LEFT,   col=&quot;green&quot;, col.axis=&quot;green&quot;, at=2*0:5, labels
     <h2>R Color Basics:  Lines and Legends</h2>
   </hgroup>
   <article data-timings="">
-    <div class="rimage center"><img src="fig/unnamed-chunk-22.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" class="plot" /></div>
+    <div class="rimage center"><img src="fig/unnamed-chunk-23.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" class="plot" /></div>
 
 <p>See code on next slide.</p>
 
@@ -728,7 +728,7 @@ y &lt;- x^2
 plot(x,y, col=1:5, pch=CIRCLE&lt;-16, cex=2)
 </code></pre>
 
-<div class="rimage center"><img src="fig/unnamed-chunk-24.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" class="plot" /></div>
+<div class="rimage center"><img src="fig/unnamed-chunk-25.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" class="plot" /></div>
 
 <ul>
 <li>Useful when copying and pasting metafile to PowerPoint since default is &quot;transparent&quot;</li>
@@ -793,7 +793,7 @@ pie(rep(1,N), col=heat.colors(N))
 pie(rep(1,N), col=dichromat(heat.colors(N)))
 </code></pre>
 
-<div class="rimage center"><img src="fig/unnamed-chunk-25.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" class="plot" /></div>
+<div class="rimage center"><img src="fig/unnamed-chunk-26.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" class="plot" /></div>
 
 <p><code>dichromat</code> function collapses red-green color distinctions to approximate the effect of the two common forms of red-green color blindness: protanopia and deuteranopia</p>
 
@@ -806,7 +806,7 @@ pie(rep(1,N), col=dichromat(heat.colors(N)))
     <h2>Color Deficiency/Blindness:  R dichromat package</h2>
   </hgroup>
   <article data-timings="">
-    <div class="rimage center"><img src="fig/unnamed-chunk-26.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" class="plot" /></div>
+    <div class="rimage center"><img src="fig/unnamed-chunk-27.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" class="plot" /></div>
 
 <p>See code on next slide.</p>
 
