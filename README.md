@@ -1,4 +1,4 @@
 earlglynn.github.io
 ===================
 
-GitHub Page
+[efg's Computer Lab](http://earlglynn.github.io/) on GitHub
