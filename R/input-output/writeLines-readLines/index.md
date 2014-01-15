@@ -6,6 +6,8 @@ writeLines / readLines
 
 This page shows how to create [**Sample.csv**](Sample.csv) and [**Sample.tsv**](Sample.tsv) files using *writeLines* for use in later examples of *read.csv* and *read.delim*.
 
+Find all the R code in this Gist, [R-IO-writeLines-readLines.R](https://gist.github.com/EarlGlynn/8431150).
+
 Let's first define some data in a vector of five character strings:
 
 
@@ -200,7 +202,7 @@ filename
 ```
 
 ```
-## [1] "R-Journal-Archive-page-2014-01-14-224056.html"
+## [1] "R-Journal-Archive-page-2014-01-14-231507.html"
 ```
 
 ```r

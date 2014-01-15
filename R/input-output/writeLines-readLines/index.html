@@ -185,6 +185,8 @@ hljs.initHighlightingOnLoad();
 
 <p>This page shows how to create <a href="Sample.csv"><strong>Sample.csv</strong></a> and <a href="Sample.tsv"><strong>Sample.tsv</strong></a> files using <em>writeLines</em> for use in later examples of <em>read.csv</em> and <em>read.delim</em>.</p>
 
+<p>Find all the R code in this Gist, <a href="https://gist.github.com/EarlGlynn/8431150">R-IO-writeLines-readLines.R</a>.</p>
+
 <p>Let&#39;s first define some data in a vector of five character strings:</p>
 
 <pre><code class="r">data.lines.comma &lt;- c(&quot;Grade,Age,Code,Amount,Start&quot;, &quot;A,23,ABC,48.982,2014-01-01&quot;, 
@@ -333,7 +335,7 @@ filename &lt;- paste0(&quot;R-Journal-Archive-page-&quot;, timestamp, &quot;.htm
 filename
 </code></pre>
 
-<pre><code>## [1] &quot;R-Journal-Archive-page-2014-01-14-224056.html&quot;
+<pre><code>## [1] &quot;R-Journal-Archive-page-2014-01-14-231507.html&quot;
 </code></pre>
 
 <pre><code class="r">writeLines(s, filename)
