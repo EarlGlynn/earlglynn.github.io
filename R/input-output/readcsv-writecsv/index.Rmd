@@ -1,0 +1,149 @@
+**efg's R Notes:  Input/Output**
+
+read.csv / write.csv
+====================
+
+Recall [**Sample.csv**](../../input-output/writelines-readLines/Sample.csv) file created using [*writeLines*](../../input-output/writeLines-readLines/index.html):
+
+![gedit display of Sample.csv](../../input-output/writeLines-readLines/Sample-CSV-Gedit.jpg)
+
+1. Read CSV file into data.frame
+--------------------------------
+
+```{r}
+rawdata <- read.csv("Sample.csv")
+rawdata
+
+dim(rawdata)   # dimensions
+nrow(rawdata)  # number of rows
+ncol(rawdata)  # number of columns
+
+names(rawdata)      # column names
+row.names(rawdata)
+
+str(rawdata)   # structure
+```
+
+R *head* and *tail* functions are useful to see the first few or last few rows of a data.frame.
+
+Data types will be described below.
+
+Notes:
+* *read.csv2* is used in countries where a comma is used as a decimal point and fields are separated by semicolons. 
+* *read.delim* reads tab-delimited data much like *read.csv* reads comma-delimited data.
+* There is no write.delim function that corresponds to the write.csv function.  
+* Functions read.table/write.table provide more general options, such as user-defined delimiters. 
+
+2.  How to address elements of data.frame
+-----------------------------------------
+
+Columns of data.frame
+
+```{r}
+rawdata$Grade
+rawdata$Age
+rawdata$Score   # typo here!
+```
+
+A data.frame can be indexed like a matrix:  *rawdata[rows, columns]*
+
+Note:  indexing in R starts at 1.
+```{r}
+rawdata[2,4]    # single element: row 2, column 4
+rawdata[2,]     # row 2
+rawdata[,4]     # column 4
+
+rawdata[1:2,c(1,3,5)]  # first 2 rows of columns 1, 3 and 5
+```
+
+Associate memory, hash, dictionary
+
+```{r}
+# Single element
+rawdata["2", "Amount"]   # row name "2", "Amount" column
+
+# Rows with names "2" and "1", columns with names
+# "Start", "Code" and "Age"
+rawdata[c("2","1"), c("Start", "Code", "Age")]
+```
+
+3.  Suppress factors while reading CSV file
+-------------------------------------------
+
+```{r}
+# "Factors" are stored as integers internally
+rawdata$Code
+as.integer(rawdata$Code)
+as.character(rawdata$Code)
+
+# Re-read using stringsAsFactors=FALSE
+rawdata <- read.csv("Sample.csv", stringsAsFactors=FALSE)
+rawdata
+str(rawdata)
+```
+
+4.  Control data types while reading CSV file
+---------------------------------------------
+
+```{r}
+rawdata <- read.csv("Sample.csv",
+           colClasses=c("factor", "integer", "character",
+                        "numeric", "Date"))
+str(rawdata)
+```
+
+5.  Data type suggestions
+-------------------------
+
+* Use "factor" for small, well-defined list of discrete values.
+* Use "character" for strings that may need to be edited/modified/searched.
+* The "best" format for Dates is [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601):  YYYY-MM-DD
+* In vectors, integers take 4 bytes, numeric doubles take 8 bytes.
+
+In 32-bit R:
+
+```{r}
+N <- 1000000L
+object.size(rep(0L,N))   # a million integers
+object.size(rep(0.0,N))  # a million doubles
+```
+
+6.  Reading selected data from CSV
+----------------------------------
+
+*nrow* dictates number of rows to read.
+
+*"NULL"* type in *colClasses* supprsses reading of data column
+
+```{r}
+selected <- read.csv("Sample.csv", nrow=2, header=TRUE,
+                     colClasses=c("NULL","integer","NULL",
+                                  "numeric","NULL"))
+selected
+```
+
+This trick can be used to read selected columns from a mulitmillion-row file that would otherwise fill available memory.
+
+7.  Writing CSV file from data.frame
+------------------------------------
+
+The default *write.csv* adds some information that may not be in the original file.
+
+```{r}
+# Default write.csv
+write.csv(rawdata)  # echo to screen to review
+write.csv(rawdata, "Sample-Copy-Default.csv")   # write to file
+```
+*write.csv* defaults to including row.names and quotes around
+
+```{r}
+# Drop row names.
+write.csv(rawdata, row.names=FALSE)  # echo to screen
+write.csv(rawdata, "Sample-Copy-No-RowNames.csv", row.names=FALSE)
+
+# Exactly the same as original file (for this case)
+write.csv(rawdata, row.names=FALSE, quote=FALSE, na="") # echo to screen
+write.csv(rawdata, "Sample-Copy-Exact.csv", row.names=FALSE, quote=FALSE, na="")
+write.csv(rawdata, file("clipboard"), row.names=FALSE, quote=FALSE, na="")  # Write to clipboard
+```
+

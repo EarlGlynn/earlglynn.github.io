@@ -1,3 +1,5 @@
+**efg's R Notes:  Input/Output**
+
 writeLines / readLines
 ======================
 
@@ -202,7 +204,7 @@ filename
 ```
 
 ```
-## [1] "R-Journal-Archive-page-2014-01-14-231507.html"
+## [1] "R-Journal-Archive-page-2014-01-15-230630.html"
 ```
 
 ```r
