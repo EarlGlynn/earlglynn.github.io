@@ -3,9 +3,13 @@
 read.csv / write.csv
 ====================
 
+This page shows several examples of reading a comma-separate-value (CSV) file into a data.frame.
+
 Recall [**Sample.csv**](../../input-output/writelines-readLines/Sample.csv) file created using [*writeLines*](../../input-output/writeLines-readLines/index.html):
 
 ![gedit display of Sample.csv](../../input-output/writeLines-readLines/Sample-CSV-Gedit.jpg)
+
+Find all the R code in this Gist, [R-IO-readcsv-writecsv.R](https://gist.github.com/EarlGlynn/8450305).
 
 1. Read CSV file into data.frame
 --------------------------------
