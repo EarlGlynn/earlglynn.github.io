@@ -5,7 +5,7 @@ read.csv / write.csv
 
 This page shows several examples of reading a comma-separate-value (CSV) file into a data.frame.
 
-Recall [**Sample.csv**](../../input-output/writelines-readLines/Sample.csv) file created using [*writeLines*](../../input-output/writeLines-readLines/index.html):
+Recall [**Sample.csv**](http://earlglynn.github.io/R/input-output/writeLines-readLines/Sample.csv) file created using [*writeLines*](../../input-output/writeLines-readLines/index.html):
 
 ![gedit display of Sample.csv](../../input-output/writeLines-readLines/Sample-CSV-Gedit.jpg)
 
