@@ -1,4 +1,4 @@
-**efg's R Notes:  Input/Output**
+[**efg's R Notes:  Input/Output**](../index.html)
 
 writeLines / readLines
 ======================
@@ -204,7 +204,7 @@ filename
 ```
 
 ```
-## [1] "R-Journal-Archive-page-2014-01-15-230630.html"
+## [1] "R-Journal-Archive-page-2014-01-15-232337.html"
 ```
 
 ```r

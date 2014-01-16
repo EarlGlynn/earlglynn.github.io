@@ -1,4 +1,4 @@
-**efg's R Notes:  Input/Output**
+[**efg's R Notes:  Input/Output**](../index.html)
 
 read.csv / write.csv
 ====================
@@ -320,7 +320,7 @@ selected
 
 This trick can be used to read selected columns from a mulitmillion-row file that would otherwise fill available memory.
 
-7.  Writing CSV files from data.frame
+7.  Writing CSV file from data.frame
 ------------------------------------
 
 The default *write.csv* adds some information that may not be in the original file.

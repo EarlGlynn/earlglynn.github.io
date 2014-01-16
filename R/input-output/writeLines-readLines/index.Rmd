@@ -1,4 +1,4 @@
-**efg's R Notes:  Input/Output**
+[**efg's R Notes:  Input/Output**](../index.html)
 
 writeLines / readLines
 ======================
