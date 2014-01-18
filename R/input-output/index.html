@@ -9,36 +9,83 @@
                 href="../index.html">R Notes</a>:&nbsp; Input/Output</font></i></font><br>
       </small></h1>
     <hr>
-    <p>Placeholder page for now<br>
+    <p>Placeholder page for now - work in progress<br>
     </p>
-    <hr> <b>Input/Output Examples</b> (for KC Users Group, Jan 18)<br>
+    <hr> <b>Input/Output&nbsp; </b>(<i>Examples for KC Users Group,
+      Jan 18</i>)<br>
+    <br>
+    <b>Working with directories</b>:&nbsp; choose.dir(); getwd();
+    setwd(), dir.create(path)<br>
+    <br>
+    <b>Working with files</b>:&nbsp; choose.files(), file.choose(),
+    dir() or list.files(), fileinfo(), file.exists(), glob2rx();
+    unlink(), basename(path), dirname(path)<br>
+    <br>
+    <b>Reading / writing data</b><br>
     <ul>
-      <li><a href="writeLines-readLines/index.html">writeLines /
-          readLines</a></li>
-      <li><a href="readcsv-writecsv/index.html">read.csv / write.csv</a></li>
-    </ul>
-    <p>Future topics:<br>
-    </p>
-    <ul>
-      <li>read.delim / read.table / write.table</li>
-      <li>save / load</li>
-      <li>Reading Excel files</li>
-      <li>Reading from text connection</li>
-      <li>Working with binary data:&nbsp; readBin / writeBin<br>
+      <li><a href="writeLines-readLines/index.html">writeLines() /
+          readLines()</a> Examples<br>
       </li>
-      <li>dput / dget</li>
+      <li><a href="readcsv-writecsv/index.html">read.csv() / write.csv()</a>
+        Examples<br>
+      </li>
+      <li>read.delim() / read.table() / write.table()</li>
+      <li>save() / load()</li>
+      <li>Reading Excel files:&nbsp; <a
+          href="http://cran.r-project.org/web/packages/XLConnect/index.html">XLConnect</a>,
+        <a
+          href="http://cran.r-project.org/web/packages/RODBC/index.html">RODBC</a>,
+        ..., and other packages<br>
+      </li>
+      <li>Reading Databases:&nbsp; <a
+          href="http://cran.r-project.org/web/packages/RODBC/index.html">RODBC</a>,
+        <a
+          href="http://cran.r-project.org/web/packages/RMySQL/index.html">RMySQL</a>
+        (Linux), ..., and other packages<br>
+      </li>
+      <li>Write arbitrary text file:&nbsp; connection &lt;-
+        file(filename, "w"); cat(..., file=connection); ...;
+        close(connection)</li>
+    </ul>
+    <p>Future topics<br>
+    </p>
+    <ul>
+      <li>Connections, including reading from text connection</li>
+      <li>download.file(); <a
+          href="http://cran.r-project.org/web/packages/RCurl/index.html">RCurl</a>
+        package</li>
+      <li>Reading JSON files:&nbsp; <a
+          href="http://cran.r-project.org/web/packages/rjson/index.html">RJSON</a>,&nbsp;
+        <a
+          href="http://cran.r-project.org/web/packages/RJSONIO/index.html">RJSONIO</a>
+        packages<br>
+      </li>
+      <li>Working with binary data:&nbsp; readBin / writeBin</li>
+      <li>scan()<br>
+      </li>
+      <li>dput() / dget()</li>
       <li>clipboard:&nbsp; file("clipboard")<br>
       </li>
-      <li>Directories and files:&nbsp; choose.dir(),&nbsp;
-        choose.files(), file.choose(), list.files(), glob2rx()<br>
+      <li>unzip()<br>
       </li>
-      <li>download.file</li>
-      <li>read.socrata from RSocrata packge to read files from
-        data.kcmo.org and other Socrata sites<br>
+      <li>read.socrata() from <a
+          href="http://cran.r-project.org/web/packages/RSocrata/index.html">RSocrata</a>
+        packge to read files from data.kcmo.org and other Socrata sites</li>
+      <li>Reading data from other statistical packages:&nbsp; <a
+          href="http://cran.r-project.org/web/packages/foreign/index.html">foreign</a>
+        package<br>
       </li>
-      <li>Troubleshooting<br>
+      <li>Troubleshooting:&nbsp; count.fields()<br>
       </li>
     </ul>
+    <hr><b>Related</b><br>
+    <br>
+    "Reading/Writing Data" in R, YouTube videos from Coursera class <i><a
+        href="https://www.coursera.org/course/compdata">Computing for
+        Data Analysis</a></i> by Roger Peng:&nbsp; <a
+      href="http://www.youtube.com/watch?v=aBzAels6jPk">Part 1</a>
+    (12:56) • <a href="http://www.youtube.com/watch?v=cUUqDWttMws">Part
+      2</a> (9:26)<br>
     <hr> <a href="../../index.html">Lab</a> main page<br>
   </body>
 </html>
