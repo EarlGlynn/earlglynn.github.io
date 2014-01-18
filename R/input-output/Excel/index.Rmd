@@ -9,7 +9,9 @@ Recall [**Sample.csv**](Sample.csv) file created using *writeLines*.  [View this
 
 This CSV file was loaded into Excel .xlsx (Excel 2010) and .xls (Excel 2003) files.  Download [**Sample.xlsx**](Sample.xlsx) or [**Sample.xls**](Sample.xls).
 
-Reading Excel files into R can be problematic.  Since I have not found one package that works with all Excel files, I show three approaches below:
+Reading Excel files into R can be problematic.  Since I have not found one package that works with all Excel files, I show three approaches below.
+
+Find all the R code in this Gist, [R-IO-Excel.R](https://gist.github.com/EarlGlynn/8487321).
 
 1. XLConnect Package: readWorksheetFromFile (uses Java)
 -------------------------------------------------------
