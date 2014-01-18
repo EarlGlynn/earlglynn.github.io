@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Reading Excel Files</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<p><a href="../index.html"><strong>efg&#39;s R Notes:  Input/Output</strong></a></p>
+
+<h1>Reading Excel Files</h1>
+
+<p>This page shows several examples of reading an Excel file into a data.frame.</p>
+
+<p>Recall <a href="Sample.csv"><strong>Sample.csv</strong></a> file created using <em>writeLines</em>.  <a href="https://github.com/EarlGlynn/earlglynn.github.io/blob/master/R/input-output/readcsv-writecsv/Sample.csv">View this csv on GitHub</a>.</p>
+
+<p>This CSV file was loaded into Excel .xlsx (Excel 2010) and .xls (Excel 2003) files.  Download <a href="Sample.xlsx"><strong>Sample.xlsx</strong></a> or <a href="Sample.xls"><strong>Sample.xls</strong></a>.</p>
+
+<p>Reading Excel files into R can be problematic.  Since I have not found one package that works with all Excel files, I show three approaches below:</p>
+
+<h2>1. XLConnect Package: readWorksheetFromFile (uses Java)</h2>
+
+<pre><code># If using 64-bit Java, must use 64-bit R.
+
+# Avoid Java out-of-memory error for large Excel files.
+# See p. 16, http://cran.r-project.org/web/packages/XLConnect/vignettes/XLConnect.pdf
+options (java.parameters = &quot;-Xmx1024m&quot;)
+library(XLConnect)
+
+d1 &lt;- readWorksheetFromFile(&quot;Sample.xlsx&quot;, sheet=1)    # .xls or .xlsx
+dim(d1)
+#[1] 4 5
+
+str(d1)
+#&#39;data.frame&#39;:   4 obs. of  5 variables:
+# $ Grade : chr  &quot;A&quot; &quot;B&quot; &quot;F&quot; &quot;B&quot;
+# $ Age   : num  23 56 NA 35
+# $ Code  : chr  &quot;ABC&quot; &quot;DEF&quot; NA &quot;XYZ&quot;
+# $ Amount: num  48.98 2.72 0 3.14
+# $ Start : POSIXct, format: &quot;2014-01-01&quot; &quot;2014-01-02&quot; NA &quot;2014-01-05&quot;
+
+d1
+#  Grade Age Code  Amount      Start
+#1     A  23  ABC 48.9820 2014-01-01
+#2     B  56  DEF  2.7183 2014-01-02
+#3     F  NA &lt;NA&gt;  0.0000       &lt;NA&gt;
+#4     B  35  XYZ  3.1416 2014-01-05
+</code></pre>
+
+<h2>2. gdata Package: read.xls (uses PERL)</h2>
+
+<pre><code>library(gdata)
+
+d2 &lt;- read.xls(&quot;Sample.xlsx&quot;, sheet=1)    # .xls or .xlsx
+dim(d2)
+#[1] 4 5
+
+str(d2)
+#&#39;data.frame&#39;:   4 obs. of  5 variables:
+# $ Grade : Factor w/ 3 levels &quot;A&quot;,&quot;B&quot;,&quot;F&quot;: 1 2 3 2
+# $ Age   : int  23 56 NA 35
+# $ Code  : Factor w/ 4 levels &quot;&quot;,&quot;ABC&quot;,&quot;DEF&quot;,..: 2 3 1 4
+# $ Amount: num  48.98 2.72 0 3.14
+# $ Start : int  41640 41641 NA 41644
+
+d2a &lt;- read.xls(&quot;Sample.xlsx&quot;, sheet=1, as.is=TRUE)
+str(d2a)
+#&#39;data.frame&#39;:   4 obs. of  5 variables:
+# $ Grade : chr  &quot;A&quot; &quot;B&quot; &quot;F&quot; &quot;B&quot;
+# $ Age   : int  23 56 NA 35
+# $ Code  : chr  &quot;ABC&quot; &quot;DEF&quot; &quot;&quot; &quot;XYZ&quot;
+# $ Amount: num  48.98 2.72 0 3.14
+# $ Start : int  41640 41641 NA 41644
+</code></pre>
+
+<h2>3. RODBC package:  sqlFetch or sqlQuery</h2>
+
+<p>Note:  odbcConnectExcel is only usable with 32-bit Windows and 32-bit ODBC.</p>
+
+<pre><code>channel  &lt;- odbcConnectExcel(&quot;Sample.xls&quot;)       # Excel 2003 and earlier
+#channel &lt;- odbcConnectExcel2007(&quot;Sample.xlsx&quot;)  # Excel 2007 and later
+sqlTables(channel)
+
+d3 &lt;- sqlFetch(channel, &quot;Sample&quot;)  # Worksheet name
+#&#39;data.frame&#39;:   4 obs. of  5 variables:
+# $ Grade : Factor w/ 3 levels &quot;A&quot;,&quot;B&quot;,&quot;F&quot;: 1 2 3 2
+# $ Age   : num  23 56 NA 35
+# $ Code  : Factor w/ 3 levels &quot;ABC&quot;,&quot;DEF&quot;,&quot;XYZ&quot;: 1 2 NA 3
+# $ Amount: num  48.98 2.72 0 3.14
+# $ Start : POSIXct, format: &quot;2014-01-01&quot; &quot;2014-01-02&quot; NA &quot;2014-01-05&quot;
+
+d3a &lt;- sqlQuery(channel, paste(&quot;SELECT Code,Amount,Start,Age,Grade&quot;,
+                               &quot;FROM [Sample$]&quot;,
+                               &quot;WHERE Grade = &#39;B&#39;&quot;),
+                as.is=TRUE)
+dim(d3a)
+#[1] 2 5
+
+str(d3a)
+#&#39;data.frame&#39;:   2 obs. of  5 variables:
+# $ Code  : chr  &quot;DEF&quot; &quot;XYZ&quot;
+# $ Amount: num  2.72 3.14
+# $ Start : chr  &quot;2014-01-02 00:00:00&quot; &quot;2014-01-05 00:00:00&quot;
+# $ Age   : num  56 35
+# $ Grade : chr  &quot;B&quot; &quot;B&quot;
+
+close(channel)
+</code></pre>
+
+<p>My advice:  RODBC should only be used if you have an Excel file without holes, and with very regular numeric data. Without very regular data, RODBC can guess the wrong data types and cause other problems.</p>
+
+<p>See <a href="http://research.stowers-institute.org/mcm/rmysql.html">Madelaine&#39;s notes</a> for additional RODBC examples &ndash; and some RMySQL examples.</p>
+
+</body>
+
+</html>
+
