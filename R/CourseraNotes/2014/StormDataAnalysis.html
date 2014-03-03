@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>How useful is the historical perspective provided by NOAA&#39;s Storm Events Database?</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</head>
+
+<body>
+<h1>How useful is the historical perspective provided by NOAA&#39;s Storm Events Database?</h1>
+
+<h2>Synopsis</h2>
+
+<p>In this report we look at summaries of weather events documented in the NOAA Storm Events Database from 1950 to 2011 to understand how well comparisons can be made between years.  The purpose was to determine if reporting about weather events affecting human health, including fatalities and injuries, and affected property and crops, can be compared across years. </p>
+
+<p>From the data, we found that tornado events have been reported for all years 1950 to 2011, but many event types have no injury or property damage data prior to 1993.  Useful comparisons can only be made for data since 1993, but earlier data provided little or no insight about past weather events.  The reporting methodology and completeness has changed dramatically over the years represented in the database.</p>
+
+<h2>Loading and Processing the Raw Data</h2>
+
+<h3>Reading the raw bz2 file</h3>
+
+<pre><code class="r">library(downloader)  # download (hopefully platform independent)
+library(tools)  # md5sum
+library(R.utils)  # bunzip2
+</code></pre>
+
+<pre><code>## Loading required package: R.oo
+## Loading required package: R.methodsS3
+## R.methodsS3 v1.6.1 (2014-01-04) successfully loaded. See ?R.methodsS3 for help.
+## R.oo v1.17.0 (2014-01-05) successfully loaded. See ?R.oo for help.
+## 
+## Attaching package: &#39;R.oo&#39;
+## 
+## The following objects are masked from &#39;package:methods&#39;:
+## 
+##     getClasses, getMethods
+## 
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     attach, detach, gc, load, save
+## 
+## R.utils v1.29.8 (2014-01-27) successfully loaded. See ?R.utils for help.
+## 
+## Attaching package: &#39;R.utils&#39;
+## 
+## The following object is masked from &#39;package:utils&#39;:
+## 
+##     timestamp
+## 
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     cat, commandArgs, getOption, inherits, isOpen, parse, warnings
+</code></pre>
+
+<pre><code class="r">
+URL &lt;- &quot;https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2&quot;
+bz2.filename &lt;- &quot;repdata_data_StormData.csv.bz2&quot;
+download(URL, bz2.filename, mode = &quot;wb&quot;)  # Download from coursera site
+md5sum(bz2.filename)  # Record MD5sum   
+</code></pre>
+
+<pre><code>##     repdata_data_StormData.csv.bz2 
+## &quot;df4aa61fff89427db6b7f7b1113b5553&quot;
+</code></pre>
+
+<h3>Unzipping the bz2 file</h3>
+
+<pre><code class="r">extracted.filename &lt;- &quot;StormData.csv&quot;
+bunzip2(bz2.filename, extracted.filename, remove = FALSE)  # Extract file from bz2
+</code></pre>
+
+<pre><code>## Error: File already exists: StormData.csv
+</code></pre>
+
+<pre><code class="r">file.info(extracted.filename)
+</code></pre>
+
+<pre><code>##                    size isdir mode               mtime               ctime
+## StormData.csv 561637449 FALSE  666 2014-02-25 13:07:23 2014-02-25 13:07:06
+##                             atime exe
+## StormData.csv 2014-02-25 13:07:06  no
+</code></pre>
+
+<pre><code class="r">md5sum(extracted.filename)
+</code></pre>
+
+<pre><code>##                      StormData.csv 
+## &quot;33ab0bd27d935eeefef0dd7300f800af&quot;
+</code></pre>
+
+<h3>Read the csv file</h3>
+
+<p>Let&#39;s use the variable <em>d</em> to hold the data.frame:</p>
+
+<pre><code class="r">d &lt;- read.csv(&quot;StormData.csv&quot;, as.is = TRUE, comment.char = &quot;&quot;)
+dim(d)
+</code></pre>
+
+<pre><code>## [1] 902297     37
+</code></pre>
+
+<h3>Extract records of interest</h3>
+
+<p>The original file is quite large with over 900,000 records.  Let&#39;s exact only the records that show fatalities, injuries, property or crop damage.</p>
+
+<pre><code class="r">sum(d$FATALITIES &gt; 0)  # no NAs, since na.rm not needed here
+</code></pre>
+
+<pre><code>## [1] 6974
+</code></pre>
+
+<pre><code class="r">sum(d$INJURIES &gt; 0)
+</code></pre>
+
+<pre><code>## [1] 17604
+</code></pre>
+
+<pre><code class="r">sum(d$PROPDMG &gt; 0)
+</code></pre>
+
+<pre><code>## [1] 239174
+</code></pre>
+
+<pre><code class="r">sum(d$CROPDMG &gt; 0)  # count crop damage as form of property damage
+</code></pre>
+
+<pre><code>## [1] 22099
+</code></pre>
+
+<pre><code class="r">
+care.about &lt;- (d$FATALITIES &gt; 0) | (d$INJURIES &gt; 0) | (d$PROPDMG &gt; 0) | (d$CROPDMG &gt; 
+    0)
+
+sum(care.about)
+</code></pre>
+
+<pre><code>## [1] 254633
+</code></pre>
+
+<pre><code class="r">
+# Keep only records we care about to reduce data cleanup problems.
+d &lt;- d[care.about, ]
+dim(d)
+</code></pre>
+
+<pre><code>## [1] 254633     37
+</code></pre>
+
+<h3>Define event BeginYear variable</h3>
+
+<pre><code class="r">splits &lt;- strsplit(d$BGN_DATE, &quot; &quot;)
+
+table(unlist(lapply(splits, &quot;[&quot;, 2)))  # verify always 0:00:00 for time
+</code></pre>
+
+<pre><code>## 
+## 0:00:00 
+##  254633
+</code></pre>
+
+<pre><code class="r">
+d$BeginDate &lt;- as.Date(unlist(lapply(splits, &quot;[&quot;, 1)), &quot;%m/%d/%Y&quot;)
+d$BeginYear &lt;- substr(d$BeginDate, 1, 4)
+table(d$BeginYear)
+</code></pre>
+
+<pre><code>## 
+##  1950  1951  1952  1953  1954  1955  1956  1957  1958  1959  1960  1961 
+##   201   241   233   421   491   441   428   824   543   505   556   627 
+##  1962  1963  1964  1965  1966  1967  1968  1969  1970  1971  1972  1973 
+##   411   380   594   724   423   683   524   458   517   714   579  1026 
+##  1974  1975  1976  1977  1978  1979  1980  1981  1982  1983  1984  1985 
+##   884   748   707   693   620   655   728   578  1128  1019   920   575 
+##  1986  1987  1988  1989  1990  1991  1992  1993  1994  1995  1996  1997 
+##   690   563   678   791   986   879   990  5838  9644 10457 10040 10322 
+##  1998  1999  2000  2001  2002  2003  2004  2005  2006  2007  2008  2009 
+## 14013 10609 11508 10298 10432 11015 10484 10014 11974 11953 17633 14434 
+##  2010  2011 
+## 16019 20570
+</code></pre>
+
+<h3>Cleaning and standardizing event types (EVTYPE)</h3>
+
+<h4>Force to uppercase and standardize spacing</h4>
+
+<pre><code class="r"># Force all EVTYPEs to uppercase to avoid case variations
+d$EVTYPE &lt;- toupper(d$EVTYPE)
+
+# Standardize spacing: replace multiple spaces with single space
+d$EVTYPE &lt;- gsub(&quot; +&quot;, &quot; &quot;, d$EVTYPE)
+</code></pre>
+
+<h4>Look at tornado-related variables to define tornado events</h4>
+
+<pre><code class="r"># World record tornado length is 219 miles
+# http://en.wikipedia.org/wiki/Tornado_records
+max(d$LENGTH)  # there are reports &gt; world record
+</code></pre>
+
+<pre><code>## [1] 1845
+</code></pre>
+
+<pre><code class="r">d$LENGTH[d$LENGTH &gt; 219] &lt;- NA  # set to NA if &gt; than world record
+sum(d$LENGTH &gt; 0, na.rm = TRUE)  # Path of tornado in miles and hundredths
+</code></pre>
+
+<pre><code>## [1] 35245
+</code></pre>
+
+<pre><code class="r">sum(is.na(d$LENGTH))
+</code></pre>
+
+<pre><code>## [1] 5
+</code></pre>
+
+<pre><code class="r">sum(d$LENGTH == 0, na.rm = TRUE)
+</code></pre>
+
+<pre><code>## [1] 219383
+</code></pre>
+
+<pre><code class="r"># hist(log10(d$LENGTH[d$LENGTH &gt; 0])) # log10 since skewed
+
+# World record tornado damage width is 2.6 miles
+# http://en.wikipedia.org/wiki/Tornado_records
+max(d$WIDTH)/1760  # max width &lt; world record; no need to clean
+</code></pre>
+
+<pre><code>## [1] 2.5
+</code></pre>
+
+<pre><code class="r">sum(d$WIDTH &gt; 0)  # Width of tornado in yards
+</code></pre>
+
+<pre><code>## [1] 39939
+</code></pre>
+
+<pre><code class="r"># hist(log10(d$WIDTH[d$WIDTH &gt; 0])) # log10 since skewed
+
+# Fujita tornado intensity scale: 0 to 5
+table(d$F, useNA = &quot;ifany&quot;)  # If defined, 0 to 5; no need to clean
+</code></pre>
+
+<pre><code>## 
+##      0      1      2      3      4      5   &lt;NA&gt; 
+##   9974  15930   8933   2998    994    129 215675
+</code></pre>
+
+<pre><code class="r">
+tornado.data &lt;- (d$LENGTH &gt; 0) | (d$WIDTH &gt; 0) | (!is.na(d$F)) | grepl(&quot;TORNADO&quot;, 
+    d$EVTYPE)  # no data, but labelled
+
+# Let&#39;s keep any record with out-of-range LENGTH or WIDTH
+tornado.data[is.na(tornado.data)] &lt;- TRUE
+sum(tornado.data)
+</code></pre>
+
+<pre><code>## [1] 40011
+</code></pre>
+
+<pre><code class="r">
+# Look at variety of EVTYPEs for events with tornado data/label
+table(d$EVTYPE[tornado.data])
+</code></pre>
+
+<pre><code>## 
+##           COLD AIR TORNADO                 DUST DEVIL 
+##                          1                          1 
+##                FLASH FLOOD                   GUSTNADO 
+##                          1                          5 
+##                       HAIL                       HEAT 
+##                          2                          1 
+##        SEVERE THUNDERSTORM       SEVERE THUNDERSTORMS 
+##                          1                          1 
+##         THUNDERSTORM WINDS                    TORNADO 
+##                         12                      39944 
+##                 TORNADO F0                 TORNADO F1 
+##                          5                          4 
+##                 TORNADO F2                 TORNADO F3 
+##                          2                          2 
+##                  TORNADOES TORNADOES, TSTM WIND, HAIL 
+##                          2                          1 
+##                    TORNDAO                  TSTM WIND 
+##                          1                          3 
+##                 WATERSPOUT                WATERSPOUT- 
+##                          8                          4 
+##         WATERSPOUT-TORNADO         WATERSPOUT TORNADO 
+##                          1                          1 
+##        WATERSPOUT/ TORNADO         WATERSPOUT/TORNADO 
+##                          1                          6 
+##               WINTER STORM 
+##                          1
+</code></pre>
+
+<pre><code class="r">
+# Set EVTYPE for all events with tornado data to be TORNADO
+d$EVTYPE[tornado.data] &lt;- &quot;TORNADO&quot;
+</code></pre>
+
+<h4>Impose standardization of EVTYPEs</h4>
+
+<p>Let&#39;s look at the most common event types and look for variations. We&#39;ll collapse the many variation into a single EVTYPE</p>
+
+<p>Roughly, the process involves looking at:</p>
+
+<p><em>head(sort(table(d$EVTYPE), decreasing=TRUE), 75)</em></p>
+
+<p>and observing high frequency counts that could be combined, e.g.,</p>
+
+<p><em>table(grep(&ldquo;THUNDERSTORM WIND&rdquo;, d$EVTYPE, value=TRUE))</em></p>
+
+<p>Generally, use the EVTYPE with highest frequency as the &ldquo;standard&rdquo; name,
+or a more generic name such as &ldquo;FLOODING&rdquo; for all kinds of flooding.   </p>
+
+<pre><code class="r"># ~8 variations of &#39;hurricane&#39;
+d$EVTYPE[grep(&quot;HURRICANE|TYPHOON|TROPICAL&quot;, d$EVTYPE)] &lt;- &quot;HURRICANE/TYPHOON/TROPICAL STORM&quot;
+
+d$EVTYPE[grep(&quot;SNOW|ICE|BLIZZARD|WINTER STORM|FREEZING|WINTRY MIX|SLEET&quot;, d$EVTYPE)] &lt;- &quot;WINTER STORM&quot;
+
+d$EVTYPE[grep(&quot;WINTER WEATHER|COLD|ICY|GLAZE|LOW TEMPERATURE|HYPOTHERMIA|HYPERTHERMIA|COLD TEMPERATURE|WINDCHILL&quot;, 
+    d$EVTYPE)] &lt;- &quot;WINTER WEATHER&quot;
+
+# ~15 variations of &#39;High Wind&#39; and 3 variations of &#39;strong wind&#39; but after
+# &#39;Snow&#39; variations removed above
+d$EVTYPE[grep(&quot;HIGH WIND|STRONG WIND|Gusty Winds|GUSTY WIND&quot;, d$EVTYPE)] &lt;- &quot;HIGH WIND&quot;
+
+# Change these &#39;false hits&#39; for &#39;thunderstorm wind&#39; to wind
+d$EVTYPE &lt;- sub(&quot;NON-THUNDERSTORM WIND|NON THUNDERSTORM WIND&quot;, &quot;WIND&quot;, d$EVTYPE)
+
+# Other non thunderstorm winds
+
+# Standardize variations/spelling errors in &#39;Thunderstorm&#39;
+d$EVTYPE &lt;- gsub(&quot;THUNDEERSTORM|THUNDERESTORM|THUNDERSTROM|THUDERSTORM|THUNERSTORM|THUNDERTORM|TUNDERSTORM&quot;, 
+    &quot;THUNDERSTORM&quot;, d$EVTYPE)
+
+d$EVTYPE &lt;- sub(&quot;TSTM WIND|STORM FORCE WINDS&quot;, &quot;THUNDERSTORM WIND&quot;, d$EVTYPE)
+# Manually reviewed ~44 variations that are combined here
+d$EVTYPE[grep(&quot;THUNDERSTORMW|THUNDERSTORMWINDS|THUNDERSTORM WINS|TSTMW&quot;, d$EVTYPE)] &lt;- &quot;THUNDERSTORM WIND&quot;
+d$EVTYPE[grep(&quot;THUNDERSTORM WIND|THUNDERSTORMS WIND&quot;, d$EVTYPE)] &lt;- &quot;THUNDERSTORM WIND&quot;
+
+# Combine ~59 variations of FLOODING
+d$EVTYPE[grep(&quot;FLOOD|FLD|RECORD RAINFALL&quot;, d$EVTYPE)] &lt;- &quot;FLOODING&quot;
+
+# Combine ~20 variations of HAIL
+d$EVTYPE[grep(&quot;HAIL&quot;, d$EVTYPE)] &lt;- &quot;HAIL&quot;
+
+# Combine variations of LIGHTNING
+d$EVTYPE[grep(&quot;LIGHTNING|LIGHTING|LIGNTNING&quot;, d$EVTYPE)] &lt;- &quot;LIGHTNING&quot;
+
+# Combine variations of fire
+d$EVTYPE[grep(&quot;HEAVY SURF|HIGH SURF&quot;, d$EVTYPE)] &lt;- &quot;HEAVY/HIGH SURF&quot;
+
+# Combine variations of fire
+d$EVTYPE[grep(&quot;FIRE&quot;, d$EVTYPE)] &lt;- &quot;WILDFIRE&quot;
+
+# Combine variations of freeze -- likely agriculture related
+d$EVTYPE[grep(&quot;FROST|FREEZE&quot;, d$EVTYPE)] &lt;- &quot;FROST/FREEZE&quot;
+
+d$EVTYPE[grep(&quot;SLIDE&quot;, d$EVTYPE)] &lt;- &quot;LAND/MUD/ROCK SLIDES&quot;
+
+d$EVTYPE[grep(&quot;RIP&quot;, d$EVTYPE)] &lt;- &quot;RIP CURRENT&quot;
+
+# HEAT or EXCESSIVE HEAT
+d$EVTYPE[grep(&quot;HEAT&quot;, d$EVTYPE)] &lt;- &quot;HEAT&quot;
+
+d$EVTYPE[grep(&quot;DENSE FOG&quot;, d$EVTYPE)] &lt;- &quot;FOG&quot;
+
+# Only notable winds are high wind
+d$EVTYPE[d$EVTYPE == &quot;WINDS&quot; | d$EVTYPE == &quot;WIND&quot;] &lt;- &quot;HIGH WIND&quot;
+</code></pre>
+
+<p>At this point, let&#39;s Collapse all events with frequency &lt; 50 to category &ldquo;miscellaneous&rdquo;: </p>
+
+<pre><code class="r">
+event.types &lt;- sort(table(d$EVTYPE), decreasing = TRUE)
+event.types.under.50 &lt;- names(event.types[event.types &lt; 50])
+
+d$EVTYPE[d$EVTYPE %in% event.types.under.50] &lt;- &quot;miscellaneous&quot;
+</code></pre>
+
+<p>Here&#39;s the final list of EVTYPEs for the analysis:</p>
+
+<pre><code class="r">sort(table(d$EVTYPE), decreasing = TRUE)
+</code></pre>
+
+<pre><code>## 
+##                THUNDERSTORM WIND                          TORNADO 
+##                           119774                            40011 
+##                         FLOODING                             HAIL 
+##                            33168                            26164 
+##                        LIGHTNING                        HIGH WIND 
+##                            13303                             9831 
+##                     WINTER STORM                         WILDFIRE 
+##                             4501                             1258 
+##                       HEAVY RAIN                   WINTER WEATHER 
+##                             1105                             1089 
+##                             HEAT HURRICANE/TYPHOON/TROPICAL STORM 
+##                              979                              689 
+##                      RIP CURRENT                    miscellaneous 
+##                              641                              366 
+##                        AVALANCHE                          DROUGHT 
+##                              268                              266 
+##                  HEAVY/HIGH SURF             LAND/MUD/ROCK SLIDES 
+##                              223                              209 
+##                              FOG                      STORM SURGE 
+##                              181                              177 
+##                     FROST/FREEZE                       DUST STORM 
+##                              155                              103 
+##                       DUST DEVIL                   DRY MICROBURST 
+##                               94                               78
+</code></pre>
+
+<h3>Fix property and crop damage data to be useful in analysis</h3>
+
+<pre><code class="r"># NOAA should have used scientific notation instead of this nonsense
+ValidMultiplierLetter &lt;- c(&quot;H&quot;, &quot;K&quot;, &quot;M&quot;, &quot;B&quot;)
+
+Multiplier &lt;- c(100, 1000, 1e+06, 1e+09)
+names(Multiplier) &lt;- ValidMultiplierLetter
+# Now can use Multiplier[&#39;M&#39;] to get 1E6
+
+### Property Damage
+d$PROPDMGEXP &lt;- toupper(d$PROPDMGEXP)
+table(d$PROPDMGEXP, useNA = &quot;ifany&quot;)
+</code></pre>
+
+<pre><code>## 
+##             -      +      0      2      3      4      5      6      7 
+##  11585      1      5    210      1      1      4     18      3      3 
+##      B      H      K      M 
+##     40      7 231428  11327
+</code></pre>
+
+<pre><code class="r">
+Valid &lt;- d$PROPDMGEXP %in% ValidMultiplierLetter
+d$PROPDMGEXP[!Valid] &lt;- &quot;&quot;
+table(d$PROPDMGEXP)  # final check
+</code></pre>
+
+<pre><code>## 
+##             B      H      K      M 
+##  11831     40      7 231428  11327
+</code></pre>
+
+<pre><code class="r">d$PROPDMG[!Valid] &lt;- NA  # numer is of no value without multiplier
+sum(is.na(d$PROPDMG))
+</code></pre>
+
+<pre><code>## [1] 11831
+</code></pre>
+
+<pre><code class="r">sum(!Valid)
+</code></pre>
+
+<pre><code>## [1] 11831
+</code></pre>
+
+<pre><code class="r">
+d$PropCash &lt;- NA
+d$PropCash[Valid] &lt;- d$PROPDMG[Valid] * Multiplier[d$PROPDMGEXP[Valid]]
+
+### Crop Damage -- mirrors property damage processing above
+d$CROPDMGEXP &lt;- toupper(d$CROPDMGEXP)
+table(d$CROPDMGEXP, useNA = &quot;ifany&quot;)
+</code></pre>
+
+<pre><code>## 
+##             ?      0      B      K      M 
+## 152664      6     17      7  99953   1986
+</code></pre>
+
+<pre><code class="r">
+Valid &lt;- d$CROPDMGEXP %in% ValidMultiplierLetter
+d$CROPDMGEXP[!Valid] &lt;- &quot;&quot;
+table(d$CROPDMGEXP)  # final check
+</code></pre>
+
+<pre><code>## 
+##             B      K      M 
+## 152687      7  99953   1986
+</code></pre>
+
+<pre><code class="r">d$CROPDMG[!Valid] &lt;- NA  # number is of no value without multiplier
+sum(is.na(d$CROPDMG))
+</code></pre>
+
+<pre><code>## [1] 152687
+</code></pre>
+
+<pre><code class="r">sum(!Valid)
+</code></pre>
+
+<pre><code>## [1] 152687
+</code></pre>
+
+<pre><code class="r">
+d$CropCash &lt;- NA
+d$CropCash[Valid] &lt;- d$CROPDMG[Valid] * Multiplier[d$CROPDMGEXP[Valid]]
+</code></pre>
+
+<h2>Results</h2>
+
+<h3>Health Perspective</h3>
+
+<p>Weather affects the health of individuals through death or injuries.  Here&#39;s a summary of all health-related data for all years:</p>
+
+<h4>Summary of Health-Related Weather Events for All Years</h4>
+
+<p>The table below is sorted in descending order by fatalities.</p>
+
+<pre><code class="r">library(dplyr)
+</code></pre>
+
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;
+## 
+## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag
+## 
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union
+</code></pre>
+
+<pre><code class="r">fatalities.injuries &lt;- d %.% group_by(EVTYPE) %.% summarize(Events = length(EVTYPE), 
+    Fatalities = sum(FATALITIES), Injuries = sum(INJURIES)) %.% arrange(desc(Fatalities))
+</code></pre>
+
+<pre><code class="r">library(xtable)
+xt &lt;- xtable(fatalities.injuries)
+digits(xt)[4:5] &lt;- 0
+print(xt, type = &quot;html&quot;)
+</code></pre>
+
+<!-- html table generated in R 3.0.2 by xtable 1.7-1 package -->
+
+<!-- Sun Mar 02 21:19:50 2014 -->
+
+<TABLE border=1>
+<TR> <TH>  </TH> <TH> EVTYPE </TH> <TH> Events </TH> <TH> Fatalities </TH> <TH> Injuries </TH>  </TR>
+  <TR> <TD align="right"> 1 </TD> <TD> TORNADO </TD> <TD align="right"> 40011 </TD> <TD align="right"> 5674 </TD> <TD align="right"> 91646 </TD> </TR>
+  <TR> <TD align="right"> 2 </TD> <TD> HEAT </TD> <TD align="right"> 979 </TD> <TD align="right"> 3129 </TD> <TD align="right"> 8994 </TD> </TR>
+  <TR> <TD align="right"> 3 </TD> <TD> FLOODING </TD> <TD align="right"> 33168 </TD> <TD align="right"> 1553 </TD> <TD align="right"> 8681 </TD> </TR>
+  <TR> <TD align="right"> 4 </TD> <TD> LIGHTNING </TD> <TD align="right"> 13303 </TD> <TD align="right"> 817 </TD> <TD align="right"> 5232 </TD> </TR>
+  <TR> <TD align="right"> 5 </TD> <TD> THUNDERSTORM WIND </TD> <TD align="right"> 119774 </TD> <TD align="right"> 729 </TD> <TD align="right"> 9522 </TD> </TR>
+  <TR> <TD align="right"> 6 </TD> <TD> WINTER STORM </TD> <TD align="right"> 4501 </TD> <TD align="right"> 593 </TD> <TD align="right"> 5593 </TD> </TR>
+  <TR> <TD align="right"> 7 </TD> <TD> RIP CURRENT </TD> <TD align="right"> 641 </TD> <TD align="right"> 572 </TD> <TD align="right"> 529 </TD> </TR>
+  <TR> <TD align="right"> 8 </TD> <TD> WINTER WEATHER </TD> <TD align="right"> 1089 </TD> <TD align="right"> 542 </TD> <TD align="right"> 1110 </TD> </TR>
+  <TR> <TD align="right"> 9 </TD> <TD> HIGH WIND </TD> <TD align="right"> 9831 </TD> <TD align="right"> 445 </TD> <TD align="right"> 1883 </TD> </TR>
+  <TR> <TD align="right"> 10 </TD> <TD> AVALANCHE </TD> <TD align="right"> 268 </TD> <TD align="right"> 224 </TD> <TD align="right"> 170 </TD> </TR>
+  <TR> <TD align="right"> 11 </TD> <TD> HURRICANE/TYPHOON/TROPICAL STORM </TD> <TD align="right"> 689 </TD> <TD align="right"> 201 </TD> <TD align="right"> 1716 </TD> </TR>
+  <TR> <TD align="right"> 12 </TD> <TD> HEAVY/HIGH SURF </TD> <TD align="right"> 223 </TD> <TD align="right"> 162 </TD> <TD align="right"> 244 </TD> </TR>
+  <TR> <TD align="right"> 13 </TD> <TD> miscellaneous </TD> <TD align="right"> 366 </TD> <TD align="right"> 135 </TD> <TD align="right"> 291 </TD> </TR>
+  <TR> <TD align="right"> 14 </TD> <TD> HEAVY RAIN </TD> <TD align="right"> 1105 </TD> <TD align="right"> 98 </TD> <TD align="right"> 251 </TD> </TR>
+  <TR> <TD align="right"> 15 </TD> <TD> WILDFIRE </TD> <TD align="right"> 1258 </TD> <TD align="right"> 90 </TD> <TD align="right"> 1608 </TD> </TR>
+  <TR> <TD align="right"> 16 </TD> <TD> FOG </TD> <TD align="right"> 181 </TD> <TD align="right"> 80 </TD> <TD align="right"> 1076 </TD> </TR>
+  <TR> <TD align="right"> 17 </TD> <TD> LAND/MUD/ROCK SLIDES </TD> <TD align="right"> 209 </TD> <TD align="right"> 44 </TD> <TD align="right"> 55 </TD> </TR>
+  <TR> <TD align="right"> 18 </TD> <TD> DUST STORM </TD> <TD align="right"> 103 </TD> <TD align="right"> 22 </TD> <TD align="right"> 440 </TD> </TR>
+  <TR> <TD align="right"> 19 </TD> <TD> HAIL </TD> <TD align="right"> 26164 </TD> <TD align="right"> 15 </TD> <TD align="right"> 1371 </TD> </TR>
+  <TR> <TD align="right"> 20 </TD> <TD> STORM SURGE </TD> <TD align="right"> 177 </TD> <TD align="right"> 13 </TD> <TD align="right"> 38 </TD> </TR>
+  <TR> <TD align="right"> 21 </TD> <TD> DRY MICROBURST </TD> <TD align="right">  78 </TD> <TD align="right"> 3 </TD> <TD align="right"> 28 </TD> </TR>
+  <TR> <TD align="right"> 22 </TD> <TD> DUST DEVIL </TD> <TD align="right">  94 </TD> <TD align="right"> 2 </TD> <TD align="right"> 43 </TD> </TR>
+  <TR> <TD align="right"> 23 </TD> <TD> FROST/FREEZE </TD> <TD align="right"> 155 </TD> <TD align="right"> 2 </TD> <TD align="right"> 3 </TD> </TR>
+  <TR> <TD align="right"> 24 </TD> <TD> DROUGHT </TD> <TD align="right"> 266 </TD> <TD align="right"> 0 </TD> <TD align="right"> 4 </TD> </TR>
+   </TABLE>
+
+<p>When considering fatalities, the top three weather types affecting human health shown in the chart above are:</p>
+
+<ol>
+<li>Tornado, </li>
+<li>Heat, </li>
+<li>Flooding.</li>
+</ol>
+
+<p>The same three largely affect weather-related injuries, but tunderstorm winds are the #2 event type for injuries.</p>
+
+<h4>Summary of Health-Related Weather Events for By Year</h4>
+
+<p>The breakdown by year shows the method for collecting and reporting data has likely changed a lot over the years, with 20-time more data collected in 2011 than 20 years before.</p>
+
+<pre><code class="r">library(plyr)
+</code></pre>
+
+<pre><code>## 
+## Attaching package: &#39;plyr&#39;
+## 
+## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     arrange, desc, failwith, id, mutate, summarise, summarize
+</code></pre>
+
+<pre><code class="r">FatalitiesByYear &lt;- ddply(d, .(BeginYear), summarize, Events = length(EVTYPE), 
+    Fatalities = sum(FATALITIES), Tornado = sum(FATALITIES[EVTYPE == &quot;TORNADO&quot;]), 
+    Heat = sum(FATALITIES[EVTYPE == &quot;HEAT&quot;]), Flooding = sum(FATALITIES[EVTYPE == 
+        &quot;FLOODING&quot;]))
+</code></pre>
+
+<pre><code class="r">xt &lt;- xtable(FatalitiesByYear)
+digits(xt)[4:7] &lt;- 0
+print(xt, type = &quot;html&quot;)
+</code></pre>
+
+<!-- html table generated in R 3.0.2 by xtable 1.7-1 package -->
+
+<!-- Sun Mar 02 21:19:50 2014 -->
+
+<TABLE border=1>
+<TR> <TH>  </TH> <TH> BeginYear </TH> <TH> Events </TH> <TH> Fatalities </TH> <TH> Tornado </TH> <TH> Heat </TH> <TH> Flooding </TH>  </TR>
+  <TR> <TD align="right"> 1 </TD> <TD> 1950 </TD> <TD align="right"> 201 </TD> <TD align="right"> 70 </TD> <TD align="right"> 70 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 2 </TD> <TD> 1951 </TD> <TD align="right"> 241 </TD> <TD align="right"> 34 </TD> <TD align="right"> 34 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 3 </TD> <TD> 1952 </TD> <TD align="right"> 233 </TD> <TD align="right"> 230 </TD> <TD align="right"> 230 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 4 </TD> <TD> 1953 </TD> <TD align="right"> 421 </TD> <TD align="right"> 519 </TD> <TD align="right"> 519 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 5 </TD> <TD> 1954 </TD> <TD align="right"> 491 </TD> <TD align="right"> 36 </TD> <TD align="right"> 36 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 6 </TD> <TD> 1955 </TD> <TD align="right"> 441 </TD> <TD align="right"> 129 </TD> <TD align="right"> 129 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 7 </TD> <TD> 1956 </TD> <TD align="right"> 428 </TD> <TD align="right"> 83 </TD> <TD align="right"> 83 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 8 </TD> <TD> 1957 </TD> <TD align="right"> 824 </TD> <TD align="right"> 193 </TD> <TD align="right"> 193 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 9 </TD> <TD> 1958 </TD> <TD align="right"> 543 </TD> <TD align="right"> 67 </TD> <TD align="right"> 67 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 10 </TD> <TD> 1959 </TD> <TD align="right"> 505 </TD> <TD align="right"> 58 </TD> <TD align="right"> 58 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 11 </TD> <TD> 1960 </TD> <TD align="right"> 556 </TD> <TD align="right"> 46 </TD> <TD align="right"> 46 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 12 </TD> <TD> 1961 </TD> <TD align="right"> 627 </TD> <TD align="right"> 52 </TD> <TD align="right"> 52 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 13 </TD> <TD> 1962 </TD> <TD align="right"> 411 </TD> <TD align="right"> 30 </TD> <TD align="right"> 30 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 14 </TD> <TD> 1963 </TD> <TD align="right"> 380 </TD> <TD align="right"> 31 </TD> <TD align="right"> 31 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 15 </TD> <TD> 1964 </TD> <TD align="right"> 594 </TD> <TD align="right"> 73 </TD> <TD align="right"> 73 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 16 </TD> <TD> 1965 </TD> <TD align="right"> 724 </TD> <TD align="right"> 301 </TD> <TD align="right"> 301 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 17 </TD> <TD> 1966 </TD> <TD align="right"> 423 </TD> <TD align="right"> 98 </TD> <TD align="right"> 98 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 18 </TD> <TD> 1967 </TD> <TD align="right"> 683 </TD> <TD align="right"> 114 </TD> <TD align="right"> 114 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 19 </TD> <TD> 1968 </TD> <TD align="right"> 524 </TD> <TD align="right"> 131 </TD> <TD align="right"> 131 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 20 </TD> <TD> 1969 </TD> <TD align="right"> 458 </TD> <TD align="right"> 66 </TD> <TD align="right"> 66 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 21 </TD> <TD> 1970 </TD> <TD align="right"> 517 </TD> <TD align="right"> 73 </TD> <TD align="right"> 73 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 22 </TD> <TD> 1971 </TD> <TD align="right"> 714 </TD> <TD align="right"> 159 </TD> <TD align="right"> 159 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 23 </TD> <TD> 1972 </TD> <TD align="right"> 579 </TD> <TD align="right"> 27 </TD> <TD align="right"> 27 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 24 </TD> <TD> 1973 </TD> <TD align="right"> 1026 </TD> <TD align="right"> 89 </TD> <TD align="right"> 89 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 25 </TD> <TD> 1974 </TD> <TD align="right"> 884 </TD> <TD align="right"> 366 </TD> <TD align="right"> 366 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 26 </TD> <TD> 1975 </TD> <TD align="right"> 748 </TD> <TD align="right"> 60 </TD> <TD align="right"> 60 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 27 </TD> <TD> 1976 </TD> <TD align="right"> 707 </TD> <TD align="right"> 44 </TD> <TD align="right"> 44 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 28 </TD> <TD> 1977 </TD> <TD align="right"> 693 </TD> <TD align="right"> 43 </TD> <TD align="right"> 43 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 29 </TD> <TD> 1978 </TD> <TD align="right"> 620 </TD> <TD align="right"> 53 </TD> <TD align="right"> 53 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 30 </TD> <TD> 1979 </TD> <TD align="right"> 655 </TD> <TD align="right"> 84 </TD> <TD align="right"> 84 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 31 </TD> <TD> 1980 </TD> <TD align="right"> 728 </TD> <TD align="right"> 28 </TD> <TD align="right"> 28 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 32 </TD> <TD> 1981 </TD> <TD align="right"> 578 </TD> <TD align="right"> 24 </TD> <TD align="right"> 24 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 33 </TD> <TD> 1982 </TD> <TD align="right"> 1128 </TD> <TD align="right"> 64 </TD> <TD align="right"> 64 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 34 </TD> <TD> 1983 </TD> <TD align="right"> 1019 </TD> <TD align="right"> 37 </TD> <TD align="right"> 34 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 35 </TD> <TD> 1984 </TD> <TD align="right"> 920 </TD> <TD align="right"> 160 </TD> <TD align="right"> 122 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 36 </TD> <TD> 1985 </TD> <TD align="right"> 575 </TD> <TD align="right"> 112 </TD> <TD align="right"> 94 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 37 </TD> <TD> 1986 </TD> <TD align="right"> 690 </TD> <TD align="right"> 51 </TD> <TD align="right"> 15 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 38 </TD> <TD> 1987 </TD> <TD align="right"> 563 </TD> <TD align="right"> 89 </TD> <TD align="right"> 59 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 39 </TD> <TD> 1988 </TD> <TD align="right"> 678 </TD> <TD align="right"> 55 </TD> <TD align="right"> 32 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 40 </TD> <TD> 1989 </TD> <TD align="right"> 791 </TD> <TD align="right"> 79 </TD> <TD align="right"> 50 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 41 </TD> <TD> 1990 </TD> <TD align="right"> 986 </TD> <TD align="right"> 95 </TD> <TD align="right"> 53 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 42 </TD> <TD> 1991 </TD> <TD align="right"> 879 </TD> <TD align="right"> 73 </TD> <TD align="right"> 39 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 43 </TD> <TD> 1992 </TD> <TD align="right"> 990 </TD> <TD align="right"> 54 </TD> <TD align="right"> 39 </TD> <TD align="right"> 0 </TD> <TD align="right"> 0 </TD> </TR>
+  <TR> <TD align="right"> 44 </TD> <TD> 1993 </TD> <TD align="right"> 5838 </TD> <TD align="right"> 298 </TD> <TD align="right"> 60 </TD> <TD align="right"> 7 </TD> <TD align="right"> 53 </TD> </TR>
+  <TR> <TD align="right"> 45 </TD> <TD> 1994 </TD> <TD align="right"> 9644 </TD> <TD align="right"> 344 </TD> <TD align="right"> 48 </TD> <TD align="right"> 44 </TD> <TD align="right"> 86 </TD> </TR>
+  <TR> <TD align="right"> 46 </TD> <TD> 1995 </TD> <TD align="right"> 10457 </TD> <TD align="right"> 1491 </TD> <TD align="right"> 43 </TD> <TD align="right"> 1042 </TD> <TD align="right"> 77 </TD> </TR>
+  <TR> <TD align="right"> 47 </TD> <TD> 1996 </TD> <TD align="right"> 10040 </TD> <TD align="right"> 542 </TD> <TD align="right"> 26 </TD> <TD align="right"> 36 </TD> <TD align="right"> 133 </TD> </TR>
+  <TR> <TD align="right"> 48 </TD> <TD> 1997 </TD> <TD align="right"> 10322 </TD> <TD align="right"> 601 </TD> <TD align="right"> 68 </TD> <TD align="right"> 81 </TD> <TD align="right"> 118 </TD> </TR>
+  <TR> <TD align="right"> 49 </TD> <TD> 1998 </TD> <TD align="right"> 14013 </TD> <TD align="right"> 687 </TD> <TD align="right"> 130 </TD> <TD align="right"> 173 </TD> <TD align="right"> 136 </TD> </TR>
+  <TR> <TD align="right"> 50 </TD> <TD> 1999 </TD> <TD align="right"> 10609 </TD> <TD align="right"> 908 </TD> <TD align="right"> 94 </TD> <TD align="right"> 502 </TD> <TD align="right"> 68 </TD> </TR>
+  <TR> <TD align="right"> 51 </TD> <TD> 2000 </TD> <TD align="right"> 11508 </TD> <TD align="right"> 477 </TD> <TD align="right"> 41 </TD> <TD align="right"> 158 </TD> <TD align="right"> 38 </TD> </TR>
+  <TR> <TD align="right"> 52 </TD> <TD> 2001 </TD> <TD align="right"> 10298 </TD> <TD align="right"> 469 </TD> <TD align="right"> 40 </TD> <TD align="right"> 166 </TD> <TD align="right"> 50 </TD> </TR>
+  <TR> <TD align="right"> 53 </TD> <TD> 2002 </TD> <TD align="right"> 10432 </TD> <TD align="right"> 498 </TD> <TD align="right"> 55 </TD> <TD align="right"> 167 </TD> <TD align="right"> 46 </TD> </TR>
+  <TR> <TD align="right"> 54 </TD> <TD> 2003 </TD> <TD align="right"> 11015 </TD> <TD align="right"> 443 </TD> <TD align="right"> 54 </TD> <TD align="right"> 36 </TD> <TD align="right"> 88 </TD> </TR>
+  <TR> <TD align="right"> 55 </TD> <TD> 2004 </TD> <TD align="right"> 10484 </TD> <TD align="right"> 370 </TD> <TD align="right"> 35 </TD> <TD align="right"> 6 </TD> <TD align="right"> 82 </TD> </TR>
+  <TR> <TD align="right"> 56 </TD> <TD> 2005 </TD> <TD align="right"> 10014 </TD> <TD align="right"> 469 </TD> <TD align="right"> 38 </TD> <TD align="right"> 158 </TD> <TD align="right"> 43 </TD> </TR>
+  <TR> <TD align="right"> 57 </TD> <TD> 2006 </TD> <TD align="right"> 11974 </TD> <TD align="right"> 599 </TD> <TD align="right"> 67 </TD> <TD align="right"> 252 </TD> <TD align="right"> 78 </TD> </TR>
+  <TR> <TD align="right"> 58 </TD> <TD> 2007 </TD> <TD align="right"> 11953 </TD> <TD align="right"> 421 </TD> <TD align="right"> 81 </TD> <TD align="right"> 44 </TD> <TD align="right"> 87 </TD> </TR>
+  <TR> <TD align="right"> 59 </TD> <TD> 2008 </TD> <TD align="right"> 17633 </TD> <TD align="right"> 488 </TD> <TD align="right"> 129 </TD> <TD align="right"> 42 </TD> <TD align="right"> 79 </TD> </TR>
+  <TR> <TD align="right"> 60 </TD> <TD> 2009 </TD> <TD align="right"> 14434 </TD> <TD align="right"> 333 </TD> <TD align="right"> 21 </TD> <TD align="right"> 33 </TD> <TD align="right"> 56 </TD> </TR>
+  <TR> <TD align="right"> 61 </TD> <TD> 2010 </TD> <TD align="right"> 16019 </TD> <TD align="right"> 425 </TD> <TD align="right"> 45 </TD> <TD align="right"> 83 </TD> <TD align="right"> 108 </TD> </TR>
+  <TR> <TD align="right"> 62 </TD> <TD> 2011 </TD> <TD align="right"> 20570 </TD> <TD align="right"> 1002 </TD> <TD align="right"> 587 </TD> <TD align="right"> 99 </TD> <TD align="right"> 127 </TD> </TR>
+   </TABLE>
+
+<p>Let&#39;s plot the data from the table above:</p>
+
+<pre><code class="r">
+library(RColorBrewer)  # brewer.pal
+
+Colors &lt;- brewer.pal(3, &quot;Set1&quot;)
+
+par(mfrow = c(4, 1), mar = c(4, 4, 2, 2))
+
+plot(FatalitiesByYear$BeginYear, FatalitiesByYear$Fatalities, pch = 15, col = &quot;black&quot;, 
+    main = &quot;Reported Weather-Related Fatalities by Year&quot;, xlab = &quot;Year&quot;, ylab = &quot;Fatalities&quot;, 
+    ylim = c(0, 1500), las = 1)
+grid(nx = NULL, ny = NA, col = &quot;gray&quot;, lty = &quot;solid&quot;)
+mtext(&quot;All Weather Events&quot;, line = -2)
+
+plot(FatalitiesByYear$BeginYear, FatalitiesByYear$Tornado, pch = 16, col = Colors[1], 
+    main = &quot;&quot;, xlab = &quot;Year&quot;, ylab = &quot;Fatalities&quot;, ylim = c(0, 1500), las = 1)
+grid(nx = NULL, ny = NA, col = &quot;gray&quot;, lty = &quot;solid&quot;)
+mtext(&quot;#1 Tornado Fatalities&quot;, line = -2)
+
+plot(FatalitiesByYear$BeginYear, FatalitiesByYear$Heat, pch = 16, col = Colors[2], 
+    main = &quot;&quot;, xlab = &quot;Year&quot;, ylab = &quot;Fatalities&quot;, las = 1)
+grid(nx = NULL, ny = NA, col = &quot;gray&quot;, lty = &quot;solid&quot;)
+mtext(&quot;#2 Heat Fatalities&quot;, line = -2)
+
+plot(FatalitiesByYear$BeginYear, FatalitiesByYear$Flooding, pch = 16, col = Colors[3], 
+    main = &quot;&quot;, xlab = &quot;Year&quot;, ylab = &quot;Fatalities&quot;, las = 1)
+grid(nx = NULL, ny = NA, col = &quot;gray&quot;, lty = &quot;solid&quot;)
+mtext(&quot;#3 Flooding Fatalities&quot;, line = -2)
+
+mtext(expression(&quot;Source:  NOAA Storm Events Database (2011)&quot;), BOTTOM &lt;- 1, 
+    adj = 0.025, line = -1, cex = 0.8, col = &quot;blue&quot;, outer = TRUE)
+mtext(format(Sys.time(), &quot;%Y-%m-%d %H:%M&quot;), BOTTOM, adj = 0.975, line = -1, 
+    cex = 0.75, col = &quot;blue&quot;, outer = TRUE)
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAABQVBMVEX9/v0AAAAAADkAAGUAAP4AAP8AK2sAOTkAOWUAOY8AOf4AZo8AZrUAZv4rAEw3frg5AAA5ADk5AGU5AP45AP85OQA5OTk5OWU5OY85Of45Of85Zo85ZrU5Zv45j9o5j/05j/5Mh75Nr0plAABlADllAGVlAP5lAP9lOQBlOTllOY9lOf5lOf9lZgBlZjllZmVlZrVlZv5lZv9lj49lj/1ltf2POQCPOTmPOWWPOf6POf+PZgCPZmWPZo+PZv+Pj2WPj/6PtY+P27WP29qP2/21ZgC1Zjm1ZmW1Zv+1jzm1j/61tf2124+12/212/61/rW1/v21/v6+h0y+o2u+vr7ajznaj/7aj//atWXatf7a24/a2/3a2/7a/rXa/tra/v3a/v7kGhz9tWX9tf7924/927X92/79/rX9/tr9/v39/v7Yb/FhAAAAa3RSTlP///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8A/8a/Vx4AAAAJcEhZcwAACxIAAAsSAdLdfvwAACAASURBVHic7Z0Lm9y2dYbDXau23FG9VnyRrfWotizLVhprk5a7Gydq6mRmd5269bQdRqlbayPuVDPU//8BxcGFV5DEhRdwcM6j1XBI4JtDvARwhsQAP0vQvLSfje0A2jiG4D01BO+pIXhPDcF7agjeU3MXfBwQu31dc/RikW5uH4ZJsjudkxzzJCrmuFjEB4ty3oLy5t1FmrYoydLNS0dJeshyscgyprqHq9y7JXm3OZonjprD4EnBMQCygwdlSstZEv3jMbwUk8nA55VTflXJ/J50m6WXqJbBbx/OkmXthTu6uQ1+cxQmS6h18cH7UEfJ9gwqInl3sKAHdqfBm0eU0u0X5z88eXHKM2wfkkr94jQ4+D1JS5SYSgCbRWUCMk1blqR006N/gI1rWuP/SN5+S64AkT6glxt18gVpetjVFwdPQSBz55p/vhPmMHhoaEk1PlyR+kcYbB/OY9iex0EITNgB8v+GUtrcJdjPf/ic709EdSepWTJQCcKKclqDq5KQjoJKGw7y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" alt="plot of chunk healthbyyearchart"/> </p>
+
+<p>Note in the table and plot above that there was no health-related data collected for Heat and Flooding weather events before 1993.</p>
+
+<h3>Property and Crop Damage Perspective</h3>
+
+<p>Next let&#39;s look at property and crop damage caused by weather events.</p>
+
+<p>(<strong>NOTE</strong>:  RStudio must be closed and reopened to get the following to knit sucessfully with all previous entries being fetched from the knitr cache.)</p>
+
+<pre><code class="r"># Overall summary
+library(dplyr)
+</code></pre>
+
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;
+## 
+## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag
+## 
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union
+</code></pre>
+
+<pre><code class="r"># Return $ values in $billions
+property.crop.damage &lt;- d %.% group_by(EVTYPE) %.% summarize(N.Events = length(EVTYPE), 
+    N.Property = sum(PropCash &gt; 0, na.rm = TRUE), PropertyDamage = sum(PropCash, 
+        na.rm = TRUE)/1e+09, N.Crop = sum(CropCash &gt; 0, na.rm = TRUE), CropDamage = sum(CropCash, 
+        na.rm = TRUE)/1e+09) %.% arrange(desc(PropertyDamage))
+</code></pre>
+
+<h4>Summary of Property and Crop Damage [$Billions]  for All Years</h4>
+
+<pre><code class="r">library(xtable)
+xt &lt;- xtable(property.crop.damage)
+print(xt, type = &quot;html&quot;)
+</code></pre>
+
+<!-- html table generated in R 3.0.2 by xtable 1.7-1 package -->
+
+<!-- Sun Mar 02 21:19:53 2014 -->
+
+<TABLE border=1>
+<TR> <TH>  </TH> <TH> EVTYPE </TH> <TH> N.Events </TH> <TH> N.Property </TH> <TH> PropertyDamage </TH> <TH> N.Crop </TH> <TH> CropDamage </TH>  </TR>
+  <TR> <TD align="right"> 1 </TD> <TD> FLOODING </TD> <TD align="right"> 33168 </TD> <TD align="right"> 32191 </TD> <TD align="right"> 167.57 </TD> <TD align="right"> 4250 </TD> <TD align="right"> 12.38 </TD> </TR>
+  <TR> <TD align="right"> 2 </TD> <TD> HURRICANE/TYPHOON/TROPICAL STORM </TD> <TD align="right"> 689 </TD> <TD align="right"> 654 </TD> <TD align="right"> 93.07 </TD> <TD align="right"> 163 </TD> <TD align="right"> 6.21 </TD> </TR>
+  <TR> <TD align="right"> 3 </TD> <TD> TORNADO </TD> <TD align="right"> 40011 </TD> <TD align="right"> 39088 </TD> <TD align="right"> 63.61 </TD> <TD align="right"> 1504 </TD> <TD align="right"> 0.43 </TD> </TR>
+  <TR> <TD align="right"> 4 </TD> <TD> STORM SURGE </TD> <TD align="right"> 177 </TD> <TD align="right"> 173 </TD> <TD align="right"> 43.32 </TD> <TD align="right">   1 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 5 </TD> <TD> HAIL </TD> <TD align="right"> 26164 </TD> <TD align="right"> 23047 </TD> <TD align="right"> 15.97 </TD> <TD align="right"> 9392 </TD> <TD align="right"> 3.05 </TD> </TR>
+  <TR> <TD align="right"> 6 </TD> <TD> THUNDERSTORM WIND </TD> <TD align="right"> 119774 </TD> <TD align="right"> 116158 </TD> <TD align="right"> 9.76 </TD> <TD align="right"> 5432 </TD> <TD align="right"> 1.25 </TD> </TR>
+  <TR> <TD align="right"> 7 </TD> <TD> miscellaneous </TD> <TD align="right"> 366 </TD> <TD align="right"> 269 </TD> <TD align="right"> 8.54 </TD> <TD align="right">  50 </TD> <TD align="right"> 0.22 </TD> </TR>
+  <TR> <TD align="right"> 8 </TD> <TD> WILDFIRE </TD> <TD align="right"> 1258 </TD> <TD align="right"> 1055 </TD> <TD align="right"> 8.50 </TD> <TD align="right"> 130 </TD> <TD align="right"> 0.40 </TD> </TR>
+  <TR> <TD align="right"> 9 </TD> <TD> WINTER STORM </TD> <TD align="right"> 4501 </TD> <TD align="right"> 4160 </TD> <TD align="right"> 7.42 </TD> <TD align="right"> 104 </TD> <TD align="right"> 5.31 </TD> </TR>
+  <TR> <TD align="right"> 10 </TD> <TD> HIGH WIND </TD> <TD align="right"> 9831 </TD> <TD align="right"> 9356 </TD> <TD align="right"> 6.08 </TD> <TD align="right"> 322 </TD> <TD align="right"> 0.75 </TD> </TR>
+  <TR> <TD align="right"> 11 </TD> <TD> DROUGHT </TD> <TD align="right"> 266 </TD> <TD align="right">  54 </TD> <TD align="right"> 1.05 </TD> <TD align="right"> 251 </TD> <TD align="right"> 13.97 </TD> </TR>
+  <TR> <TD align="right"> 12 </TD> <TD> LIGHTNING </TD> <TD align="right"> 13303 </TD> <TD align="right"> 10277 </TD> <TD align="right"> 0.94 </TD> <TD align="right"> 110 </TD> <TD align="right"> 0.01 </TD> </TR>
+  <TR> <TD align="right"> 13 </TD> <TD> HEAVY RAIN </TD> <TD align="right"> 1105 </TD> <TD align="right"> 958 </TD> <TD align="right"> 0.69 </TD> <TD align="right"> 132 </TD> <TD align="right"> 0.73 </TD> </TR>
+  <TR> <TD align="right"> 14 </TD> <TD> LAND/MUD/ROCK SLIDES </TD> <TD align="right"> 209 </TD> <TD align="right"> 202 </TD> <TD align="right"> 0.33 </TD> <TD align="right">   2 </TD> <TD align="right"> 0.02 </TD> </TR>
+  <TR> <TD align="right"> 15 </TD> <TD> WINTER WEATHER </TD> <TD align="right"> 1089 </TD> <TD align="right"> 627 </TD> <TD align="right"> 0.27 </TD> <TD align="right">  66 </TD> <TD align="right"> 1.45 </TD> </TR>
+  <TR> <TD align="right"> 16 </TD> <TD> HEAVY/HIGH SURF </TD> <TD align="right"> 223 </TD> <TD align="right">  98 </TD> <TD align="right"> 0.11 </TD> <TD align="right">   1 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 17 </TD> <TD> FOG </TD> <TD align="right"> 181 </TD> <TD align="right"> 131 </TD> <TD align="right"> 0.02 </TD> <TD align="right">   0 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 18 </TD> <TD> HEAT </TD> <TD align="right"> 979 </TD> <TD align="right">  44 </TD> <TD align="right"> 0.02 </TD> <TD align="right">  27 </TD> <TD align="right"> 0.90 </TD> </TR>
+  <TR> <TD align="right"> 19 </TD> <TD> FROST/FREEZE </TD> <TD align="right"> 155 </TD> <TD align="right">  24 </TD> <TD align="right"> 0.02 </TD> <TD align="right"> 137 </TD> <TD align="right"> 2.00 </TD> </TR>
+  <TR> <TD align="right"> 20 </TD> <TD> DRY MICROBURST </TD> <TD align="right">  78 </TD> <TD align="right">  67 </TD> <TD align="right"> 0.01 </TD> <TD align="right">   6 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 21 </TD> <TD> DUST STORM </TD> <TD align="right"> 103 </TD> <TD align="right">  76 </TD> <TD align="right"> 0.01 </TD> <TD align="right">   4 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 22 </TD> <TD> AVALANCHE </TD> <TD align="right"> 268 </TD> <TD align="right">  54 </TD> <TD align="right"> 0.00 </TD> <TD align="right">   0 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 23 </TD> <TD> DUST DEVIL </TD> <TD align="right">  94 </TD> <TD align="right">  85 </TD> <TD align="right"> 0.00 </TD> <TD align="right">   0 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 24 </TD> <TD> RIP CURRENT </TD> <TD align="right"> 641 </TD> <TD align="right">   6 </TD> <TD align="right"> 0.00 </TD> <TD align="right">   0 </TD> <TD align="right"> 0.00 </TD> </TR>
+   </TABLE>
+
+<p>The top three weather event types affecting property damage include
+1. Flooding,
+2. Huricanes/Typhoons/Tropical Storms,
+3. Tornadoes.</p>
+
+<p>The two biggest weather event types affecting crops are drought and flodding.  </p>
+
+<p>The year-by-year summary shows data collection over time:</p>
+
+<h4>Summary of Property and Crop Damage [$Billions] By Year</h4>
+
+<p>The table below is sorted in descending order by property damage.</p>
+
+<pre><code class="r">library(plyr)
+</code></pre>
+
+<pre><code>## 
+## Attaching package: &#39;plyr&#39;
+## 
+## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     arrange, desc, failwith, id, mutate, summarise, summarize
+</code></pre>
+
+<pre><code class="r"># Return $ values in $billions
+DamageByYear &lt;- ddply(d, .(BeginYear), summarize, Events = length(EVTYPE), PropertyDamage = sum(PropCash, 
+    na.rm = TRUE)/1e+09, Flooding = sum(PropCash[EVTYPE == &quot;FLOODING&quot;], na.rm = TRUE)/1e+09, 
+    Hurricane = sum(PropCash[EVTYPE == &quot;HURRICANE/TYPHOON/TROPICAL STORM&quot;], 
+        na.rm = TRUE)/1e+09, Tornado = sum(PropCash[EVTYPE == &quot;TORNADO&quot;], na.rm = TRUE)/1e+09)
+</code></pre>
+
+<pre><code class="r">xt &lt;- xtable(DamageByYear)
+digits(x)[4:7] &lt;- 4
+</code></pre>
+
+<pre><code>## Error: object &#39;x&#39; not found
+</code></pre>
+
+<pre><code class="r">print(xt, type = &quot;html&quot;)
+</code></pre>
+
+<!-- html table generated in R 3.0.2 by xtable 1.7-1 package -->
+
+<!-- Sun Mar 02 21:19:54 2014 -->
+
+<TABLE border=1>
+<TR> <TH>  </TH> <TH> BeginYear </TH> <TH> Events </TH> <TH> PropertyDamage </TH> <TH> Flooding </TH> <TH> Hurricane </TH> <TH> Tornado </TH>  </TR>
+  <TR> <TD align="right"> 1 </TD> <TD> 1950 </TD> <TD align="right"> 201 </TD> <TD align="right"> 0.03 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.03 </TD> </TR>
+  <TR> <TD align="right"> 2 </TD> <TD> 1951 </TD> <TD align="right"> 241 </TD> <TD align="right"> 0.07 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.07 </TD> </TR>
+  <TR> <TD align="right"> 3 </TD> <TD> 1952 </TD> <TD align="right"> 233 </TD> <TD align="right"> 0.09 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.09 </TD> </TR>
+  <TR> <TD align="right"> 4 </TD> <TD> 1953 </TD> <TD align="right"> 421 </TD> <TD align="right"> 0.60 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.60 </TD> </TR>
+  <TR> <TD align="right"> 5 </TD> <TD> 1954 </TD> <TD align="right"> 491 </TD> <TD align="right"> 0.09 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.09 </TD> </TR>
+  <TR> <TD align="right"> 6 </TD> <TD> 1955 </TD> <TD align="right"> 441 </TD> <TD align="right"> 0.08 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.08 </TD> </TR>
+  <TR> <TD align="right"> 7 </TD> <TD> 1956 </TD> <TD align="right"> 428 </TD> <TD align="right"> 0.12 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.12 </TD> </TR>
+  <TR> <TD align="right"> 8 </TD> <TD> 1957 </TD> <TD align="right"> 824 </TD> <TD align="right"> 0.22 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.22 </TD> </TR>
+  <TR> <TD align="right"> 9 </TD> <TD> 1958 </TD> <TD align="right"> 543 </TD> <TD align="right"> 0.13 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.13 </TD> </TR>
+  <TR> <TD align="right"> 10 </TD> <TD> 1959 </TD> <TD align="right"> 505 </TD> <TD align="right"> 0.09 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.09 </TD> </TR>
+  <TR> <TD align="right"> 11 </TD> <TD> 1960 </TD> <TD align="right"> 556 </TD> <TD align="right"> 0.12 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.12 </TD> </TR>
+  <TR> <TD align="right"> 12 </TD> <TD> 1961 </TD> <TD align="right"> 627 </TD> <TD align="right"> 0.18 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.18 </TD> </TR>
+  <TR> <TD align="right"> 13 </TD> <TD> 1962 </TD> <TD align="right"> 411 </TD> <TD align="right"> 0.07 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.07 </TD> </TR>
+  <TR> <TD align="right"> 14 </TD> <TD> 1963 </TD> <TD align="right"> 380 </TD> <TD align="right"> 0.09 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.09 </TD> </TR>
+  <TR> <TD align="right"> 15 </TD> <TD> 1964 </TD> <TD align="right"> 594 </TD> <TD align="right"> 0.17 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.17 </TD> </TR>
+  <TR> <TD align="right"> 16 </TD> <TD> 1965 </TD> <TD align="right"> 724 </TD> <TD align="right"> 1.76 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 1.76 </TD> </TR>
+  <TR> <TD align="right"> 17 </TD> <TD> 1966 </TD> <TD align="right"> 423 </TD> <TD align="right"> 0.48 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.48 </TD> </TR>
+  <TR> <TD align="right"> 18 </TD> <TD> 1967 </TD> <TD align="right"> 683 </TD> <TD align="right"> 0.58 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.58 </TD> </TR>
+  <TR> <TD align="right"> 19 </TD> <TD> 1968 </TD> <TD align="right"> 524 </TD> <TD align="right"> 0.21 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.21 </TD> </TR>
+  <TR> <TD align="right"> 20 </TD> <TD> 1969 </TD> <TD align="right"> 458 </TD> <TD align="right"> 0.11 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.11 </TD> </TR>
+  <TR> <TD align="right"> 21 </TD> <TD> 1970 </TD> <TD align="right"> 517 </TD> <TD align="right"> 0.63 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.63 </TD> </TR>
+  <TR> <TD align="right"> 22 </TD> <TD> 1971 </TD> <TD align="right"> 714 </TD> <TD align="right"> 0.20 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.20 </TD> </TR>
+  <TR> <TD align="right"> 23 </TD> <TD> 1972 </TD> <TD align="right"> 579 </TD> <TD align="right"> 0.15 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.15 </TD> </TR>
+  <TR> <TD align="right"> 24 </TD> <TD> 1973 </TD> <TD align="right"> 1026 </TD> <TD align="right"> 2.06 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 2.06 </TD> </TR>
+  <TR> <TD align="right"> 25 </TD> <TD> 1974 </TD> <TD align="right"> 884 </TD> <TD align="right"> 1.94 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 1.94 </TD> </TR>
+  <TR> <TD align="right"> 26 </TD> <TD> 1975 </TD> <TD align="right"> 748 </TD> <TD align="right"> 0.83 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.83 </TD> </TR>
+  <TR> <TD align="right"> 27 </TD> <TD> 1976 </TD> <TD align="right"> 707 </TD> <TD align="right"> 0.31 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.31 </TD> </TR>
+  <TR> <TD align="right"> 28 </TD> <TD> 1977 </TD> <TD align="right"> 693 </TD> <TD align="right"> 0.34 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.34 </TD> </TR>
+  <TR> <TD align="right"> 29 </TD> <TD> 1978 </TD> <TD align="right"> 620 </TD> <TD align="right"> 0.62 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.62 </TD> </TR>
+  <TR> <TD align="right"> 30 </TD> <TD> 1979 </TD> <TD align="right"> 655 </TD> <TD align="right"> 0.95 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.95 </TD> </TR>
+  <TR> <TD align="right"> 31 </TD> <TD> 1980 </TD> <TD align="right"> 728 </TD> <TD align="right"> 2.15 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 2.15 </TD> </TR>
+  <TR> <TD align="right"> 32 </TD> <TD> 1981 </TD> <TD align="right"> 578 </TD> <TD align="right"> 0.77 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.77 </TD> </TR>
+  <TR> <TD align="right"> 33 </TD> <TD> 1982 </TD> <TD align="right"> 1128 </TD> <TD align="right"> 1.43 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 1.43 </TD> </TR>
+  <TR> <TD align="right"> 34 </TD> <TD> 1983 </TD> <TD align="right"> 1019 </TD> <TD align="right"> 0.77 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.77 </TD> </TR>
+  <TR> <TD align="right"> 35 </TD> <TD> 1984 </TD> <TD align="right"> 920 </TD> <TD align="right"> 2.13 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 2.13 </TD> </TR>
+  <TR> <TD align="right"> 36 </TD> <TD> 1985 </TD> <TD align="right"> 575 </TD> <TD align="right"> 1.61 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 1.61 </TD> </TR>
+  <TR> <TD align="right"> 37 </TD> <TD> 1986 </TD> <TD align="right"> 690 </TD> <TD align="right"> 1.03 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 1.03 </TD> </TR>
+  <TR> <TD align="right"> 38 </TD> <TD> 1987 </TD> <TD align="right"> 563 </TD> <TD align="right"> 0.41 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.41 </TD> </TR>
+  <TR> <TD align="right"> 39 </TD> <TD> 1988 </TD> <TD align="right"> 678 </TD> <TD align="right"> 1.12 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 1.12 </TD> </TR>
+  <TR> <TD align="right"> 40 </TD> <TD> 1989 </TD> <TD align="right"> 791 </TD> <TD align="right"> 1.76 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 1.76 </TD> </TR>
+  <TR> <TD align="right"> 41 </TD> <TD> 1990 </TD> <TD align="right"> 986 </TD> <TD align="right"> 1.56 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 1.56 </TD> </TR>
+  <TR> <TD align="right"> 42 </TD> <TD> 1991 </TD> <TD align="right"> 879 </TD> <TD align="right"> 1.15 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 1.15 </TD> </TR>
+  <TR> <TD align="right"> 43 </TD> <TD> 1992 </TD> <TD align="right"> 990 </TD> <TD align="right"> 1.41 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 1.41 </TD> </TR>
+  <TR> <TD align="right"> 44 </TD> <TD> 1993 </TD> <TD align="right"> 5838 </TD> <TD align="right"> 16.38 </TD> <TD align="right"> 6.10 </TD> <TD align="right"> 0.06 </TD> <TD align="right"> 7.38 </TD> </TR>
+  <TR> <TD align="right"> 45 </TD> <TD> 1994 </TD> <TD align="right"> 9644 </TD> <TD align="right"> 3.78 </TD> <TD align="right"> 1.26 </TD> <TD align="right"> 0.11 </TD> <TD align="right"> 0.70 </TD> </TR>
+  <TR> <TD align="right"> 46 </TD> <TD> 1995 </TD> <TD align="right"> 10457 </TD> <TD align="right"> 9.79 </TD> <TD align="right"> 0.44 </TD> <TD align="right"> 3.55 </TD> <TD align="right"> 0.31 </TD> </TR>
+  <TR> <TD align="right"> 47 </TD> <TD> 1996 </TD> <TD align="right"> 10040 </TD> <TD align="right"> 6.09 </TD> <TD align="right"> 2.18 </TD> <TD align="right"> 1.43 </TD> <TD align="right"> 0.72 </TD> </TR>
+  <TR> <TD align="right"> 48 </TD> <TD> 1997 </TD> <TD align="right"> 10322 </TD> <TD align="right"> 9.56 </TD> <TD align="right"> 6.91 </TD> <TD align="right"> 0.67 </TD> <TD align="right"> 0.73 </TD> </TR>
+  <TR> <TD align="right"> 49 </TD> <TD> 1998 </TD> <TD align="right"> 14013 </TD> <TD align="right"> 11.60 </TD> <TD align="right"> 2.44 </TD> <TD align="right"> 3.54 </TD> <TD align="right"> 1.72 </TD> </TR>
+  <TR> <TD align="right"> 50 </TD> <TD> 1999 </TD> <TD align="right"> 10609 </TD> <TD align="right"> 8.72 </TD> <TD align="right"> 1.42 </TD> <TD align="right"> 4.19 </TD> <TD align="right"> 1.99 </TD> </TR>
+  <TR> <TD align="right"> 51 </TD> <TD> 2000 </TD> <TD align="right"> 11508 </TD> <TD align="right"> 5.62 </TD> <TD align="right"> 1.25 </TD> <TD align="right"> 0.01 </TD> <TD align="right"> 0.42 </TD> </TR>
+  <TR> <TD align="right"> 52 </TD> <TD> 2001 </TD> <TD align="right"> 10298 </TD> <TD align="right"> 10.03 </TD> <TD align="right"> 1.24 </TD> <TD align="right"> 5.19 </TD> <TD align="right"> 0.63 </TD> </TR>
+  <TR> <TD align="right"> 53 </TD> <TD> 2002 </TD> <TD align="right"> 10432 </TD> <TD align="right"> 4.10 </TD> <TD align="right"> 0.66 </TD> <TD align="right"> 0.93 </TD> <TD align="right"> 0.80 </TD> </TR>
+  <TR> <TD align="right"> 54 </TD> <TD> 2003 </TD> <TD align="right"> 11015 </TD> <TD align="right"> 10.25 </TD> <TD align="right"> 2.54 </TD> <TD align="right"> 1.82 </TD> <TD align="right"> 1.27 </TD> </TR>
+  <TR> <TD align="right"> 55 </TD> <TD> 2004 </TD> <TD align="right"> 10484 </TD> <TD align="right"> 25.35 </TD> <TD align="right"> 1.70 </TD> <TD align="right"> 18.86 </TD> <TD align="right"> 0.54 </TD> </TR>
+  <TR> <TD align="right"> 56 </TD> <TD> 2005 </TD> <TD align="right"> 10014 </TD> <TD align="right"> 96.79 </TD> <TD align="right"> 1.54 </TD> <TD align="right"> 50.01 </TD> <TD align="right"> 0.42 </TD> </TR>
+  <TR> <TD align="right"> 57 </TD> <TD> 2006 </TD> <TD align="right"> 11974 </TD> <TD align="right"> 121.94 </TD> <TD align="right"> 118.70 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.75 </TD> </TR>
+  <TR> <TD align="right"> 58 </TD> <TD> 2007 </TD> <TD align="right"> 11953 </TD> <TD align="right"> 5.79 </TD> <TD align="right"> 1.82 </TD> <TD align="right"> 0.04 </TD> <TD align="right"> 1.40 </TD> </TR>
+  <TR> <TD align="right"> 59 </TD> <TD> 2008 </TD> <TD align="right"> 17633 </TD> <TD align="right"> 15.57 </TD> <TD align="right"> 3.19 </TD> <TD align="right"> 2.53 </TD> <TD align="right"> 1.71 </TD> </TR>
+  <TR> <TD align="right"> 60 </TD> <TD> 2009 </TD> <TD align="right"> 14434 </TD> <TD align="right"> 5.23 </TD> <TD align="right"> 1.10 </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.57 </TD> </TR>
+  <TR> <TD align="right"> 61 </TD> <TD> 2010 </TD> <TD align="right"> 16019 </TD> <TD align="right"> 9.25 </TD> <TD align="right"> 3.94 </TD> <TD align="right"> 0.01 </TD> <TD align="right"> 1.14 </TD> </TR>
+  <TR> <TD align="right"> 62 </TD> <TD> 2011 </TD> <TD align="right"> 20570 </TD> <TD align="right"> 20.89 </TD> <TD align="right"> 9.14 </TD> <TD align="right"> 0.15 </TD> <TD align="right"> 9.82 </TD> </TR>
+   </TABLE>
+
+<p>Let&#39;s plot the data from the table above:</p>
+
+<pre><code class="r">par(mfrow = c(4, 1), mar = c(4, 4, 2, 2))
+
+plot(DamageByYear$BeginYear, DamageByYear$PropertyDamage, pch = 15, col = &quot;black&quot;, 
+    main = &quot;Reported Weather-Related Property Damage by Year&quot;, xlab = &quot;Year&quot;, 
+    ylab = &quot;Damage [$billions]&quot;, ylim = c(0, 120), las = 1)
+grid(nx = NULL, ny = NA, col = &quot;gray&quot;, lty = &quot;solid&quot;)
+mtext(&quot;All Weather Events&quot;, line = -2)
+
+plot(DamageByYear$BeginYear, DamageByYear$Flooding, pch = 16, col = Colors[1], 
+    main = &quot;&quot;, xlab = &quot;Year&quot;, ylab = &quot;Damage [$billions]&quot;, ylim = c(0, 120), 
+    las = 1)
+grid(nx = NULL, ny = NA, col = &quot;gray&quot;, lty = &quot;solid&quot;)
+mtext(&quot;#1 Flooding&quot;, line = -2)
+
+plot(DamageByYear$BeginYear, DamageByYear$Hurricane, pch = 16, col = Colors[2], 
+    main = &quot;&quot;, xlab = &quot;Year&quot;, ylab = &quot;Damage [$billions]&quot;, las = 1)
+grid(nx = NULL, ny = NA, col = &quot;gray&quot;, lty = &quot;solid&quot;)
+mtext(&quot;#2 Hurricane / Typhoon / Tropical Storm&quot;, line = -2)
+
+plot(DamageByYear$BeginYear, DamageByYear$Tornado, pch = 16, col = Colors[3], 
+    main = &quot;&quot;, xlab = &quot;Year&quot;, ylab = &quot;Damage [$billions]&quot;, las = 1)
+grid(nx = NULL, ny = NA, col = &quot;gray&quot;, lty = &quot;solid&quot;)
+mtext(&quot;#3 Tornado&quot;, line = -2)
+
+mtext(expression(&quot;Source:  NOAA Storm Events Database (2011)&quot;), BOTTOM &lt;- 1, 
+    adj = 0.025, line = -1, cex = 0.8, col = &quot;blue&quot;, outer = TRUE)
+mtext(format(Sys.time(), &quot;%Y-%m-%d %H:%M&quot;), BOTTOM, adj = 0.975, line = -1, 
+    cex = 0.75, col = &quot;blue&quot;, outer = TRUE)
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAABZVBMVEX9/v0AAAAAADkAAGUAAP4AAP8AK2sAOTkAOWUAOY8AOf4AOf8AZmUAZo8AZrUAZv4rAAA3frg5AAA5ADk5AGU5AP45AP85OQA5OTk5OWU5OY85Of45Of85Zo85ZrU5Zv45j485j9o5j/05j/5MACtMh75Nr0plAABlADllAGVlAP5lAP9lOQBlOTllOY9lOf5lOf9lZgBlZjllZmVlZrVlZv5lZv9lj49lj/1ltf1rKytro76HTACHo2uHvr6POQCPOTmPOWWPOf6POf+PZgCPZmWPZo+PZv+PjzmPj2WPj7WPj/6PtY+P27WP29qP2/2jvr61ZgC1Zjm1ZmW1Zv+1jzm1j/61tf2124+12/61/rW1/tq1/v21/v6+h0y+o2u+vr7ajznaj/7aj//atWXatf7a24/a29ra2/3a2/7a/rXa/tra/v3a/v7kGhz9tWX9tf7924/92/79/rX9/tr9/v39/v7hIhmOAAAAd3RSTlP///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8A/xe5tpoAAAAJcEhZcwAACxIAAAsSAdLdfvwAACAASURBVHic7Z2Nn9u2ecfLu3jJZas8q25enPhSeVvOjh1vja/duJfeXZ14a5ZO0925yzptEesu23yqdbJE//3DgxeK4DsIEYCI5/lYlo4kfnzILwE8BEHgBzGal/YD2w6g2TEE76kheE8NwXtqCN5TQ/CemiPgFwGxg3nJ2vNx8nN1FMbx+mREUoziSE5xPl7sjbNpJeXlj8bJtrJkvBxWeSAnoZph9RGJTfenqb8m5K/lcNQoZcfmCnhyRhiAopV7WUqTQRz99SF8yZsVgU8rJ+DzkrBqdVTBJJUENDfXUKXJ4FdHg3hSeXUZM4fAL4dhPAlIRl7svQ95j/weQOYif+2N6Yr1SfD2ECgtDq7Ofvv46oQnWB2RzHp1Euz9imxLlJhKAD9lZUIr2TYjycHTVGzPiRcj7gX8otcaaJJSh0rNI7LmhyfkB/uTC9JksCmoXJ3whETo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" alt="plot of chunk propertybyyearchart"/> </p>
+
+<p>The table and plots above show how difficult it is to make sense of the property damage information in the Storm Events database.  In particular, comparisons of property and crop damage between years may not be valid, especially prior to 1993.</p>
+
+</body>
+
+</html>
+
