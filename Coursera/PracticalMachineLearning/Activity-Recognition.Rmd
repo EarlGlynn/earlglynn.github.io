@@ -1,19 +1,25 @@
 # Activity Recognition
 
+#### Coursera Practical Machine Learning Class
+19 June 2014
+
 ### Executive Summary
 
-The goal of this project was to analyze data from six participants, who performed barbell lifts correctly and incorrectly five different ways, and predict the manner in which an exercise was done for 20 specific test cases.
+This project analyzed data from six participants, who performed barbell lifts correctly and incorrectly five different ways, and predicted the manner in which an exercise was done for 20 specific test cases.
 
-A combined ensemble model was created using five machine learning methods from the  *caret* package  (rf, gbm, treebag, svmPoly, bagFDA).  This model was used to vote on the final classification assigments.  Four of the five models agreed on classifications of all 20 test cases. The bagFDA method cast "minority" votes in 4 of the 20 test cases.
+A combined ensemble model was created using five machine learning methods from the  *caret* package  (rf, gbm, treebag, svmPoly, bagFDA).  Each of these methods (except for svmPoly) is an ensemble model by itself. 
+
+The combined model was used to vote on the final classification assignments for the test cases.  Four of the five models agreed on classifications of all 20 test cases. The bagFDA method cast "minority" votes in 4 of the 20 test cases.
 
 ### Background
 
-Activity research by [Velloso13] looked at recognition of five ways of doing barbell lifts by six subjects.  Their goal was to see if data from sensors (accerlometers on the belt, forearm, arm and dumbbell) could be used to predict qualitative activties.  
+Activity research by [Velloso13] looked at recognition of five ways of doing barbell lifts by six subjects.  Their goal was to see if data from accelerometer sensors on the belt, forearm, arm and dumbbell could be used to predict qualitative activities.  
 
+The five ways of lifting barbells were labeled "A", "B","C", "D" and "E" in the discussion below.
 
 ### Getting and Cleaning Data
 
-Two files were downloaded from the class assignment web site on June 16, 2014:
+Two files were downloaded from the Coursera class assignment web site on June 16, 2014:
 
 * **pml-training.csv**, 19,622 data lines by 160 variables, md5sum 3d8ba9293742dbf0f463c10d3434a0f7
 
@@ -25,21 +31,21 @@ rawTrain$classe <- as.factor(rawTrain$classe)
 dim(rawTrain)
 ```
 
-The *rawTrain* data will be be spit into *training* and *validation* subsets, which will be explained below.
+The *rawTrain* data was spit into *training* and *validation* subsets, which will be explained below.
 
-The final test data is never used to develop models:
+The final test data was never used to develop models, and was only used once with the predictive model on 20 specific cases.
 
-```{r,cache=TRUE}
+```{r rawdata, cache=TRUE}
 rawFinalTest  <- read.csv("pml-testing.csv",  as.is=TRUE, na.strings=c("", "NA", "#DIV/0!"))
 rawFinalTest$problem_id <- as.factor(rawFinalTest$problem_id)
 dim(rawFinalTest)  
 ```
 
-A first look at the data showed a number of variables consisted of mostly missing values (almost 98%) and were disgarded.  Missing values consisted of the strings "", "NA" and "#DIV/0!".
+A first look at the data showed a number of variables consisted of almost 98% missing values.  These variables were discarded.  Missing values consisted of the strings "", "NA" and "#DIV/0!".
 
-Six text or time variables were thrown out since they did not represent numeric sensor data, but it was tempting to include the *user_name* as a factor since the participants were not balanced in the number of samples.
+Six text or time variables were thrown out since they did not represent numeric sensor data. Using *user_name* as a factor variable was tempting since the participants were not balanced in the number of samples, but it was thrown out.
 
-```{r}
+```{r NAs, cache=TRUE}
 ### Compute number of NAs per column
 NAs <- apply(rawTrain, 2, function(x) { sum(is.na(x)) } )
 table(NAs)
@@ -61,9 +67,9 @@ FinalTest  <- rawFinalTest[,c(KEEP[-LAST], "problem_id")]
 dim(FinalTest)     
 ```
                                                  
-The *findCorrelation* function was used to identify and remove seven variables with correlations of 0.9 or greater.
+The *findCorrelation* function from the *caret* package was used to identify and remove seven variables with correlations of 0.9 or greater.
 
-```{r}
+```{r correlation, cache=TRUE}
 cor.matrix <- cor(subsetTrain[,-LAST])
 
 library(caret)
@@ -82,23 +88,23 @@ KEEP <- KEEP[!(KEEP %in% high.corr.remove)]
 LAST <- length(KEEP)
 ```
                                      
-
-The *nearZeroVar* funcion did not identify any variables to remove, but earlier removal of the variables with many missing values likely took care of this.
+The *nearZeroVar* function did not identify any variables to remove.  Earlier removal of the variables with many missing values likely took care of this.
 
 After data cleaning 47 of the original 160 variables were retained for analysis.
 
 ### Exploratory Analysis
 
-In the original training set, activity "A" seems to be a bit over-represented with 5580 observations when activity "D" only had 3216 observations.  Participant Pedro only contributed 2610 observations while Adelmo contributed 3892.  In the 20 test set, Jeremy was overrepresnted with 8 observation while Adelmo and Charles only had 1 each.
+In the original training set, activity "A" seems to be a bit over-represented with 5580 observations when activity "D" only had 3216 observations.  Participant Pedro only contributed 2610 observations while Adelmo contributed 3892.  In the 20 test set, Jeremy was overrepresented with 8 observation while Adelmo and Charles only had 1 each.
 
-Boxplots were created for 147 of the variables by each of the five activites, A thorugh E.
-Many boxplots showed little separtion among the medians of the activities, but a few showed dramatic separation.  The boxplots showed some variables may have issues with outliers, and a few showed some skewing.  No outliers were removed.  No preprocessing transformations were made (but the caret packages may have internally made some transformation.)
+Boxplots were created for 147 of the variables by each of the five activities, A through E.
+
+Many boxplots showed little separation among the medians of the activities, but a few showed dramatic separation.  The boxplots showed some variables may have a number of outliers, and a few showed some skewing, but no outliers were removed and no preprocessing transformations were made (but the caret packages may have internally made some transformations).
 
 **Correlation matrix**.  The dendrograms along the edges of a heat map of the correlation matrix hinted that could be broken into a number of different subgroups.
 
-**Singular Value Decomposition**.  The eigenvalues from the SVD anlaysis suggested five feature could account for roughly half of the variance, and 13 could explain 80%.
+**Singular Value Decomposition**.  The eigenvalues from the SVD analysis suggested five features could account for roughly half of the variance, and 13 features could explain 80%.
 
-```{r}
+```{r svd, cache=TRUE}
 svd1 <- svd(scale(subsetTrain[,-LAST]))
 cumsum(svd1$d^2/sum(svd1$d^2))[1:15]
 ```
@@ -107,9 +113,9 @@ cumsum(svd1$d^2/sum(svd1$d^2))[1:15]
 
 #### Training, Validation and Test data
 
-The **original training** data was split into **training** and **validation** subsets.
+The **original training** data was split into **training** and **validation** subsets using the *createDataPartition* function:
 
-```{r}
+```{r subsets, cache=TRUE}
 inTrain <- createDataPartition(y=subsetTrain$classe, p=0.75, list=FALSE)
 
 training <- subsetTrain[inTrain,]
@@ -119,33 +125,37 @@ Validation  <- subsetTrain[-inTrain,]
 dim(Validation)   
 ```
 
+This function assigned 75% of the original training file to the **training** data and 25% to the **validation** data.
+
 This **training** subset of the original data was used to train all models.
 
 The **validation** subset was NOT used for any training, but rather was used to compute an estimate of the out-of-sample accuracy of the trained models.
 
-Each model was applied to the **final test** set of 20 cases exactly once.
+Each of five models was applied to the **final test** set of 20 cases exactly once.  A voting scheme was used to pick the final classification answer.
 
 #### Preliminary models
 
-Preliminary LDA, QDA and CART (rpart) analysis showed fair out-of-sample accuracies (68%, 89% and 53%, respectively) with these simple approaches, so better models using random forests, bagging and boosting were explored.
+Preliminary LDA, QDA and CART (rpart) analysis showed only fair out-of-sample accuracies (68%, 89% and 53%, respectively), so better models using random forests, bagging and boosting were explored.
 
 #### Ensemble Models Explored Using Caret Package
+
+An ensemble of five different ensemble models was used to create a prediction model:
 
 * **Random Forests** (rf) is a classification method based on many decision trees.
 
 * **Stochastic Gradient Boosting** (gbm).  Boosting incrementally builds an ensemble with newer models improving on past misclassifications. 
 
-* **Bagged CART** (treebag), where bagging is boostrap aggregating.
+* **Bagged CART** (treebag), where bagging is bootstrap aggregating.
 
 * **Support Vector Machines with Polynomial Kernel** (svmPoly).
 
 * **Bagged Flexible Discriminant Analysis** (bagFDA).
 
-An odd number of machine learning methods was used here to avoid "ties" in voting by the methods. 
+An odd number of machine learning methods was used here to avoid "ties" in the final voting. 
 
-**The *train* function in the *caret* package takes care of cross validation in all of these machine learning methods used to form an overall ensemble model.**
+**The *train* function in the *caret* package took care of cross validation in all of these machine learning methods used to form an overall ensemble model.**
 
-The *caret* package made the application of five different machine learning methods quite simple.  All followed the same code pattern as shown here for Random Forests:
+The *caret* package made the application of five different machine learning methods quite simple.  Each of the models using *caret* followed the same code pattern as shown here for Random Forests:
 
 ```{r RandomForest, cache=TRUE}
 set.seed(219)  # for reproducibility
@@ -153,27 +163,103 @@ set.seed(219)  # for reproducibility
 fit.rf <- train(classe ~., data = training, method="rf", prox=TRUE)
 fit.rf
 ```
-Comments here.
+
+The *varImp* function aids in the interpretability of the Random Forest model.  
 
 ```{r Importance, cache=TRUE}
 varImp(fit.rf)
 dotPlot(varImp(fit.rf), main="rf: Dotplot of variable importance values")
 ```
-Comments here.
+
+*varImp* shows the 20 most important variables in the Random Forest analysis, including a graphical display. 
+
+The reason *num_window* is so important is not clear, since no code book explained the meaning of the variables.
+
+The top 10 variables for other prediction methods studied:
+
+**Stochastic Gradient Boosting (gbm)**
+
+Top 10 important variables
+```
+                  Overall
+num_window        100.000
+yaw_belt           53.059
+pitch_forearm      50.845
+magnet_belt_y      30.235
+magnet_dumbbell_z  28.563
+magnet_dumbbell_y  22.422
+roll_forearm       20.721
+gyros_belt_z       20.017
+magnet_belt_z      17.720
+pitch_belt         15.224
+```
+
+**Support Vector Machines with Polynomial Kernel (svmPoly)**
+
+Top 10 important variables
+```
+                       A     B     C      D     E
+pitch_forearm     100.00 63.22 70.98 100.00 68.16
+roll_dumbbell      53.29 61.67 85.50  85.50 58.83
+accel_forearm_x    81.57 48.75 63.17  81.57 45.31
+magnet_arm_x       78.75 52.87 55.06  78.75 65.20
+magnet_arm_y       77.07 39.94 53.67  77.07 67.06
+accel_arm_x        73.33 51.60 47.09  73.33 60.64
+pitch_dumbbell     51.96 71.64 71.64  62.28 47.20
+magnet_forearm_x   71.58 49.96 38.90  71.58 41.14
+magnet_belt_y      68.35 60.28 63.28  63.42 68.35
+magnet_dumbbell_x  64.71 64.87 64.87  48.77 52.16
+```
+
+**Bagged CART (treebag)**
+
+Top 10 important variables
+```
+                     Overall
+num_window            100.00
+yaw_belt               65.20
+pitch_belt             53.45
+magnet_dumbbell_y      39.89
+magnet_dumbbell_z      38.98
+magnet_belt_y          32.20
+roll_forearm           30.36
+accel_dumbbell_y       30.08
+pitch_forearm          29.12
+total_accel_belt       28.42
+```
+
+**Bagged Flexible Discriminant Analysis (bagFDA)**
+
+Top 10 important variables
+```
+                  Overall
+roll_forearm       100.00
+magnet_belt_z       96.90
+magnet_dumbbell_y   92.25
+yaw_belt            87.35
+magnet_dumbbell_z   83.04
+num_window          79.03
+magnet_arm_y        74.40
+magnet_arm_z        71.42
+magnet_belt_y       68.47
+pitch_belt          66.12
+```
+
+The **validation** data was used to determine the out-of-sample error since it was not used in modeling fitting.
+
+The "confusion matrix" below shows the predicted classifications on the validation data.   
+  
 
 ```{r OutOfSample, cache=TRUE}
 OutOfSampleEstimate  <- predict(fit.rf, newdata=Validation)
 confusionMatrix(Validation$classe, OutOfSampleEstimate)
 ```
 
-Comments Here.
+The main diagonal shows most predictions were correct, but some off diagonal terms show the prediction was not perfect. The **Accuracy** above, along with its 95% confidence interval, show the predicted out-of-sample accuracy.
 
-```{r FinalTest, cache=TRUE}
-final.rf <- predict(fit.rf, newdata=FinalTest)
-final.rf
-```
-                                                    
-### Sumary of Cross Validation and Out-of-Sample Error Estimates
+The **error estimate** would be **100% - Accuracy**. 
+                             
+### Summary of Cross Validation and Out-of-Sample Error Estimates
 
 **Random Forests** (rf):  99.7% accuracy (95% confidence interval:  99.6% to 99.9%)
 
@@ -185,11 +271,21 @@ final.rf
 
 **Bagged Flexible Discriminant Analysis** (bagFDA):  86.7%  (95% CI:  85.7% to 87.7%)
 
-Full disclosure:  Except for the Random Forest processing, other models were evaluated outside this .Rmd document.  All details of the runs were captured in .txt files using the *sink()* statement.
+Full disclosure:  Except for the Random Forest processing, other models were evaluated outside this .Rmd document.  Details of the runs were captured in .txt files using the *sink()* statement.
 
 ### Results on 20 Specific Test Cases
 
-Each of the 20 test cases were assigned a classification by each of the five models:  
+After evaluating out-of-sample accuracy, the prediction model was applied to the test set of 20 cases.
+
+Each of the five models gave a separate list of 20 predictions.  Shown below are the predictions from the Random Forest model:
+
+
+```{r FinalTest, cache=TRUE}
+final.rf <- predict(fit.rf, newdata=FinalTest)
+final.rf
+```
+
+Here is a summary of the assigned classifications by each of the five models (in order from 1 to 20 from left to right):  
 
 ```
  [1] B A B A A E D B A A B C B A E E A B B B  rf (4 hours, 43 minutes)  
@@ -206,11 +302,13 @@ Elapsed running times are shown to the right of the method names above for proce
  [1] B A B A A E D B A A B C B A E E A B B B 
 ```
 
-The couse grader said these 20 census predictions were correct.  The census predictions matched the rf, gbm, treebag and svmPoly predictions, but only 80% of the bagFDA predictions were correct.
+The course grader said these 20 census predictions were correct.  The census predictions matched the rf, gbm, treebag and svmPoly predictions, but only 80% of the bagFDA predictions were correct.
 
 ### Conclusions
 
-The combined ensemble method of five other ensemble method has almost no interpretability.
+Four of the five methods that made up a composite ensemble predictor achieved perfect scores on the test set of 20 cases.
+
+The combined ensemble method of five other ensemble methods has almost no interpretability.
 
 Ironically, the slowest method of the five (bagFDA) was the least accurate. 
 
