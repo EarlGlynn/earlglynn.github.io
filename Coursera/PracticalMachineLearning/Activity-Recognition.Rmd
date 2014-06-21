@@ -1,15 +1,16 @@
 # Activity Recognition
 
 #### Coursera Practical Machine Learning Class
-19 June 2014
+
+`r Sys.time()`
 
 ### Executive Summary
 
 This project analyzed data from six participants, who performed barbell lifts correctly and incorrectly five different ways, and predicted the manner in which an exercise was done for 20 specific test cases.
 
-A combined ensemble model was created using five machine learning methods from the  *caret* package  (rf, gbm, treebag, svmPoly, bagFDA).  Each of these methods (except for svmPoly) is an ensemble model by itself. 
+A combined ensemble model was created using five machine learning methods from the  *caret* package  (*rf, gbm, treebag, svmPoly, bagFDA*).  Each of these approaches (except for svmPoly) separately is an ensemble model. 
 
-The combined model was used to vote on the final classification assignments for the test cases.  Four of the five models agreed on classifications of all 20 test cases. The bagFDA method cast "minority" votes in 4 of the 20 test cases.
+The combined ensemble model was used to vote on the final classification assignments for the test cases.  Four of the five models agreed on classifications of all 20 test cases. The *bagFDA* method cast "minority" votes in 4 of the 20 test cases.
 
 ### Background
 
@@ -24,6 +25,8 @@ Two files were downloaded from the Coursera class assignment web site on June 16
 * **pml-training.csv**, 19,622 data lines by 160 variables, md5sum 3d8ba9293742dbf0f463c10d3434a0f7
 
 * **pml-testing.csv**, 20 data lines by 160 variables, md5sum ec664556b52a8604adae3dcbd806c404
+
+No code book explaining the variables was available with the data.
 
 ```{r, cache=TRUE}
 rawTrain <- read.csv("pml-training.csv", as.is=TRUE, na.strings=c("", "NA", "#DIV/0!"))
@@ -41,7 +44,7 @@ rawFinalTest$problem_id <- as.factor(rawFinalTest$problem_id)
 dim(rawFinalTest)  
 ```
 
-A first look at the data showed a number of variables consisted of almost 98% missing values.  These variables were discarded.  Missing values consisted of the strings "", "NA" and "#DIV/0!".
+A first look at the data showed a number of variables consisted of almost 98% missing values.  These variables were discarded.  Missing values consisted of strings "", "NA" and "#DIV/0!".
 
 Six text or time variables were thrown out since they did not represent numeric sensor data. Using *user_name* as a factor variable was tempting since the participants were not balanced in the number of samples, but it was thrown out.
 
@@ -67,7 +70,7 @@ FinalTest  <- rawFinalTest[,c(KEEP[-LAST], "problem_id")]
 dim(FinalTest)     
 ```
                                                  
-The *findCorrelation* function from the *caret* package was used to identify and remove seven variables with correlations of 0.9 or greater.
+The *findCorrelation* function from the *caret* package was used to identify and remove seven variables with correlations of 0.9 or greater.  This step was performed to avoid problems with multicollinearity.
 
 ```{r correlation, cache=TRUE}
 cor.matrix <- cor(subsetTrain[,-LAST])
@@ -88,19 +91,19 @@ KEEP <- KEEP[!(KEEP %in% high.corr.remove)]
 LAST <- length(KEEP)
 ```
                                      
-The *nearZeroVar* function did not identify any variables to remove.  Earlier removal of the variables with many missing values likely took care of this.
+The *nearZeroVar* function did not identify additional variables for removal.  Earlier removal of the variables with many missing values likely took care of this.  According to [Kuhn08], a variable may be a near zero-variance predictor if the percentage of unique values is less than 20%, and the ratio of the most frequent to the second most frequent is greater than 20.
 
-After data cleaning 47 of the original 160 variables were retained for analysis.
+After data cleaning, 47 of the original 160 variables were retained for analysis.
 
 ### Exploratory Analysis
 
-In the original training set, activity "A" seems to be a bit over-represented with 5580 observations when activity "D" only had 3216 observations.  Participant Pedro only contributed 2610 observations while Adelmo contributed 3892.  In the 20 test set, Jeremy was overrepresented with 8 observation while Adelmo and Charles only had 1 each.
+In the original training set, activity A seems to be a bit over-represented with 5580 observations when activity "D" only had 3216 observations.  Participant Pedro only contributed 2610 observations while Adelmo contributed 3892.  In the 20 test set, Jeremy was overrepresented with 8 observations while Adelmo and Charles only had 1 each.
 
 Boxplots were created for 147 of the variables by each of the five activities, A through E.
 
-Many boxplots showed little separation among the medians of the activities, but a few showed dramatic separation.  The boxplots showed some variables may have a number of outliers, and a few showed some skewing, but no outliers were removed and no preprocessing transformations were made (but the caret packages may have internally made some transformations).
+Many boxplots showed little separation among the medians of the activities, but a few showed dramatic separation.  The boxplots showed some variables may have a number of outliers, and a few showed some skewing, but no outliers were removed and no preprocessing transformations were made.
 
-**Correlation matrix**.  The dendrograms along the edges of a heat map of the correlation matrix hinted that could be broken into a number of different subgroups.
+**Correlation matrix**.  The dendrograms along the edges of a heat map of the correlation matrix hinted that the data could be broken into a number of subgroups, perhaps 5.
 
 **Singular Value Decomposition**.  The eigenvalues from the SVD analysis suggested five features could account for roughly half of the variance, and 13 features could explain 80%.
 
@@ -125,17 +128,24 @@ Validation  <- subsetTrain[-inTrain,]
 dim(Validation)   
 ```
 
-This function assigned 75% of the original training file to the **training** data and 25% to the **validation** data.
+The *createDataPartition* function assigned 75% of the original training file to the **training** data and 25% to the **validation** data.
 
 This **training** subset of the original data was used to train all models.
 
 The **validation** subset was NOT used for any training, but rather was used to compute an estimate of the out-of-sample accuracy of the trained models.
 
-Each of five models was applied to the **final test** set of 20 cases exactly once.  A voting scheme was used to pick the final classification answer.
+*createDataPartition* maintains approximately the same proportions by class:
+
+```{r proportions, cache=TRUE}
+prop.table(table(training$classe))
+prop.table(table(Validation$classe))
+```
+
+The composite set of five models was applied to the **final test** set of 20 cases exactly once.  A voting scheme was used to pick the final classification answer.  Each model "cast" one vote and the majority assignment was deemed the predicted class.
 
 #### Preliminary models
 
-Preliminary LDA, QDA and CART (rpart) analysis showed only fair out-of-sample accuracies (68%, 89% and 53%, respectively), so better models using random forests, bagging and boosting were explored.
+Preliminary LDA, QDA and CART (rpart) analyses showed only fair out-of-sample accuracies (68%, 89% and 53%, respectively), so better models using random forests, bagging and boosting were explored.
 
 #### Ensemble Models Explored Using Caret Package
 
@@ -155,27 +165,50 @@ An odd number of machine learning methods was used here to avoid "ties" in the f
 
 **The *train* function in the *caret* package took care of cross validation in all of these machine learning methods used to form an overall ensemble model.**
 
+#### Random Forests
+
+**Setup parallel processing**
+
+Let's try using 6 cores on an i7-4770K 3.50 GHz processor with 32 GB RAM for training [Kuhn13] to speedup the computations:
+
+* *caret* uses *foreach* that parallelizes *for* loops.
+* No changes are needed when calling *train*.
+* The parallel technology must be registered with *foreach* prior to calling *train*.
+
 The *caret* package made the application of five different machine learning methods quite simple.  Each of the models using *caret* followed the same code pattern as shown here for Random Forests:
 
+
 ```{r RandomForest, cache=TRUE}
+library(doParallel)
+rCluster <- makePSOCKcluster(6)  # Use 6 cores
+registerDoParallel(rCluster)  
+
 set.seed(219)  # for reproducibility
 
+Sys.time()     # record time for Random Forest training
 fit.rf <- train(classe ~., data = training, method="rf", prox=TRUE)
 fit.rf
+Sys.time()
 ```
 
-The *varImp* function aids in the interpretability of the Random Forest model.  
+The *varImp* function aids in the interpretability of the Random Forest model.  *varImp* can be used to characterize the general effect of predictors on a model.
+
+From [Kuhn08]:
+
+*For each tree, the prediction accuracy on the out-of-bag portion of the data is recorded. Then the same is done after permuting each predictor variable. The diference between the two accuracies are then averaged over all trees, and normalized by the standard error. For regression, the MSE is computed on the out-of-bag data for each tree, and then the same computed after permuting a variable. The diferences are averaged and normalized by the standard
+error.*
 
 ```{r Importance, cache=TRUE}
 varImp(fit.rf)
 dotPlot(varImp(fit.rf), main="rf: Dotplot of variable importance values")
 ```
 
-*varImp* shows the 20 most important variables in the Random Forest analysis, including a graphical display. 
+*varImp* shows the 20 most [important variables](http://caret.r-forge.r-project.org/varimp.html) in the Random Forest analysis, including a graphical display. 
 
 The reason *num_window* is so important is not clear, since no code book explained the meaning of the variables.
 
-The top 10 variables for other prediction methods studied:
+The top 10 variables for other prediction methods studied in the 5-part ensemble:
+
 
 **Stochastic Gradient Boosting (gbm)**
 
@@ -194,23 +227,6 @@ magnet_belt_z      17.720
 pitch_belt         15.224
 ```
 
-**Support Vector Machines with Polynomial Kernel (svmPoly)**
-
-Top 10 important variables
-```
-                       A     B     C      D     E
-pitch_forearm     100.00 63.22 70.98 100.00 68.16
-roll_dumbbell      53.29 61.67 85.50  85.50 58.83
-accel_forearm_x    81.57 48.75 63.17  81.57 45.31
-magnet_arm_x       78.75 52.87 55.06  78.75 65.20
-magnet_arm_y       77.07 39.94 53.67  77.07 67.06
-accel_arm_x        73.33 51.60 47.09  73.33 60.64
-pitch_dumbbell     51.96 71.64 71.64  62.28 47.20
-magnet_forearm_x   71.58 49.96 38.90  71.58 41.14
-magnet_belt_y      68.35 60.28 63.28  63.42 68.35
-magnet_dumbbell_x  64.71 64.87 64.87  48.77 52.16
-```
-
 **Bagged CART (treebag)**
 
 Top 10 important variables
@@ -226,6 +242,23 @@ roll_forearm           30.36
 accel_dumbbell_y       30.08
 pitch_forearm          29.12
 total_accel_belt       28.42
+```
+
+**Support Vector Machines with Polynomial Kernel (svmPoly)**
+
+Top 10 important variables
+```
+                       A     B     C      D     E
+pitch_forearm     100.00 63.22 70.98 100.00 68.16
+roll_dumbbell      53.29 61.67 85.50  85.50 58.83
+accel_forearm_x    81.57 48.75 63.17  81.57 45.31
+magnet_arm_x       78.75 52.87 55.06  78.75 65.20
+magnet_arm_y       77.07 39.94 53.67  77.07 67.06
+accel_arm_x        73.33 51.60 47.09  73.33 60.64
+pitch_dumbbell     51.96 71.64 71.64  62.28 47.20
+magnet_forearm_x   71.58 49.96 38.90  71.58 41.14
+magnet_belt_y      68.35 60.28 63.28  63.42 68.35
+magnet_dumbbell_x  64.71 64.87 64.87  48.77 52.16
 ```
 
 **Bagged Flexible Discriminant Analysis (bagFDA)**
@@ -255,11 +288,11 @@ OutOfSampleEstimate  <- predict(fit.rf, newdata=Validation)
 confusionMatrix(Validation$classe, OutOfSampleEstimate)
 ```
 
-The main diagonal shows most predictions were correct, but some off diagonal terms show the prediction was not perfect. The **Accuracy** above, along with its 95% confidence interval, show the predicted out-of-sample accuracy.
+The main diagonal in the confusion matrix shows most predictions were correct, but some off diagonal terms show the prediction was not perfect. The **Accuracy** above, along with its 95% confidence interval, show the predicted out-of-sample accuracy.
 
-The **error estimate** would be **100% - Accuracy**. 
+The out of sample **error estimate** would be **100% - Accuracy**. 
                              
-### Summary of Cross Validation and Out-of-Sample Error Estimates
+### Summary of Cross Validation and Out-of-Sample Accuracy Estimates
 
 **Random Forests** (rf):  99.7% accuracy (95% confidence interval:  99.6% to 99.9%)
 
@@ -295,20 +328,22 @@ Here is a summary of the assigned classifications by each of the five models (in
  [1] C A B A A C D D A A C C B A E E A B B B  bagFDA (13 hours, 24 minutes)
 ```
 
-Elapsed running times are shown to the right of the method names above for processing on a 3.5 GHz i7-4770K Windows 7 box with 32 GB memory.  In most cases, methods were assigned to different CPUs and were run concurrently.
+Elapsed analysis running times are shown to the right of the method names above for processing on a 3.5 GHz i7-4770K Windows 7 box with 32 GB memory.  In most cases, methods were assigned to different CPUs and were run concurrently. These times were recorded before multiple cores were used.
  
  Consensus vote (majority votes out of 5):
 ```
  [1] B A B A A E D B A A B C B A E E A B B B 
 ```
 
-The course grader said these 20 census predictions were correct.  The census predictions matched the rf, gbm, treebag and svmPoly predictions, but only 80% of the bagFDA predictions were correct.
+The course grader said these 20 consensus predictions were correct.  The consensus predictions matched the rf, gbm, treebag and svmPoly predictions, but only 80% of the bagFDA predictions were correct.
+
+`r Sys.time()`
 
 ### Conclusions
 
-Four of the five methods that made up a composite ensemble predictor achieved perfect scores on the test set of 20 cases.
+Four of the five methods that made up a composite ensemble predictor achieved perfect scores on the test set of 20 cases:  *rf, gbm, treebag, bagFDA*.
 
-The combined ensemble method of five other ensemble methods has almost no interpretability.
+The combined ensemble method of the five ensemble methods has almost no interpretability.  The "most important"" variables were not consistent among the models.
 
 Ironically, the slowest method of the five (bagFDA) was the least accurate. 
 
@@ -316,4 +351,8 @@ Ironically, the slowest method of the five (bagFDA) was the least accurate.
 
 [Vellosco13] Eduardo Vellsosco, et al. [Qualitative Recognition of Weight Lifting Exercises](http://groupware.les.inf.puc-rio.br/public/papers/2013.Velloso.QAR-WLE.pdf), Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13).  *ACM SIGCHI*, 2013. 
 
-[Kuhn08]  Max Kuhn.  [Building Predictive Models in R Using the caret Package](http://www.jstatsoft.org/v28/i05/paper). *Journal of Statistical Software*, Nov. 2008.
+[Kuhn08] Max Kuhn.  [Building Predictive Models in R Using the caret Package](http://www.jstatsoft.org/v28/i05/paper). *Journal of Statistical Software*, Nov. 2008.
+
+[Kuhn13] Max Kuhn.  [Predictive Modeling with R and the caret Package](http://www.edii.uclm.es/~useR-2013/Tutorials/kuhn/user_caret_2up.pdf).  *useR! 2013*, 2013.
+
+[the caret package](http://caret.r-forge.r-project.org/index.html).  Web page visited 20 June 2014.
