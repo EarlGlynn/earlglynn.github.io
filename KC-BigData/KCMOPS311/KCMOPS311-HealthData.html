@@ -6,7 +6,6 @@
 
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="generator" content="pandoc" />
 
 
@@ -55,18 +54,18 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="kcmo-311-data-health-department" class="section level1">
 <h1>KCMO 311 data: Health Department</h1>
-<p>efg, UMKC Center for Health Insights.<br />2013-12-12. Last modified 2014-07-11.</p>
+<p>efg, UMKC Center for Health Insights.<br />2013-12-12. Last modified 2014-10-08.</p>
 <div id="frequency-counts-of-kansas-city-mo-311-reports" class="section level2">
 <h2>Frequency Counts of Kansas City, MO 311 Reports</h2>
-<p><a href="https://data.kcmo.org/311/KCMOPS311-Data/7at3-sxhp">https://data.kcmo.org/311/KCMOPS311-Data/7at3-sxhp</a><br />2014-07-11</p>
-<p>The current file has 779648 rows.</p>
+<p><a href="https://data.kcmo.org/311/KCMOPS311-Data/7at3-sxhp">https://data.kcmo.org/311/KCMOPS311-Data/7at3-sxhp</a><br />2014-10-08</p>
+<p>The current file has 801834 rows.</p>
 </div>
 <div id="health-department" class="section level2">
 <h2>Health Department</h2>
 <pre class="r"><code>health &lt;- d[d$DEPARTMENT == &quot;Health&quot;, ]
 dim(health)  </code></pre>
-<pre><code>## [1] 12910    34</code></pre>
-<p>There are 12910 Health Department records in the file of 779648 records.</p>
+<pre><code>## [1] 13519    34</code></pre>
+<p>There are 13519 Health Department records in the file of 801834 records.</p>
 <div id="source-by-year" class="section level3">
 <h3>Source by Year</h3>
 <pre class="r"><code>table(health$SOURCE, health$CreationYear)</code></pre>
@@ -74,15 +73,15 @@ dim(health)  </code></pre>
 ##         2007 2008 2009 2010 2011 2012 2013 2014
 ##   EDC      0    0    0    0    0    0    1    0
 ##   EIP      1    0    0    0    0    1    0    0
-##   EMAIL   13   38   29   35   21   32   44   23
+##   EMAIL   13   38   29   35   21   32   44   35
 ##   INSPE    0   13    1    1   25    4    4    1
 ##   MAIL     0    0    0    3    1    1    0    0
-##   PHONE  864 1335 1364 1592 1634 1713 1701  773
+##   PHONE  864 1335 1364 1592 1634 1713 1701 1311
 ##   SYS      0    0    0    0    1    0    0    0
 ##   TWIR     0    0    0    0    0    0    5    2
 ##   VOICE    0   10   14   18    9    0    0    0
 ##   WALK     1    2    6    9    6   10    8    3
-##   WEB      3   33   42  246  310  395  409  100</code></pre>
+##   WEB      3   33   42  246  310  395  409  159</code></pre>
 </div>
 <div id="status" class="section level3">
 <h3>Status</h3>
@@ -92,8 +91,8 @@ dim(health)  </code></pre>
 ##         2007 2008 2009 2010 2011 2012 2013 2014
 ##   CANC     0    0    1    0    0    1    0    0
 ##   DUP      0    0    9    4    0    0    0    1
-##   OPEN     0    0    0    0    0    0    0  130
-##   RESOL  882 1431 1446 1900 2007 2155 2172  770
+##   OPEN     0    0    0    0    0    0    0  135
+##   RESOL  882 1431 1446 1900 2007 2155 2172 1374
 ##   RHOLD    0    0    0    0    0    0    0    1</code></pre>
 </div>
 <div id="creation-year" class="section level3">
@@ -109,24 +108,24 @@ dim(health)  </code></pre>
 ##   2011 105  93 154 142 190 190 182 224 227 219 168 113
 ##   2012 122 147 173 171 180 177 202 228 240 199 178 139
 ##   2013 135 103 140 229 201 202 237 213 246 213 138 115
-##   2014 101 112 148 153 165 149  74   0   0   0   0   0</code></pre>
+##   2014 101 112 148 153 165 154 244 198 186  50   0   0</code></pre>
 </div>
 <div id="work-group-by-year" class="section level3">
 <h3>Work Group by Year</h3>
 <pre class="r"><code>table(health$WORK.GROUP, health$CreationYear)</code></pre>
 <pre><code>##                                         
 ##                                          2007 2008 2009 2010 2011 2012 2013 2014
-##   Health--                                299  376  498   22    0    4    8    7
-##   Health-Air Quality-                       0    0    0  161  166  151  115   54
+##   Health--                                299  376  498   22    0    4    8   12
+##   Health-Air Quality-                       0    0    0  161  166  151  115   83
 ##   Health-Communicable Disease Control-      0    0    0    0    1    2    0    0
-##   Health-Community Environmental Health-    0    0    0   65   74   76   94   40
-##   Health-Food Protection-                   0    0    0  382  411  426  605  230
-##   Health-Healthy Homes-                     0    0    0   34   27   36   18   12
-##   Health-Healthy Homes-Bedbugs              0    0    0    9   57   82   59   32
-##   Health-Lead Poisoning Prevention-         0    0    0    4    7    2    1    1
-##   Health-Noise Control-                     0    0    0  175  175  291  260  109
-##   Health-Rat-                             583 1055  958  996 1046 1063  979  404
-##   Health-Tobacco Control-                   0    0    0   56   43   23   33   13</code></pre>
+##   Health-Community Environmental Health-    0    0    0   65   74   76   94   64
+##   Health-Food Protection-                   0    0    0  382  411  426  605  359
+##   Health-Healthy Homes-                     0    0    0   34   27   36   18   30
+##   Health-Healthy Homes-Bedbugs              0    0    0    9   57   82   59   44
+##   Health-Lead Poisoning Prevention-         0    0    0    4    7    2    1    2
+##   Health-Noise Control-                     0    0    0  175  175  291  260  166
+##   Health-Rat-                             583 1055  958  996 1046 1063  979  732
+##   Health-Tobacco Control-                   0    0    0   56   43   23   33   19</code></pre>
 </div>
 <div id="creation-year-vs-close-year" class="section level3">
 <h3>Creation Year vs Close Year</h3>
@@ -141,7 +140,7 @@ dim(health)  </code></pre>
 ##   2011    0    0    0    0 1993   14    0    0
 ##   2012    0    0    0    0    0 2126   29    0
 ##   2013    0    0    0    0    0    0 2138   34
-##   2014    0    0    0    0    0    0    0  771</code></pre>
+##   2014    0    0    0    0    0    0    0 1375</code></pre>
 </div>
 <div id="request-type-by-year" class="section level3">
 <h3>Request Type by Year</h3>
@@ -153,77 +152,78 @@ counts &lt;- rbind(counts, TOTAL=apply(counts,2,sum))
 counts                                                                                        </code></pre>
 <pre><code>##                                     2007 2008 2009 2010 2011 2012 2013 2014 TOTAL
 ## Barking Dog                            0    0    0    0    0    0    1    0     1
-## Bedbugs Problem                        0    0    0    9   57   82   59   32   239
-## Childhood Lead Poisoning Prevention    0    0    0    4    7    2    1    1    15
+## Bedbugs Problem                        0    0    0    9   57   82   59   42   249
+## Childhood Lead Poisoning Prevention    0    0    0    4    7    2    1    2    16
 ## Communicable Disease Control           0    0    0    0    1    1    0    0     2
-## Food Establishment Complaints          0    0    0  382  411  425  605  228  2051
+## Food Establishment Complaints          0    0    0  382  411  425  605  357  2180
 ## Health-All                           299  376  498   22    0    0    0    0  1195
-## Healthy Homes Program                  0    0    0   34   27   36   18   12   127
-## Hotel and Motel Inspections            0    0    0   39   46   41   59   30   215
-## Noise Complaints                       0    0    0  175  175  291  259  110  1010
-## Outdoor Air Quality                    0    0    0  161  166  151  115   54   647
-## Public Pool Inspections                0    0    0   14   15   15   20    8    72
-## Public Restroom Sanitation             0    0    0   12   13   20   14    2    61
-## Questions or  Comments                 0    0    0    0    0    5    9    8    22
+## Healthy Homes Program                  0    0    0   34   27   36   18   30   145
+## Hotel and Motel Inspections            0    0    0   39   46   41   59   43   228
+## Integrated Pest Management Class       0    0    0    0    0    0    0    2     2
+## Noise Complaints                       0    0    0  175  175  291  259  167  1067
+## Outdoor Air Quality                    0    0    0  161  166  151  115   83   676
+## Public Pool Inspections                0    0    0   14   15   15   20   10    74
+## Public Restroom Sanitation             0    0    0   12   13   20   14   11    70
+## Questions or  Comments                 0    0    0    0    0    5    9   14    28
 ## Rat Control Education                583   66    0    0    0    0    0    0   649
-## Rat Control Treatment                  0  989  958  996 1046 1063  979  404  6435
-## Smoking Complaints                     0    0    0   56   43   23   33   13   168
+## Rat Control Treatment                  0  989  958  996 1046 1063  979  731  6762
+## Smoking Complaints                     0    0    0   56   43   23   33   19   174
 ## Zoning Inspections and Violations      0    0    0    0    0    1    0    0     1
-## TOTAL                                882 1431 1456 1904 2007 2156 2172  902 12910</code></pre>
+## TOTAL                                882 1431 1456 1904 2007 2156 2172 1511 13519</code></pre>
 </div>
 <div id="zip-code-by-year" class="section level3">
 <h3>ZIP Code by Year</h3>
 <pre class="r"><code>table(health$ZIP.CODE, health$CreationYear)</code></pre>
 <pre><code>##        
 ##         2007 2008 2009 2010 2011 2012 2013 2014
-##            0    0    1    3    3    2    1    0
+##            0    0    1    3    3    2    1    1
 ##   64055    1    3    0    0    0    0    0    0
 ##   64101    1    1    1    3    0    6    3    3
-##   64102    0    0    2    4    2    4    2    1
-##   64105    8    8   21   21   18   24   25   10
-##   64106   21   31   35   65   78   69   78   19
-##   64108   21   28   41   97   85   99  114   38
-##   64109   40   74   68   65   97   97   69   52
-##   64110   60   92   80   89   95  118   96   48
-##   64111   28   56   73  120  122  174  134   49
-##   64112   14   18   23   42   38   52   61   24
-##   64113   11   37   25   43   46   40   47   28
-##   64114   24   41   39   75   81   91  101   38
-##   64116    3   11   11   21   20   15   37   16
-##   64117    8    8   18   24   18   18   38   13
-##   64118    7   10   15   37   32   21   40   12
-##   64119    7   14    7   11   24   18   23    7
+##   64102    0    0    2    4    2    4    2    2
+##   64105    8    8   21   21   18   24   25   14
+##   64106   21   31   35   65   78   69   78   35
+##   64108   21   28   41   97   85   99  114   59
+##   64109   40   74   68   65   97   97   69   90
+##   64110   60   92   80   89   95  118   96   88
+##   64111   28   56   73  120  122  174  134   85
+##   64112   14   18   23   42   38   52   61   46
+##   64113   11   37   25   43   46   40   47   41
+##   64114   24   41   39   75   81   91  101   61
+##   64116    3   11   11   21   20   15   37   23
+##   64117    8    8   18   24   18   18   38   22
+##   64118    7   10   15   37   32   21   40   14
+##   64119    7   14    7   11   24   18   23   12
 ##   64120    3    4    8   16   23   18   13    3
-##   64123   21   22   25   26   48   57   54   17
-##   64124   18   29   47   38   62   47   51   21
-##   64125    4    7    9   12   10    7   14    8
-##   64126   14   27   20   14   22   32   27   12
-##   64127  107  161  143  184  199  264  206   74
-##   64128   90  163  165  193  163  180  178   67
-##   64129    9   26   25   22   23   36   50   13
-##   64130  133  247  265  257  277  253  229   93
-##   64131   54   85   75   83   75   84   93   51
-##   64132   66   96   71  100  105  110  124   58
-##   64133   11   13   20   26   17   34   26    8
-##   64134   24   49   32   53   51   37   59   27
-##   64136    0    1    2    8    5    4   12    3
-##   64137   10    7    4   14    9    8   15    7
-##   64138   22   25   21   36   40   33   43   19
-##   64139    1    1    3    1    1    0    0    1
-##   64145    4    1    5   19    5    8    5    6
-##   64146    2    1    1    1    0    0    1    1
+##   64123   21   22   25   26   48   57   54   32
+##   64124   18   29   47   38   62   47   51   35
+##   64125    4    7    9   12   10    7   14   17
+##   64126   14   27   20   14   22   32   27   16
+##   64127  107  161  143  184  199  264  206  120
+##   64128   90  163  165  193  163  180  178  124
+##   64129    9   26   25   22   23   36   50   20
+##   64130  133  247  265  257  277  253  229  182
+##   64131   54   85   75   83   75   84   93   75
+##   64132   66   96   71  100  105  110  124   91
+##   64133   11   13   20   26   17   34   26   18
+##   64134   24   49   32   53   51   37   59   47
+##   64136    0    1    2    8    5    4   12    8
+##   64137   10    7    4   14    9    8   15    8
+##   64138   22   25   21   36   40   33   43   30
+##   64139    1    1    3    1    1    0    0    2
+##   64145    4    1    5   19    5    8    5    7
+##   64146    2    1    1    1    0    0    1    2
 ##   64147    0    0    1    0    0    2    2    1
 ##   64149    0    0    0    0    0    0    1    0
-##   64151    6    5   12    8   26   11   16   13
-##   64152    2    3    4    9    7    4    7    5
-##   64153    5    6    6   15   32   14   18   13
-##   64154    5    4    8   16   12   16   12    4
-##   64155    7    6    9   10   11   27   20    9
+##   64151    6    5   12    8   26   11   16   18
+##   64152    2    3    4    9    7    4    7    7
+##   64153    5    6    6   15   32   14   18   14
+##   64154    5    4    8   16   12   16   12    9
+##   64155    7    6    9   10   11   27   20   14
 ##   64156    1    0    2    1    0    1    0    0
-##   64157    3    4    8    4    9   10   11    6
-##   64158    3    2    4    7    8    5   10    4
+##   64157    3    4    8    4    9   10   11    8
+##   64158    3    2    4    7    8    5   10    6
 ##   64160    0    0    0    0    0    1    0    0
-##   64161    3    3    1    9    2    4    3    0
+##   64161    3    3    1    9    2    4    3    1
 ##   64163    0    1    0    2    6    0    3    0
 ##   64165    0    0    0    0    0    1    0    0</code></pre>
 </div>
@@ -232,20 +232,20 @@ counts                                                                          
 <pre class="r"><code>table(health$COUNCIL.DISTRICT, health$CreationYear)</code></pre>
 <pre><code>##    
 ##     2007 2008 2009 2010 2011 2012 2013 2014
-##      105  145  125   44   27   24   15    1
-##   1   56   72  102   94   82   75  124   43
-##   2   48   64   81   86  117   80   86   51
-##   3  294  522  513  708  730  792  720  296
-##   4  119  212  235  419  484  574  558  206
-##   5  181  325  319  359  384  396  432  199
-##   6   79   91   81  194  183  215  237  106</code></pre>
+##      105  145  125   44   27   24   15    2
+##   1   56   72  102   94   82   75  124   67
+##   2   48   64   81   86  117   80   86   69
+##   3  294  522  513  708  730  792  720  518
+##   4  119  212  235  419  484  574  558  347
+##   5  181  325  319  359  384  396  432  346
+##   6   79   91   81  194  183  215  237  162</code></pre>
 </div>
 <div id="quality-of-service-by-year" class="section level3">
 <h3>Quality of Service by Year</h3>
 <pre class="r"><code>table(health$QUALITY.OF.SERVICE, health$CreationYear)</code></pre>
 <pre><code>##    
 ##     2007 2008 2009 2010 2011 2012 2013 2014
-##      882 1429 1452 1795 1866 1978 2073  901
+##      882 1429 1452 1795 1866 1978 2073 1510
 ##   1    0    0    0   17    9   16    6    0
 ##   2    0    0    0    4    3    5    6    1
 ##   3    0    0    0   15   19    8    9    0
@@ -257,7 +257,7 @@ counts                                                                          
 <pre class="r"><code>table(health$TIMELINESS.OF..SERVICE, health$CreationYear)</code></pre>
 <pre><code>##    
 ##     2007 2008 2009 2010 2011 2012 2013 2014
-##      882 1429 1452 1795 1866 1983 2079  902
+##      882 1429 1452 1795 1866 1983 2079 1511
 ##   1    0    0    0   12    5   11    5    0
 ##   2    0    0    0    7    2    4    3    0
 ##   3    0    0    0   17   20    5    7    0
@@ -269,7 +269,7 @@ counts                                                                          
 <pre class="r"><code>table(health$CUSTOMER.SERVICE, health$CreationYear)</code></pre>
 <pre><code>##    
 ##     2007 2008 2009 2010 2011 2012 2013 2014
-##      882 1429 1452 1795 1867 1990 2076  901
+##      882 1429 1452 1795 1867 1990 2076 1510
 ##   1    0    0    0    5    2    6    5    0
 ##   2    0    0    0    7    2    2    3    1
 ##   3    0    0    0    9   11    8    8    0
@@ -349,12 +349,12 @@ $(document).ready(function () {
 
 </script>
 
-<!-- dynamically load mathjax for compatibility with --self-contained -->
+<!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

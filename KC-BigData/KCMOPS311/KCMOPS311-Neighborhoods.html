@@ -6,7 +6,6 @@
 
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="generator" content="pandoc" />
 
 
@@ -55,11 +54,11 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="kcmo-311-data-neighborhoods" class="section level1">
 <h1>KCMO 311 data: Neighborhoods</h1>
-<p>efg, UMKC Center for Health Insights.<br />2013-12-12. Last modified 2014-07-11.</p>
+<p>efg, UMKC Center for Health Insights.<br />2013-12-12. Last modified 2014-10-08.</p>
 <div id="frequency-counts-of-kansas-city-mo-311-reports" class="section level2">
 <h2>Frequency Counts of Kansas City, MO 311 Reports</h2>
-<p><a href="https://data.kcmo.org/311/KCMOPS311-Data/7at3-sxhp">https://data.kcmo.org/311/KCMOPS311-Data/7at3-sxhp</a><br />2014-07-11</p>
-<p>The current file has 779648 rows.</p>
+<p><a href="https://data.kcmo.org/311/KCMOPS311-Data/7at3-sxhp">https://data.kcmo.org/311/KCMOPS311-Data/7at3-sxhp</a><br />2014-10-08</p>
+<p>The current file has 801834 rows.</p>
 </div>
 <div id="neighborhoods" class="section level2">
 <h2>Neighborhoods</h2>
@@ -67,250 +66,250 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre><code>## [1] 244</code></pre>
 <pre class="r"><code>data.frame(table(d$NEIGHBORHOOD))</code></pre>
 <pre><code>##                               Var1  Freq
-## 1                                    606
-## 2                                  40193
-## 3   18th And Vine And Downtown Eas  1038
-## 4                    Antioch Acres  2430
-## 5                    Armour Fields  2462
-## 6                     Armour Hills  3063
-## 7                    Ashland Ridge  1456
-## 8                  Bannister Acres  2454
-## 9                    Barry Harbour  2254
-## 10                    Beacon Hills  2199
-## 11              Birmingham Bottoms   488
-## 12  Blenheim Square Research Hospi  3529
-## 13                      Blue Hills 17374
-## 14              Blue Hills Estates  1834
-## 15                Blue Ridge Farms   655
-## 16          Blue Valley Industrial   916
-## 17                  Blue Vue Hills  1738
-## 18                     Boone Hills  3738
-## 19               Boulevard Village   335
-## 20                     Breen Hills  2402
-## 21         Briarcliff And Claymont  4014
-## 22                 Briarcliff West   530
-## 23                      Bridlespur  1978
-## 24                Broadway Gillham  2186
-## 25                  Brookside Park   407
-## 26                   Brown Estates  2349
-## 27                    Calico Farms  1468
-## 28                    CBD Downtown  8603
-## 29                     Center City  1121
+## 1                                    773
+## 2                                  40191
+## 3   18th And Vine And Downtown Eas  1066
+## 4                    Antioch Acres  2523
+## 5                    Armour Fields  2530
+## 6                     Armour Hills  3156
+## 7                    Ashland Ridge  1492
+## 8                  Bannister Acres  2534
+## 9                    Barry Harbour  2332
+## 10                    Beacon Hills  2248
+## 11              Birmingham Bottoms   499
+## 12  Blenheim Square Research Hospi  3632
+## 13                      Blue Hills 17733
+## 14              Blue Hills Estates  1883
+## 15                Blue Ridge Farms   664
+## 16          Blue Valley Industrial   945
+## 17                  Blue Vue Hills  1769
+## 18                     Boone Hills  3850
+## 19               Boulevard Village   348
+## 20                     Breen Hills  2446
+## 21         Briarcliff And Claymont  4120
+## 22                 Briarcliff West   546
+## 23                      Bridlespur  2027
+## 24                Broadway Gillham  2282
+## 25                  Brookside Park   420
+## 26                   Brown Estates  2420
+## 27                    Calico Farms  1499
+## 28                    CBD Downtown  8938
+## 29                     Center City  1139
 ## 30  Central Blue Valley and Park T     3
-## 31  Central Blue Valley And Park T  1510
-## 32               Central Hyde Park  1880
-## 33                       Chaumiere  2744
-## 34                Chouteau Estates  1954
-## 35                         Citadel  1787
-## 36                         Clayton  3542
-## 37               Coachlight Square   985
-## 38               Coleman Highlands   881
-## 39                 Colonial Square   410
-## 40                   Columbus Park  2347
-## 41        Columbus Park Industrial   291
-## 42              Cooley Highlands S  1907
-## 43                    Country Club   791
-## 44           Country Club District   983
-## 45  Country Club Estates And Big S  2205
-## 46              Country Club Plaza   714
-## 47            Country Lane Estates  1117
-## 48  Country Valley-Hawthorn Square  1334
-## 49                     Countryside  1960
-## 50                     Coves North  4167
-## 51                       Crestview  3833
-## 52                       Crestwood   548
-## 53                      Crossgates  1439
-## 54                      Crossroads  2001
-## 55                    Crown Center  1333
-## 56                Cunningham Ridge   491
-## 57                        Davidson  5270
-## 58                          Dunbar  1428
-## 59                East Blue Valley  4993
-## 60       East Community Team North  8996
-## 61       East Community Team South 11818
-## 62                    East Meyer 6  5821
-## 63                    East Meyer 7  4844
-## 64            East Swope Highlands  1771
-## 65                   Eastern 49-63  7361
-## 66             Eastwood Hills East  6994
-## 67             Eastwood Hills West  2162
-## 68                        Fairlane  8027
-## 69                   Fairway Hills  2712
-## 70           Fairwood And Robandee  5634
-## 71                 Forgotten Homes   491
-## 72         Foxcroft And Glen Arbor  1032
-## 73                    Foxtown East  2547
-## 74         Foxwoods-Carriage Hills  1681
-## 75                        Gashland  4397
-## 76                       Glen Lake   142
-## 77                       Glenhaven  1654
-## 78       Gracemor-Randolph Corners  4587
-## 79                 Greenway Fields  1193
-## 80                   Hanover Place  2941
-## 81                          Harlem   136
-## 82     Hawthorne And Picture Hills  1067
-## 83                   Hickman Mills  2786
-## 84             Hickman Mills South  3054
-## 85                   Hidden Valley  1551
-## 86                Highview Estates  2488
-## 87                      Hill Haven   654
-## 88                       Hillcrest   872
-## 89                   Holiday Hills   885
-## 90                     Holmes Park  1484
-## 91                   Hospital Hill  1558
-## 92              Independence Plaza  4875
-## 93                       Ingleside  3503
-## 94               Ivanhoe Northeast  3285
-## 95               Ivanhoe Southeast  5965
-## 96               Ivanhoe Southwest  4359
-## 97             Jefferson Highlands  3285
-## 98                 KCI &amp; 2nd Creek  4569
-## 99                   Key Coalition  5985
-## 100                       Kirkside  2048
-## 101                   Knoches Park  5109
-## 102               Lakeview Terrace   614
-## 103                      Lea Manor  2841
-## 104                          Leeds  1591
-## 105                    Legacy East  1916
-## 106                  Lewis Heights  1174
-## 107 Linden Hills And Indian Height  2950
-## 108                    Linden Park   805
-## 109 Line Creek And Northern Height  2660
-## 110     Linwood Homeowners-Ivanhoe  3954
-## 111                    Little Blue  5169
-## 112                     Loma Vista  1810
-## 113                     Longfellow  2883
-## 114                       Longview  1246
-## 115                         Lykins 11259
-## 116                   Manheim Park  5269
-## 117                     Maple Park  2519
-## 118                Maple Park West  3086
-## 119               Marlborough East  2652
-## 120 Marlborough Heights/Marlboroug  9731
-## 121                    Martin City  2061
-## 122            Meadowbrook Heights  3228
-## 123                     Minneville   186
-## 124                   Mission Lake  3580
-## 125                    Morningside  2391
-## 126                Mount Cleveland   809
-## 127                     Mount Hope  1522
-## 128                         Nashua  4334
-## 129    Neighbors United For Action  3466
-## 130                       New Mark  3543
-## 131        Noble And Gregory Ridge  5615
-## 132               North Blue Ridge  3179
-## 133                North Hyde Park  2667
-## 134             North Indian Mound  9456
-## 135          North Town Fork Creek  8576
-## 136  Northeast Industrial District  2173
-## 137              Oak Meyer Gardens  1632
-## 138             Oak Park Northwest  9512
-## 139             Oak Park Southeast  5374
-## 140             Oak Park Southwest  7496
-## 141                        Oakwood  1390
-## 142                   Old Westport  2334
-## 143                   Oldham Farms  1762
-## 144          Outer Gashland-Nashua  1322
-## 145                 Palestine East  3040
-## 146 Palestine West And Oak Park No  3591
-## 147     Park Central-Research Park   592
-## 148                     Park Farms  4915
-## 149                    Park Forest  3255
-## 150                     Park Plaza  2745
-## 151            Parkdale And Walden  3743
-## 152                       Parkview   512
-## 153                     Paseo West  1146
-## 154              Pendleton Heights  3983
-## 155             Platte Brook North  1843
-## 156                   Platte Ridge  2254
-## 157                 Plaza Westport  1450
-## 158        Prairie Point-Wildberry  1521
-## 159                   Quality Hill  1318
-## 160             Ravenwood-Somerset  4381
-## 161               Red Bridge North  2160
-## 162               Red Bridge South  1905
-## 163                Richards Gebaur   829
-## 164                     Ridgefield  4202
-## 165                      Riss Lake  2114
-## 166                   River Forest  1984
-## 167                   River Market  1092
-## 168                     River View  2020
-## 169                        Roanoke   773
-## 170                 Robandee South  2644
-## 171                       Rockhill   688
-## 172                 Rockhill Manor  1375
-## 173                Rolling Meadows  1240
-## 174                 Romanelli West  1136
-## 175                     Royal Oaks  1812
-## 176               Royal Oaks North  1481
-## 177                 Ruskin Heights  8550
-## 178                   Ruskin Hills  4535
-## 179                       Santa Fe  4898
-## 180                 Santa Fe Hills  2336
-## 181                 Scarritt Point 11249
-## 182                       Sechrest   123
-## 183 Self Help Neighborhood Council  5006
-## 184                      Sheffield  6389
-## 185               Sheraton Estates   594
-## 186                     Sherrydale  1526
-## 187               Sherwood Estates  1741
-## 188                    Shoal Creek 23093
-## 189              South Blue Valley  6428
-## 190                South Hyde Park  4335
-## 191             South Indian Mound 11639
-## 192                    South Plaza  1761
-## 193          South Town Fork Creek  3486
-## 194                  Southmoreland  3327
-## 195                    Squier Park  1442
-## 196                             St  3729
-## 197          St Catherines Gardens   144
-## 198                Stayton Meadows  2884
-## 199                 Sterling Acres  1450
-## 200               Sterling Gardens  1269
-## 201              Stratford Estates  4208
-## 202              Stratford Gardens   764
-## 203                      Strupwood   645
-## 204                    Sunset Hill  1159
-## 205               Sunset Hill West   576
-## 206              Swope Park Campus  2954
-## 207    Swope Park Ridge-Winchester   487
-## 208          Swope Parkway-Elmwood  9676
-## 209   Tanglewood And Regency North  1582
-## 210           Terrace Lake Gardens  2230
-## 211                      The Coves  2947
-## 212                  Timber Valley   545
-## 213                    Tower Homes  8597
-## 214                     Union Hill  1002
-## 215                    Unity Ridge   761
-## 216                      Valentine  1841
-## 217                   Verona Hills  1889
-## 218                       Vineyard  6271
-## 219               Vineyard Estates   904
-## 220             Vineyard Northwest  3566
-## 221                         Volker  6175
-## 222                    Waldo Homes  2673
-## 223                   Ward Estates   414
-## 224                   Ward Parkway  6357
-## 225             Ward Parkway Plaza   808
-## 226            Washington Wheatley  9675
-## 227               Wendell Phillips  6598
-## 228               West Blue Valley  4546
-## 229                     West Plaza  4974
-## 230                     West Waldo  2344
-## 231                  Western 49-63  5308
-## 232          Western Blue Township  3056
-## 233                  Western Hills  3758
-## 234                 Westside North  3142
-## 235                 Westside South  3892
-## 236                       Westwood  1115
-## 237                      White Oak  3492
-## 238                   Willow Creek  2449
-## 239                     Winnetonka  1393
-## 240                       Winnwood  3810
-## 241               Winnwood Gardens  1566
-## 242                     Woodbridge   969
-## 243                Woodson Estates   796
-## 244              Wornall Homestead  1328</code></pre>
+## 31  Central Blue Valley And Park T  1554
+## 32               Central Hyde Park  1944
+## 33                       Chaumiere  2888
+## 34                Chouteau Estates  2002
+## 35                         Citadel  1833
+## 36                         Clayton  3639
+## 37               Coachlight Square  1012
+## 38               Coleman Highlands   917
+## 39                 Colonial Square   439
+## 40                   Columbus Park  2387
+## 41        Columbus Park Industrial   306
+## 42              Cooley Highlands S  1983
+## 43                    Country Club   818
+## 44           Country Club District   997
+## 45  Country Club Estates And Big S  2262
+## 46              Country Club Plaza   744
+## 47            Country Lane Estates  1155
+## 48  Country Valley-Hawthorn Square  1363
+## 49                     Countryside  2034
+## 50                     Coves North  4292
+## 51                       Crestview  3909
+## 52                       Crestwood   568
+## 53                      Crossgates  1483
+## 54                      Crossroads  2074
+## 55                    Crown Center  1392
+## 56                Cunningham Ridge   513
+## 57                        Davidson  5406
+## 58                          Dunbar  1454
+## 59                East Blue Valley  5141
+## 60       East Community Team North  9246
+## 61       East Community Team South 12159
+## 62                    East Meyer 6  5998
+## 63                    East Meyer 7  6248
+## 64            East Swope Highlands  1816
+## 65                   Eastern 49-63  7552
+## 66             Eastwood Hills East  7194
+## 67             Eastwood Hills West  2230
+## 68                        Fairlane  8217
+## 69                   Fairway Hills  2772
+## 70           Fairwood And Robandee  5818
+## 71                 Forgotten Homes   510
+## 72         Foxcroft And Glen Arbor  1055
+## 73                    Foxtown East  2592
+## 74         Foxwoods-Carriage Hills  1720
+## 75                        Gashland  4519
+## 76                       Glen Lake   149
+## 77                       Glenhaven  1714
+## 78       Gracemor-Randolph Corners  4745
+## 79                 Greenway Fields  1225
+## 80                   Hanover Place  3034
+## 81                          Harlem   145
+## 82     Hawthorne And Picture Hills  1096
+## 83                   Hickman Mills  2860
+## 84             Hickman Mills South  3125
+## 85                   Hidden Valley  1595
+## 86                Highview Estates  2535
+## 87                      Hill Haven   675
+## 88                       Hillcrest   887
+## 89                   Holiday Hills   903
+## 90                     Holmes Park  1527
+## 91                   Hospital Hill  1623
+## 92              Independence Plaza  5012
+## 93                       Ingleside  3615
+## 94               Ivanhoe Northeast  3338
+## 95               Ivanhoe Southeast  6051
+## 96               Ivanhoe Southwest  4474
+## 97             Jefferson Highlands  3371
+## 98                 KCI &amp; 2nd Creek  4767
+## 99                   Key Coalition  6165
+## 100                       Kirkside  2102
+## 101                   Knoches Park  5238
+## 102               Lakeview Terrace   631
+## 103                      Lea Manor  2921
+## 104                          Leeds  1627
+## 105                    Legacy East  1963
+## 106                  Lewis Heights  1210
+## 107 Linden Hills And Indian Height  3035
+## 108                    Linden Park   833
+## 109 Line Creek And Northern Height  2716
+## 110     Linwood Homeowners-Ivanhoe  4007
+## 111                    Little Blue  5285
+## 112                     Loma Vista  1869
+## 113                     Longfellow  2950
+## 114                       Longview  1272
+## 115                         Lykins 11546
+## 116                   Manheim Park  5409
+## 117                     Maple Park  2570
+## 118                Maple Park West  3159
+## 119               Marlborough East  2717
+## 120 Marlborough Heights/Marlboroug 10044
+## 121                    Martin City  2127
+## 122            Meadowbrook Heights  3306
+## 123                     Minneville   194
+## 124                   Mission Lake  3668
+## 125                    Morningside  2483
+## 126                Mount Cleveland   823
+## 127                     Mount Hope  1565
+## 128                         Nashua  4480
+## 129    Neighbors United For Action  3583
+## 130                       New Mark  3650
+## 131        Noble And Gregory Ridge  5746
+## 132               North Blue Ridge  3264
+## 133                North Hyde Park  2745
+## 134             North Indian Mound  9742
+## 135          North Town Fork Creek  8839
+## 136  Northeast Industrial District  2241
+## 137              Oak Meyer Gardens  1691
+## 138             Oak Park Northwest  9731
+## 139             Oak Park Southeast  5493
+## 140             Oak Park Southwest  7776
+## 141                        Oakwood  1430
+## 142                   Old Westport  2421
+## 143                   Oldham Farms  1830
+## 144          Outer Gashland-Nashua  1361
+## 145                 Palestine East  3117
+## 146 Palestine West And Oak Park No  3671
+## 147     Park Central-Research Park   609
+## 148                     Park Farms  5039
+## 149                    Park Forest  3340
+## 150                     Park Plaza  2796
+## 151            Parkdale And Walden  3838
+## 152                       Parkview   537
+## 153                     Paseo West  1191
+## 154              Pendleton Heights  4092
+## 155             Platte Brook North  1883
+## 156                   Platte Ridge  2317
+## 157                 Plaza Westport  1473
+## 158        Prairie Point-Wildberry  1560
+## 159                   Quality Hill  1341
+## 160             Ravenwood-Somerset  4499
+## 161               Red Bridge North  2217
+## 162               Red Bridge South  1960
+## 163                Richards Gebaur   856
+## 164                     Ridgefield  4319
+## 165                      Riss Lake  2168
+## 166                   River Forest  2047
+## 167                   River Market  1139
+## 168                     River View  2078
+## 169                        Roanoke   808
+## 170                 Robandee South  2712
+## 171                       Rockhill   714
+## 172                 Rockhill Manor  1404
+## 173                Rolling Meadows  1270
+## 174                 Romanelli West  1172
+## 175                     Royal Oaks  1852
+## 176               Royal Oaks North  1501
+## 177                 Ruskin Heights  8750
+## 178                   Ruskin Hills  4661
+## 179                       Santa Fe  5012
+## 180                 Santa Fe Hills  2391
+## 181                 Scarritt Point 11632
+## 182                       Sechrest   127
+## 183 Self Help Neighborhood Council  5120
+## 184                      Sheffield  6562
+## 185               Sheraton Estates   607
+## 186                     Sherrydale  1587
+## 187               Sherwood Estates  1816
+## 188                    Shoal Creek 23796
+## 189              South Blue Valley  6624
+## 190                South Hyde Park  4437
+## 191             South Indian Mound 11966
+## 192                    South Plaza  1823
+## 193          South Town Fork Creek  3589
+## 194                  Southmoreland  3447
+## 195                    Squier Park  1492
+## 196                             St  3728
+## 197          St Catherines Gardens   234
+## 198                Stayton Meadows  2950
+## 199                 Sterling Acres  1484
+## 200               Sterling Gardens  1300
+## 201              Stratford Estates  4298
+## 202              Stratford Gardens   779
+## 203                      Strupwood   656
+## 204                    Sunset Hill  1211
+## 205               Sunset Hill West   589
+## 206              Swope Park Campus  3044
+## 207    Swope Park Ridge-Winchester   500
+## 208          Swope Parkway-Elmwood  9934
+## 209   Tanglewood And Regency North  1622
+## 210           Terrace Lake Gardens  2282
+## 211                      The Coves  3067
+## 212                  Timber Valley   566
+## 213                    Tower Homes  8858
+## 214                     Union Hill  1026
+## 215                    Unity Ridge   775
+## 216                      Valentine  1898
+## 217                   Verona Hills  1938
+## 218                       Vineyard  6420
+## 219               Vineyard Estates   930
+## 220             Vineyard Northwest  3687
+## 221                         Volker  6371
+## 222                    Waldo Homes  2725
+## 223                   Ward Estates   426
+## 224                   Ward Parkway  6569
+## 225             Ward Parkway Plaza   838
+## 226            Washington Wheatley  9909
+## 227               Wendell Phillips  6795
+## 228               West Blue Valley  4659
+## 229                     West Plaza  5109
+## 230                     West Waldo  2403
+## 231                  Western 49-63  5464
+## 232          Western Blue Township  3147
+## 233                  Western Hills  3837
+## 234                 Westside North  3284
+## 235                 Westside South  4045
+## 236                       Westwood  1142
+## 237                      White Oak  3584
+## 238                   Willow Creek  2510
+## 239                     Winnetonka  1438
+## 240                       Winnwood  3969
+## 241               Winnwood Gardens  1604
+## 242                     Woodbridge  1003
+## 243                Woodson Estates   810
+## 244              Wornall Homestead  1371</code></pre>
 </div>
 <div id="neighborhoods-and-zip-codes" class="section level2">
 <h2>Neighborhoods and ZIP Codes</h2>
@@ -325,944 +324,944 @@ for (i in 3:nrow(counts))
 <pre><code>## 
 ## [1] &quot;18th And Vine And Downtown Eas&quot;
 ## 64106 64108 64127 
-##    32   166   840 
+##    32   171   863 
 ## 
 ## [1] &quot;Antioch Acres&quot;
 ##       64116 64117 64118 64119 
-##     3   722  1232   279   194 
+##     3   735  1296   288   201 
 ## 
 ## [1] &quot;Armour Fields&quot;
 ##       64113 64114 
-##     1  2455     6 
+##     1  2520     9 
 ## 
 ## [1] &quot;Armour Hills&quot;
 ##       64113 
-##     2  3061 
+##     2  3154 
 ## 
 ## [1] &quot;Ashland Ridge&quot;
 ##       64133 
-##     2  1454 
+##     2  1490 
 ## 
 ## [1] &quot;Bannister Acres&quot;
 ##       64132 64134 64155 
-##     1     4  2440     9 
+##     2     4  2519     9 
 ## 
 ## [1] &quot;Barry Harbour&quot;
 ##       64118 64151 
-##     4   821  1429 
+##     4   835  1493 
 ## 
 ## [1] &quot;Beacon Hills&quot;
 ## 64108 64109 
-##   881  1318 
+##   901  1347 
 ## 
 ## [1] &quot;Birmingham Bottoms&quot;
 ## 64160 64161 
-##    67   421 
+##    70   429 
 ## 
 ## [1] &quot;Blenheim Square Research Hospi&quot;
 ##       64131 64132 
-##     5    48  3476 
+##     5    49  3578 
 ## 
 ## [1] &quot;Blue Hills&quot;
 ##       64110 64130 64134 
-##     8  3841 13523     2 
+##     8  3940 13783     2 
 ## 
 ## [1] &quot;Blue Hills Estates&quot;
 ##       64145 
-##     4  1830 
+##     4  1879 
 ## 
 ## [1] &quot;Blue Ridge Farms&quot;
 ## 64030 64146 
-##     1   654 
+##     1   663 
 ## 
 ## [1] &quot;Blue Valley Industrial&quot;
 ## 64125 64126 64129 
-##   124   600   192 
+##   132   612   201 
 ## 
 ## [1] &quot;Blue Vue Hills&quot;
 ##       64133 
-##     1  1737 
+##     1  1768 
 ## 
 ## [1] &quot;Boone Hills&quot;
 ##       64114 64131 64151 64157 
-##     3  2391  1339     4     1 
+##     3  2463  1379     4     1 
 ## 
 ## [1] &quot;Boulevard Village&quot;
-## [1] 335
+## [1] 348
 ## 
 ## [1] &quot;Breen Hills&quot;
 ##       64151 
-##     3  2399 
+##     3  2443 
 ## 
 ## [1] &quot;Briarcliff And Claymont&quot;
 ## 64114 64116 64119 
-##     4  4008     2 
+##     4  4114     2 
 ## 
 ## [1] &quot;Briarcliff West&quot;
 ## 64116 64118 
-##   442    88 
+##   450    96 
 ## 
 ## [1] &quot;Bridlespur&quot;
 ##       64114 64131 
-##     2  1504   472 
+##     2  1543   482 
 ## 
 ## [1] &quot;Broadway Gillham&quot;
 ##       64109 64111 64157 
-##     1    61  2116     8 
+##     1    63  2210     8 
 ## 
 ## [1] &quot;Brookside Park&quot;
-## [1] 407
+## [1] 420
 ## 
 ## [1] &quot;Brown Estates&quot;
 ##       64129 64130 
-##     1  1313  1035 
+##     1  1337  1082 
 ## 
 ## [1] &quot;Calico Farms&quot;
 ##       64030 64114 64117 64131 64137 
-##     1    22     1     2   252  1190 
+##     1    22     1     2   262  1211 
 ## 
 ## [1] &quot;CBD Downtown&quot;
 ##       64105 64106 64108 64109 64113 64117 64118 64156 
-##   111  1868  6606     1     6     6     1     1     3 
+##   119  1951  6850     1     6     6     1     1     3 
 ## 
 ## [1] &quot;Center City&quot;
 ## 64109 64133 
-##  1120     1 
+##  1138     1 
 ## 
 ## [1] &quot;Central Blue Valley and Park T&quot;
 ## [1] 3
 ## 
 ## [1] &quot;Central Blue Valley And Park T&quot;
 ##       64126 64127 64156 
-##     1   894   610     5 
+##     1   913   635     5 
 ## 
 ## [1] &quot;Central Hyde Park&quot;
 ##       64109 64111 
-##     3  1849    28 
+##     3  1911    30 
 ## 
 ## [1] &quot;Chaumiere&quot;
 ## 64117 64124 
-##  2742     2 
+##  2886     2 
 ## 
 ## [1] &quot;Chouteau Estates&quot;
 ## 64117 64151 
-##  1953     1 
+##  2001     1 
 ## 
 ## [1] &quot;Citadel&quot;
 ## 64110 64130 
-##   721  1066 
+##   737  1096 
 ## 
 ## [1] &quot;Clayton&quot;
 ##       64118 
-##     2  3540 
+##     2  3637 
 ## 
 ## [1] &quot;Coachlight Square&quot;
-## [1] 985
+## [1] 1012
 ## 
 ## [1] &quot;Coleman Highlands&quot;
-## [1] 881
+## [1] 917
 ## 
 ## [1] &quot;Colonial Square&quot;
 ## 64116 64117 
-##   388    22 
+##   414    25 
 ## 
 ## [1] &quot;Columbus Park&quot;
 ##        6152 64106 64120 
-##     1     1  2287    58 
+##     1     1  2325    60 
 ## 
 ## [1] &quot;Columbus Park Industrial&quot;
 ##       64106 64120 
-##     1   138   152 
+##     1   143   162 
 ## 
 ## [1] &quot;Cooley Highlands S&quot;
 ##       64117 
-##     3  1904 
+##     3  1980 
 ## 
 ## [1] &quot;Country Club&quot;
-## [1] 791
+## [1] 818
 ## 
 ## [1] &quot;Country Club District&quot;
 ##       64113 
-##     1   982 
+##     1   996 
 ## 
 ## [1] &quot;Country Club Estates And Big S&quot;
 ##       64119 
-##     4  2201 
+##     4  2258 
 ## 
 ## [1] &quot;Country Club Plaza&quot;
 ##       64112 64145 
-##     1   709     4 
+##     1   739     4 
 ## 
 ## [1] &quot;Country Lane Estates&quot;
 ##       64114 
-##     3  1114 
+##     3  1152 
 ## 
 ## [1] &quot;Country Valley-Hawthorn Square&quot;
 ## 64055 64131 64132 64133 64136 
-##    23     1     3     4  1303 
+##    23     1     3     4  1332 
 ## 
 ## [1] &quot;Countryside&quot;
 ##       64112 64113 
-##     1  1384   575 
+##     1  1425   608 
 ## 
 ## [1] &quot;Coves North&quot;
 ##       64114 64129 64130 64154 64157 
-##     4     4     1     1  4153     4 
+##     4     4     1     1  4278     4 
 ## 
 ## [1] &quot;Crestview&quot;
 ##       64116 64117 64119 64127 64131 64136 64155 
-##     2  3817     1     1     5     3     2     2 
+##     2  3893     1     1     5     3     2     2 
 ## 
 ## [1] &quot;Crestwood&quot;
 ##       64110 64111 64113 
-##     1   544     1     2 
+##     1   562     1     4 
 ## 
 ## [1] &quot;Crossgates&quot;
 ##       64134 
-##     2  1437 
+##     2  1481 
 ## 
 ## [1] &quot;Crossroads&quot;
 ##       64108 
-##     2  1999 
+##     2  2072 
 ## 
 ## [1] &quot;Crown Center&quot;
 ##       64108 
-##     2  1331 
+##     2  1390 
 ## 
 ## [1] &quot;Cunningham Ridge&quot;
 ##       64129 
-##     1   490 
+##     1   512 
 ## 
 ## [1] &quot;Davidson&quot;
 ##       64116 64118 
-##     3   202  5065 
+##     4   211  5191 
 ## 
 ## [1] &quot;Dunbar&quot;
 ##       64127 64128 64129 
-##     1     3  1173   251 
+##     1     3  1194   256 
 ## 
 ## [1] &quot;East Blue Valley&quot;
 ##       64126 
-##     2  4991 
+##     2  5139 
 ## 
 ## [1] &quot;East Community Team North&quot;
 ##       64127 
-##     6  8990 
+##     6  9240 
 ## 
 ## [1] &quot;East Community Team South&quot;
 ##       64119 64127 64128 64132 
-##     3     8  9041  2765     1 
+##     3     8  9305  2842     1 
 ## 
 ## [1] &quot;East Meyer 6&quot;
 ##       64110 64128 64131 64132 64134 
-##     6     4     3  5664   142     2 
+##     6     4     3  5841   142     2 
 ## 
 ## [1] &quot;East Meyer 7&quot;
 ##       63130 64130 64132 64134 
-##     3     1     1  4838     1 
+##  1276     1     1  4969     1 
 ## 
 ## [1] &quot;East Swope Highlands&quot;
 ##       64123 64129 64133 
-##     1     6    32  1732 
+##     1     6    33  1776 
 ## 
 ## [1] &quot;Eastern 49-63&quot;
 ##       64110 64130 64132 64155 
-##     5  7340     1     5    10 
+##     5  7531     1     5    10 
 ## 
 ## [1] &quot;Eastwood Hills East&quot;
 ##       64114 64128 64129 
-##     3     2     6  6983 
+##     3     2     6  7183 
 ## 
 ## [1] &quot;Eastwood Hills West&quot;
 ##       64129 64130 64132 64152 
-##     1  1963   195     2     1 
+##     1  2030   196     2     1 
 ## 
 ## [1] &quot;Fairlane&quot;
 ##       64132 64133 64134 64137 
-##     6     3     2  5659  2357 
+##     6     3     2  5800  2406 
 ## 
 ## [1] &quot;Fairway Hills&quot;
 ##       64133 
-##     1  2711 
+##     1  2771 
 ## 
 ## [1] &quot;Fairwood And Robandee&quot;
 ##       64114 64127 64133 64138 
-##     4     1     2     2  5625 
+##     4     1     2     2  5809 
 ## 
 ## [1] &quot;Forgotten Homes&quot;
 ##       64127 
-##     1   490 
+##     1   509 
 ## 
 ## [1] &quot;Foxcroft And Glen Arbor&quot;
 ##       64114 64134 
-##     1  1025     6 
+##     1  1048     6 
 ## 
 ## [1] &quot;Foxtown East&quot;
 ##       64111 64114 64128 64132 
-##     4     5     6     3  2529 
+##     4     5     6     3  2574 
 ## 
 ## [1] &quot;Foxwoods-Carriage Hills&quot;
 ##       64119 
-##     1  1680 
+##     1  1719 
 ## 
 ## [1] &quot;Gashland&quot;
 ##       64119 64155 64156 
-##     3     3  3940   451 
+##     3     3  4047   466 
 ## 
 ## [1] &quot;Glen Lake&quot;
-## [1] 142
+## [1] 149
 ## 
 ## [1] &quot;Glenhaven&quot;
 ## 64117 64119 
-##    60  1594 
+##    62  1652 
 ## 
 ## [1] &quot;Gracemor-Randolph Corners&quot;
 ## 64119 64124 
-##  4582     5 
+##  4740     5 
 ## 
 ## [1] &quot;Greenway Fields&quot;
-## [1] 1193
+## [1] 1225
 ## 
 ## [1] &quot;Hanover Place&quot;
 ##       64111 
-##     1  2940 
+##     1  3033 
 ## 
 ## [1] &quot;Harlem&quot;
-## [1] 136
+## [1] 145
 ## 
 ## [1] &quot;Hawthorne And Picture Hills&quot;
 ## 64151 64152 
-##  1061     6 
+##  1090     6 
 ## 
 ## [1] &quot;Hickman Mills&quot;
 ##       64106 64134 64137 
-##     1     6  1672  1107 
+##     1     6  1720  1133 
 ## 
 ## [1] &quot;Hickman Mills South&quot;
 ##       64130 64134 
-##     3     1  3050 
+##     3     1  3121 
 ## 
 ## [1] &quot;Hidden Valley&quot;
 ##       64131 64132 
-##     1    17  1533 
+##     1    19  1575 
 ## 
 ## [1] &quot;Highview Estates&quot;
 ##       64134 64138 
-##     1  1053  1434 
+##     1  1074  1460 
 ## 
 ## [1] &quot;Hill Haven&quot;
 ##       64117 
-##     3   651 
+##     3   672 
 ## 
 ## [1] &quot;Hillcrest&quot;
 ## 64132 64138 
-##   464   408 
+##   472   415 
 ## 
 ## [1] &quot;Holiday Hills&quot;
 ##       64117 64130 
-##     1   883     1 
+##     1   901     1 
 ## 
 ## [1] &quot;Holmes Park&quot;
 ## 64113 64131 
-##     1  1483 
+##     4  1523 
 ## 
 ## [1] &quot;Hospital Hill&quot;
 ##       64106 64108 
-##     2    30  1526 
+##     3    35  1585 
 ## 
 ## [1] &quot;Independence Plaza&quot;
 ##       64124 64127 64130 
-##     5  2036  2822    12 
+##     5  2101  2894    12 
 ## 
 ## [1] &quot;Ingleside&quot;
 ##       64128 
-##     1  3502 
+##     1  3614 
 ## 
 ## [1] &quot;Ivanhoe Northeast&quot;
-##       64109 64128 64154 
-##     2  2759   521     3 
+##       64109 64128 64130 64154 
+##     2  2805   527     1     3 
 ## 
 ## [1] &quot;Ivanhoe Southeast&quot;
 ##       64130 
-##     1  5964 
+##     1  6050 
 ## 
 ## [1] &quot;Ivanhoe Southwest&quot;
 ##       64110 64130 64134 64137 
-##     2  3915   438     2     2 
+##     2  4019   449     2     2 
 ## 
 ## [1] &quot;Jefferson Highlands&quot;
 ##       64114 64118 64154 
-##     2     1  3281     1 
+##     2     1  3367     1 
 ## 
 ## [1] &quot;KCI &amp; 2nd Creek&quot;
 ##       64079 64116 64123 64152 64153 64154 64163 64164 
-##     3     1     1     6   124  2154  1715   420   145 
+##     4     1     1     6   128  2234  1797   446   150 
 ## 
 ## [1] &quot;Key Coalition&quot;
 ##       64109 64119 64128 64133 
-##     1  5310     5   666     3 
+##     1  5464     5   692     3 
 ## 
 ## [1] &quot;Kirkside&quot;
 ##       64134 
-##     5  2043 
+##     5  2097 
 ## 
 ## [1] &quot;Knoches Park&quot;
 ##       64110 64127 64128 
-##     2     1     3  5103 
+##     2     1     3  5232 
 ## 
 ## [1] &quot;Lakeview Terrace&quot;
 ##       64118 64151 
-##     2   611     1 
+##     2   628     1 
 ## 
 ## [1] &quot;Lea Manor&quot;
 ##       64114 64138 
-##     3  2831     7 
+##     2  2912     7 
 ## 
 ## [1] &quot;Leeds&quot;
 ##       64128 64129 
-##     5    88  1498 
+##     5    89  1533 
 ## 
 ## [1] &quot;Legacy East&quot;
 ##       64130 64131 64132 
-##     2     4  1324   586 
+##     2     4  1358   599 
 ## 
 ## [1] &quot;Lewis Heights&quot;
 ##       64110 64129 64133 
-##     2     1  1165     6 
+##     2     1  1201     6 
 ## 
 ## [1] &quot;Linden Hills And Indian Height&quot;
 ##       64110 64116 64131 
-##     4     6     1  2939 
+##     4     6     1  3024 
 ## 
 ## [1] &quot;Linden Park&quot;
 ##       64151 64152 
-##     1   750    54 
+##     1   777    55 
 ## 
 ## [1] &quot;Line Creek And Northern Height&quot;
 ##       64117 64133 64151 
-##     1     6     2  2651 
+##     1     6     2  2707 
 ## 
 ## [1] &quot;Linwood Homeowners-Ivanhoe&quot;
 ##       64109 64110 
-##     1  3952     1 
+##     1  4005     1 
 ## 
 ## [1] &quot;Little Blue&quot;
 ##       64055 64126 64130 64133 64136 64138 64139 
-##     2     4     2    12  2339  1134   500  1176 
+##     2     4     2    12  2398  1162   502  1203 
 ## 
 ## [1] &quot;Loma Vista&quot;
 ##       64132 64138 
-##     1   105  1704 
+##     1   107  1761 
 ## 
 ## [1] &quot;Longfellow&quot;
 ## 64108 64109 
-##   983  1900 
+##  1016  1934 
 ## 
 ## [1] &quot;Longview&quot;
 ##       64134 64149 
-##     3   314   929 
+##     3   321   948 
 ## 
 ## [1] &quot;Lykins&quot;
 ##       64123 64124 64125 64127 64138 64157 
-##     3    35  6203    18  4993     6     1 
+##     3    36  6370    18  5112     6     1 
 ## 
 ## [1] &quot;Manheim Park&quot;
-## 64110 64117 
-##  5268     1 
+##       64110 64117 
+##     1  5407     1 
 ## 
 ## [1] &quot;Maple Park&quot;
 ## 64119 64133 
-##  2518     1 
+##  2569     1 
 ## 
 ## [1] &quot;Maple Park West&quot;
 ##       64110 64119 64133 
-##     2     1  3071    12 
+##     2     1  3144    12 
 ## 
 ## [1] &quot;Marlborough East&quot;
 ##       64118 64132 64153 
-##     2     1  2648     1 
+##     3     1  2712     1 
 ## 
 ## [1] &quot;Marlborough Heights/Marlboroug&quot;
 ##       64114 64117 64127 64130 64131 64132 64151 64155 
-##     3     4     1     1     6  4464  5249     1     2 
+##     3     4     1     1     6  4621  5405     1     2 
 ## 
 ## [1] &quot;Martin City&quot;
 ##       64113 64145 64146 
-##     4     3  1927   127 
+##     4     3  1989   131 
 ## 
 ## [1] &quot;Meadowbrook Heights&quot;
 ##       64127 64155 
-##     1    12  3215 
+##     1    12  3293 
 ## 
 ## [1] &quot;Minneville&quot;
 ## 64119 64161 
-##     9   177 
+##     9   185 
 ## 
 ## [1] &quot;Mission Lake&quot;
 ##       64112 64131 64145 64146 
-##     1     6   862  1233  1478 
+##     1     6   884  1264  1513 
 ## 
 ## [1] &quot;Morningside&quot;
-## [1] 2391
+## [1] 2483
 ## 
 ## [1] &quot;Mount Cleveland&quot;
-## [1] 809
+## [1] 823
 ## 
 ## [1] &quot;Mount Hope&quot;
-## [1] 1522
+## [1] 1565
 ## 
 ## [1] &quot;Nashua&quot;
 ##       64134 64155 
-##     1     3  4330 
+##     1     3  4476 
 ## 
 ## [1] &quot;Neighbors United For Action&quot;
-##       64110 64131 64132 
-##     4     5  2166  1291 
+##       64110 64131 64132 64134 
+##     4     5  2249  1324     1 
 ## 
 ## [1] &quot;New Mark&quot;
 ## 64110 64155 
-##     1  3542 
+##     1  3649 
 ## 
 ## [1] &quot;Noble And Gregory Ridge&quot;
 ##       64127 64132 
-##     6     9  5600 
+##     6     9  5731 
 ## 
 ## [1] &quot;North Blue Ridge&quot;
 ## 64053 64120 64125 64126 
-##    85   157  2924    13 
+##    85   161  3005    13 
 ## 
 ## [1] &quot;North Hyde Park&quot;
 ##       64109 
-##     3  2664 
+##     3  2742 
 ## 
 ## [1] &quot;North Indian Mound&quot;
 ##       64120 64123 64124 
-##     2    47  9404     3 
+##     2    48  9689     3 
 ## 
 ## [1] &quot;North Town Fork Creek&quot;
 ##       64130 64131 64134 64156 
-##     5  8564     4     2     1 
+##     5  8827     4     2     1 
 ## 
 ## [1] &quot;Northeast Industrial District&quot;
 ##       64120 
-##     2  2171 
+##     2  2239 
 ## 
 ## [1] &quot;Oak Meyer Gardens&quot;
 ##       64113 64131 
-##     3    10  1619 
+##     3    13  1675 
 ## 
 ## [1] &quot;Oak Park Northwest&quot;
 ##       64110 64127 64128 
-##     5     2    12  9493 
+##     6     2    12  9711 
 ## 
 ## [1] &quot;Oak Park Southeast&quot;
 ##       64130 
-##     1  5373 
+##     1  5492 
 ## 
 ## [1] &quot;Oak Park Southwest&quot;
 ##       64109 64126 64130 
-##     1     3     6  7486 
+##     1     3     6  7766 
 ## 
 ## [1] &quot;Oakwood&quot;
 ## 64131 64137 
-##     1  1389 
+##     1  1429 
 ## 
 ## [1] &quot;Old Westport&quot;
 ## 64110 64111 
-##     2  2332 
+##     2  2419 
 ## 
 ## [1] &quot;Oldham Farms&quot;
 ## 64134 64138 
-##     2  1760 
+##     2  1828 
 ## 
 ## [1] &quot;Outer Gashland-Nashua&quot;
 ## 64155 64165 
-##  1185   137 
+##  1215   146 
 ## 
 ## [1] &quot;Palestine East&quot;
 ## 64128 64132 
-##  3038     2 
+##  3115     2 
 ## 
 ## [1] &quot;Palestine West And Oak Park No&quot;
 ##       64128 
-##     2  3589 
+##     2  3669 
 ## 
 ## [1] &quot;Park Central-Research Park&quot;
 ## 64110 64112 
-##   444   148 
+##   454   155 
 ## 
 ## [1] &quot;Park Farms&quot;
 ##       64116 64133 64138 
-##     2    16  1854  3043 
+##     2    16  1897  3124 
 ## 
 ## [1] &quot;Park Forest&quot;
 ##       64106 64110 64151 64152 64158 
-##     3     1     3     6  3241     1 
+##     3     1     3     6  3326     1 
 ## 
 ## [1] &quot;Park Plaza&quot;
 ##       64151 
-##     1  2744 
+##     1  2795 
 ## 
 ## [1] &quot;Parkdale And Walden&quot;
 ## 64108 64151 
-##     4  3739 
+##     4  3834 
 ## 
 ## [1] &quot;Parkview&quot;
 ## 64106 64124 
-##   406   106 
+##   420   117 
 ## 
 ## [1] &quot;Paseo West&quot;
 ##       64106 
-##     1  1145 
+##     1  1190 
 ## 
 ## [1] &quot;Pendleton Heights&quot;
 ##       64106 64120 64124 
-##     3   386    58  3536 
+##     3   392    61  3636 
 ## 
 ## [1] &quot;Platte Brook North&quot;
 ##       64129 64151 
-##     3     2  1838 
+##     3     2  1878 
 ## 
 ## [1] &quot;Platte Ridge&quot;
 ## 64132 64151 64152 
-##     5    48  2201 
+##     5    49  2263 
 ## 
 ## [1] &quot;Plaza Westport&quot;
 ## 64111 64112 
-##  1328   122 
+##  1349   124 
 ## 
 ## [1] &quot;Prairie Point-Wildberry&quot;
-## [1] 1521
+## [1] 1560
 ## 
 ## [1] &quot;Quality Hill&quot;
-## [1] 1318
+## [1] 1341
 ## 
 ## [1] &quot;Ravenwood-Somerset&quot;
 ##       64068 64113 64119 
-##     3    41     6  4331 
+##     3    41     6  4449 
 ## 
 ## [1] &quot;Red Bridge North&quot;
 ##       64114 64131 
-##     2   261  1897 
+##     2   271  1944 
 ## 
 ## [1] &quot;Red Bridge South&quot;
 ##       64114 64131 
-##     5  1109   791 
+##     5  1145   810 
 ## 
 ## [1] &quot;Richards Gebaur&quot;
 ##       64012 64145 64146 64147 
-##     1    37   248   214   329 
+##     2    37   251   223   343 
 ## 
 ## [1] &quot;Ridgefield&quot;
 ##       64118 64119 64124 
-##     2  3140  1056     4 
+##     2  3226  1087     4 
 ## 
 ## [1] &quot;Riss Lake&quot;
-## [1] 2114
+## [1] 2168
 ## 
 ## [1] &quot;River Forest&quot;
 ## 64116 64117 
-##  1801   183 
+##  1858   189 
 ## 
 ## [1] &quot;River Market&quot;
 ##       64105 64106 
-##     1   506   585 
+##     1   527   611 
 ## 
 ## [1] &quot;River View&quot;
-## [1] 2020
+## [1] 2078
 ## 
 ## [1] &quot;Roanoke&quot;
 ##       64111 
-##     1   772 
+##     1   807 
 ## 
 ## [1] &quot;Robandee South&quot;
 ##       64134 
-##     2  2642 
+##     2  2710 
 ## 
 ## [1] &quot;Rockhill&quot;
-## [1] 688
+## [1] 714
 ## 
 ## [1] &quot;Rockhill Manor&quot;
 ##       64131 
-##     1  1374 
+##     1  1403 
 ## 
 ## [1] &quot;Rolling Meadows&quot;
 ##       64114 64124 64131 
-##     1     7     8  1224 
+##     1     8     8  1253 
 ## 
 ## [1] &quot;Romanelli West&quot;
 ## 64113 64114 
-##  1130     6 
+##  1166     6 
 ## 
 ## [1] &quot;Royal Oaks&quot;
 ## 64137 64151 
-##  1811     1 
+##  1851     1 
 ## 
 ## [1] &quot;Royal Oaks North&quot;
-## [1] 1481
+## [1] 1501
 ## 
 ## [1] &quot;Ruskin Heights&quot;
 ##       64134 64155 
-##     2  8547     1 
+##     2  8747     1 
 ## 
 ## [1] &quot;Ruskin Hills&quot;
 ##       64082 64134 
-##     3     1  4531 
+##     3     1  4657 
 ## 
 ## [1] &quot;Santa Fe&quot;
 ##       64128 64130 
-##     3  4891     4 
+##     3  5005     4 
 ## 
 ## [1] &quot;Santa Fe Hills&quot;
 ##       64114 64130 64131 64133 
-##     1  1738     8   588     1 
+##     1  1775     8   606     1 
 ## 
 ## [1] &quot;Scarritt Point&quot;
 ##       64116 64120 64123 64124 64126 
-##     3     2    48  4712  6483     1 
+##     4     2    53  4894  6678     1 
 ## 
 ## [1] &quot;Sechrest&quot;
-## [1] 123
+## [1] 127
 ## 
 ## [1] &quot;Self Help Neighborhood Council&quot;
 ##       64132 
-##     5  5001 
+##     5  5115 
 ## 
 ## [1] &quot;Sheffield&quot;
 ##       64123 64125 64126 64127 64130 
-##     3    14  2636  3089   640     7 
+##     3    15  2708  3172   657     7 
 ## 
 ## [1] &quot;Sheraton Estates&quot;
-## [1] 594
+## [1] 607
 ## 
 ## [1] &quot;Sherrydale&quot;
 ##       64155 
-##     1  1525 
+##     1  1586 
 ## 
 ## [1] &quot;Sherwood Estates&quot;
 ##       64117 64119 64130 
-##     1   593  1146     1 
+##     1   632  1182     1 
 ## 
 ## [1] &quot;Shoal Creek&quot;
 ##       64068 64116 64118 64119 64155 64156 64157 64158 64165 64166 64167 
-##    13   232     2     2  3750   768  3473 11765  2801    20   200    67 
+##    15   232     2     2  3850   788  3591 12110  2907    24   207    68 
 ## 
 ## [1] &quot;South Blue Valley&quot;
 ##       64127 64128 64129 
-##     2  3262  2372   792 
+##     2  3351  2462   809 
 ## 
 ## [1] &quot;South Hyde Park&quot;
 ##       64110 64111 64134 
-##     1  4329     1     4 
+##     1  4431     1     4 
 ## 
 ## [1] &quot;South Indian Mound&quot;
 ##       64114 64123 64124 64133 
-##     2     1  7023  4612     1 
+##     2     1  7201  4761     1 
 ## 
 ## [1] &quot;South Plaza&quot;
 ## 64112 64117 64138 64155 
-##  1756     3     1     1 
+##  1818     3     1     1 
 ## 
 ## [1] &quot;South Town Fork Creek&quot;
 ## 64127 64130 
-##     5  3481 
+##     5  3584 
 ## 
 ## [1] &quot;Southmoreland&quot;
 ##       64110 64111 64112 
-##     1  1057  2078   191 
+##     1  1083  2160   203 
 ## 
 ## [1] &quot;Squier Park&quot;
 ## 64109 64110 
-##  1440     2 
+##  1490     2 
 ## 
 ## [1] &quot;St&quot;
 ##       64130 64131 64137 
-##     2     1   448  3278 
+##     2     1   448  3277 
 ## 
 ## [1] &quot;St Catherines Gardens&quot;
 ## 64131 64137 
-##    23   121 
+##    38   196 
 ## 
 ## [1] &quot;Stayton Meadows&quot;
 ##       64133 64137 
-##     1  2873    10 
+##     1  2939    10 
 ## 
 ## [1] &quot;Sterling Acres&quot;
 ##       64110 64133 
-##     1     1  1448 
+##     1     1  1482 
 ## 
 ## [1] &quot;Sterling Gardens&quot;
 ##       64133 64152 
-##     3  1261     5 
+##     3  1292     5 
 ## 
 ## [1] &quot;Stratford Estates&quot;
 ##       64134 64137 
-##     3  3868   337 
+##     3  3955   340 
 ## 
 ## [1] &quot;Stratford Gardens&quot;
 ##       64113 
-##     1   763 
+##     1   778 
 ## 
 ## [1] &quot;Strupwood&quot;
-## [1] 645
+## [1] 656
 ## 
 ## [1] &quot;Sunset Hill&quot;
 ## 64112 64123 
-##  1157     2 
+##  1209     2 
 ## 
 ## [1] &quot;Sunset Hill West&quot;
 ## 64112 64113 
-##   156   420 
+##   159   430 
 ## 
 ## [1] &quot;Swope Park Campus&quot;
 ##       64132 
-##     2  2952 
+##     2  3042 
 ## 
 ## [1] &quot;Swope Park Ridge-Winchester&quot;
 ##       64133 
-##     1   486 
+##     1   499 
 ## 
 ## [1] &quot;Swope Parkway-Elmwood&quot;
 ##       64114 64118 64119 64130 64138 64153 64154 64155 
-##   288     7     2     1  9369     4     1     1     3 
+##   302     7     2     1  9613     4     1     1     3 
 ## 
 ## [1] &quot;Tanglewood And Regency North&quot;
-## [1] 1582
+## [1] 1622
 ## 
 ## [1] &quot;Terrace Lake Gardens&quot;
-## [1] 2230
+## [1] 2282
 ## 
 ## [1] &quot;The Coves&quot;
 ##       64151 
-##     1  2946 
+##     1  3066 
 ## 
 ## [1] &quot;Timber Valley&quot;
 ## 64132 64133 
-##     8   537 
+##     8   558 
 ## 
 ## [1] &quot;Tower Homes&quot;
 ##       64114 64130 64131 64134 64146 64161 
-##     6  4320     5  4259     3     1     3 
+##     6  4452     5  4388     3     1     3 
 ## 
 ## [1] &quot;Union Hill&quot;
 ##       64068 64108 
-##     1     8   993 
+##     1     8  1017 
 ## 
 ## [1] &quot;Unity Ridge&quot;
 ##       64139 
-##     1   760 
+##     1   774 
 ## 
 ## [1] &quot;Valentine&quot;
 ##       64111 64123 64163 
-##     2  1829     4     6 
+##     2  1886     4     6 
 ## 
 ## [1] &quot;Verona Hills&quot;
 ## 64114 64145 
-##  1225   664 
+##  1261   677 
 ## 
 ## [1] &quot;Vineyard&quot;
 ##       64114 64130 64132 
-##     3     1  6265     2 
+##     3     1  6414     2 
 ## 
 ## [1] &quot;Vineyard Estates&quot;
-## 64128 64129 64130 
-##    89   111   704 
+##       64128 64129 64130 
+##     1    92   117   720 
 ## 
 ## [1] &quot;Vineyard Northwest&quot;
 ##       64110 64113 64130 64132 
-##     1     3     3  3555     4 
+##     1     3     3  3676     4 
 ## 
 ## [1] &quot;Volker&quot;
 ##       64111 
-##     4  6171 
+##     5  6366 
 ## 
 ## [1] &quot;Waldo Homes&quot;
 ##       64114 
-##     2  2671 
+##     2  2723 
 ## 
 ## [1] &quot;Ward Estates&quot;
-## [1] 414
+## [1] 426
 ## 
 ## [1] &quot;Ward Parkway&quot;
 ##       64111 64112 64114 
-##     4     4     4  6345 
+##     4     4     4  6557 
 ## 
 ## [1] &quot;Ward Parkway Plaza&quot;
-## [1] 808
+## [1] 838
 ## 
 ## [1] &quot;Washington Wheatley&quot;
 ##       64127 64130 64132 64134 
-##     7  9663     3     1     1 
+##     7  9897     3     1     1 
 ## 
 ## [1] &quot;Wendell Phillips&quot;
 ##       64108 64109 64127 64128 
-##     2  1461     7  5122     6 
+##     2  1511     7  5269     6 
 ## 
 ## [1] &quot;West Blue Valley&quot;
 ##       64123 64126 64127 64131 64133 64151 
-##     4     7  1900  2623     2     3     7 
+##     4     7  1941  2695     2     3     7 
 ## 
 ## [1] &quot;West Plaza&quot;
 ##       64111 64112 64131 66203 
-##     3  2428  2538     4     1 
+##     3  2493  2608     4     1 
 ## 
 ## [1] &quot;West Waldo&quot;
 ##       64114 64145 
-##     1  2342     1 
+##     1  2401     1 
 ## 
 ## [1] &quot;Western 49-63&quot;
 ##       64110 64113 64119 64131 64158 
-##     2  5289    10     1     2     4 
+##     2  5439    16     1     2     4 
 ## 
 ## [1] &quot;Western Blue Township&quot;
 ##       64052 64109 64117 64126 64129 64130 
-##     2    47     2     3    73  2921     8 
+##     2    47     2     3    73  3012     8 
 ## 
 ## [1] &quot;Western Hills&quot;
 ##       64114 64152 
-##     1  3756     1 
+##     1  3835     1 
 ## 
 ## [1] &quot;Westside North&quot;
 ## 64102 64105 64108 64137 
-##   564    62  2513     3 
+##   607    66  2608     3 
 ## 
 ## [1] &quot;Westside South&quot;
 ##       64108 
-##     3  3889 
+##     3  4042 
 ## 
 ## [1] &quot;Westwood&quot;
 ##       64111 64112 64156 
-##     1     1  1112     1 
+##     1     1  1139     1 
 ## 
 ## [1] &quot;White Oak&quot;
 ##       64118 64131 64138 
-##     1     3     6  3482 
+##     1     3     6  3574 
 ## 
 ## [1] &quot;Willow Creek&quot;
 ##       64114 64131 
-##     1  1573   875 
+##     1  1615   894 
 ## 
 ## [1] &quot;Winnetonka&quot;
-## [1] 1393
+## [1] 1438
 ## 
 ## [1] &quot;Winnwood&quot;
 ##       64110 64117 64119 64133 
-##     3     4  3722    75     6 
+##     3     4  3880    76     6 
 ## 
 ## [1] &quot;Winnwood Gardens&quot;
 ##       64117 64119 
-##     1  1561     4 
+##     1  1599     4 
 ## 
 ## [1] &quot;Woodbridge&quot;
-## [1] 969
+## [1] 1003
 ## 
 ## [1] &quot;Woodson Estates&quot;
 ## 64119 64133 
-##     7   789 
+##     7   803 
 ## 
 ## [1] &quot;Wornall Homestead&quot;
 ##       64113 
-##     1  1327</code></pre>
+##     1  1370</code></pre>
 </div>
 </div>
 
@@ -1278,12 +1277,12 @@ $(document).ready(function () {
 
 </script>
 
-<!-- dynamically load mathjax for compatibility with --self-contained -->
+<!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

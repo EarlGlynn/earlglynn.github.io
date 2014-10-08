@@ -6,7 +6,6 @@
 
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="generator" content="pandoc" />
 
 
@@ -55,609 +54,612 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="kcmo-311-data-request-types" class="section level1">
 <h1>KCMO 311 data: Request Types</h1>
-<p>efg, UMKC Center for Health Insights.<br />2013-12-12. Last modified 2014-07-11.</p>
+<p>efg, UMKC Center for Health Insights.<br />2013-12-12. Last modified 2014-10-08.</p>
 <div id="frequency-counts-of-kansas-city-mo-311-reports" class="section level2">
 <h2>Frequency Counts of Kansas City, MO 311 Reports</h2>
-<p><a href="https://data.kcmo.org/311/KCMOPS311-Data/7at3-sxhp">https://data.kcmo.org/311/KCMOPS311-Data/7at3-sxhp</a><br />2014-07-11</p>
-<p>The current file has 779648 rows.</p>
+<p><a href="https://data.kcmo.org/311/KCMOPS311-Data/7at3-sxhp">https://data.kcmo.org/311/KCMOPS311-Data/7at3-sxhp</a><br />2014-10-08</p>
+<p>The current file has 801834 rows.</p>
 </div>
 <div id="request-types" class="section level2">
 <h2>Request Types</h2>
 <p>Perhaps keywords in the request types could be used to define categories?</p>
 <pre class="r"><code>length(table(d$REQUEST.TYPE))</code></pre>
-<pre><code>## [1] 590</code></pre>
+<pre><code>## [1] 593</code></pre>
 <pre class="r"><code>data.frame(table(d$REQUEST.TYPE))</code></pre>
-<pre><code>##                                                                                 Var1  Freq
-## 1                                                                  311 Action Center   489
-## 2                                                                  Abandoned Vehicle 17374
-## 3                                                      Accelerated Abatement Program   358
-## 4                                                           Action Center Escalation   103
-## 5                                                                  ADA Accessibility    20
-## 6                                                    Additional Information Required  1212
-## 7                                                Alley Cleaning (North of the River)    20
-## 8                        Alley Cleaning (South of 47th Street and West of BLue PKWY)    92
-## 9                                              Alley Cleaning (South of 47th Street)    47
-## 10              Alley Cleaning (South of River to 47th Street and East of Blue PKWY)   963
-## 11                                    Alley Cleaning (South of River to 47th Street)   405
-## 12                                                            Animal Admin Call Back  1210
-## 13                                                                   Animal At Large 12144
-## 14                                                                       Animal Bite  1269
-## 15                                            Animal Concerns Buckner Jackson County   103
-## 16                                          Animal Concerns Greenwood Jackson County   149
-## 17                                             Animal Concerns Levacy Jackson County     8
-## 18                                          Animal Concerns Lone Jack Jackson County    58
-## 19                                             Animal Concerns Sibley Jackson County    50
-## 20                                        Animal Concerns Sugar Creek Jackson County     3
-## 21                                     Animal Concerns Unincorporated Jackson County   200
-## 22                                      Animal Concerns Unity Village Jackson County     5
-## 23                                       Animal Concers Unicorporated Jackson County   673
-## 24                                                                    Animal Control 34638
-## 25                                                     Animal Control Administration   955
-## 26                                                                  Animal Emergency 14329
-## 27                                           Animal Emergency Buckner Jackson County    34
-## 28                                         Animal Emergency Greenwood Jackson County    34
-## 29                                         Animal Emergency Lone Jack Jackson County    23
-## 30                                            Animal Emergency Sibley Jackson County    22
-## 31                                       Animal Emergency Sugar Creek Jackson County     3
-## 32                                    Animal Emergency Unincorporated Jackson County   212
-## 33                                     Animal Emergency Unity Village Jackson County     4
-## 34                                                              Animal Investigation  3640
-## 35                                                           Automatic Meter Reading    28
-## 36                                                     Automatic Meter Reading - VSI   195
-## 37                                                                    Aviation - All    83
-## 38                                                               Back Office Support   596
-## 39                                                                       Barking Dog  3449
-## 40                                                           Barrier Removal Program     3
-## 41                                                                   Bedbugs Problem   245
-## 42                                                       Bicycle or Pedestrian Trail     7
-## 43                                                     Bridge Repair (All Districts)   441
-## 44                                                           Bruce R Watkins Freeway    34
-## 45                                                           Brush Creek Maintenance    14
-## 46                                               Building Code and Permit Violations  1881
-## 47                                                          Bulky Address Validation  1619
-## 48                                                                 Bulky Appointment 11159
-## 49                                                     Bulky Appointment-  August 10    42
-## 50                                                     Bulky Appointment-  August 17     1
-## 51                                                     Bulky Appointment-  August 21    15
-## 52                                                     Bulky Appointment-  August 24     1
-## 53                                                      Bulky Appointment-  August 5     1
-## 54                                                          Bulky Appointment- Apr 1   106
-## 55                                                         Bulky Appointment- Apr 10   202
-## 56                                                         Bulky Appointment- Apr 13   221
-## 57                                                         Bulky Appointment- Apr 14   244
-## 58                                                         Bulky Appointment- Apr 15   205
-## 59                                                         Bulky Appointment- Apr 16   212
-## 60                                                         Bulky Appointment- Apr 17   209
-## 61                                                          Bulky Appointment- Apr 2   109
-## 62                                                         Bulky Appointment- Apr 20   205
-## 63                                                         Bulky Appointment- Apr 21   208
-## 64                                                         Bulky Appointment- Apr 22   210
-## 65                                                         Bulky Appointment- Apr 23   224
-## 66                                                         Bulky Appointment- Apr 24   192
-## 67                                                          Bulky Appointment- Apr 3    88
-## 68                                                          Bulky Appointment- Apr 6   134
-## 69                                                          Bulky Appointment- Apr 7   117
-## 70                                                          Bulky Appointment- Apr 8   233
-## 71                                                          Bulky Appointment- Apr 9   234
-## 72                                                      Bulky Appointment- August 14    38
-## 73                                                         Bulky Appointment- FEB 23   136
-## 74                                                         Bulky Appointment- FEB 24   210
-## 75                                                         Bulky Appointment- FEB 25   216
-## 76                                                         Bulky Appointment- FEB 26   211
-## 77                                                         Bulky Appointment- FEB 27   184
-## 78                                                         Bulky Appointment- July 1     2
-## 79                                                        Bulky Appointment- July 10   203
-## 80                                                        Bulky Appointment- July 13   217
-## 81                                                        Bulky Appointment- July 15   143
-## 82                                                        Bulky Appointment- July 16   175
-## 83                                                        Bulky Appointment- July 17   212
-## 84                                                        Bulky Appointment- July 20   155
-## 85                                                        Bulky Appointment- July 21   161
-## 86                                                        Bulky Appointment- July 24     1
-## 87                                                        Bulky Appointment- July 27     1
-## 88                                                         Bulky Appointment- July 3     3
-## 89                                                         Bulky Appointment- July 6     1
-## 90                                                         Bulky Appointment- July 7     2
-## 91                                                         Bulky Appointment- July 8   213
-## 92                                                         Bulky Appointment- July 9   220
-## 93                                                         Bulky Appointment- June 1    69
-## 94                                                        Bulky Appointment- June 10   237
-## 95                                                        Bulky Appointment- June 11   219
-## 96                                                        Bulky Appointment- June 12   201
-## 97                                                        Bulky Appointment- June 15   200
-## 98                                                        Bulky Appointment- June 16   218
-## 99                                                        Bulky Appointment- June 17   205
-## 100                                                       Bulky Appointment- June 18   200
-## 101                                                       Bulky Appointment- June 19   222
-## 102                                                        Bulky Appointment- June 2   109
-## 103                                                       Bulky Appointment- June 22   138
-## 104                                                       Bulky Appointment- June 23   168
-## 105                                                       Bulky Appointment- June 24   167
-## 106                                                       Bulky Appointment- June 25   168
-## 107                                                       Bulky Appointment- June 26   162
-## 108                                                        Bulky Appointment- June 3    97
-## 109                                                        Bulky Appointment- June 4   193
-## 110                                                        Bulky Appointment- June 5   203
-## 111                                                        Bulky Appointment- June 8   206
-## 112                                                        Bulky Appointment- June 9   224
-## 113                                                        Bulky Appointment- MAR 10   212
-## 114                                                        Bulky Appointment- MAR 11   228
-## 115                                                        Bulky Appointment- MAR 12   201
-## 116                                                        Bulky Appointment- MAR 13   184
-## 117                                                        Bulky Appointment- MAR 16   164
-## 118                                                        Bulky Appointment- MAR 17   180
-## 119                                                        Bulky Appointment- MAR 18   148
-## 120                                                        Bulky Appointment- MAR 19   166
-## 121                                                         Bulky Appointment- MAR 2    52
-## 122                                                        Bulky Appointment- MAR 20   238
-## 123                                                        Bulky Appointment- MAR 23   117
-## 124                                                        Bulky Appointment- MAR 24   202
-## 125                                                        Bulky Appointment- MAR 25   222
-## 126                                                        Bulky Appointment- MAR 26   240
-## 127                                                        Bulky Appointment- MAR 27   179
-## 128                                                         Bulky Appointment- MAR 3    85
-## 129                                                         Bulky Appointment- MAR 4   121
-## 130                                                         Bulky Appointment- MAR 5   129
-## 131                                                         Bulky Appointment- MAR 6    74
-## 132                                                         Bulky Appointment- MAR 9   176
-## 133                                                     Bulky Appointment - April 27   153
-## 134                                                     Bulky Appointment - April 28   169
-## 135                                                    Bulky Appointment - August 11   162
-## 136                                                    Bulky Appointment - August 12   199
-## 137                                                    Bulky Appointment - August 13   171
-## 138                                                       Bulky Appointment - DEC 26   181
-## 139                                                       Bulky Appointment - FEB 17   166
-## 140                                                       Bulky Appointment - FEB 18   208
-## 141                                                       Bulky Appointment - FEB 19   162
-## 142                                                       Bulky Appointment - FEB 20   191
-## 143                                                       Bulky Appointment - FEB 21   215
-## 144                                                      Bulky Appointment - July 14   219
-## 145                                                        Bulky Appointment - May 1   109
-## 146                                                       Bulky Appointment - May 11   207
-## 147                                                       Bulky Appointment - May 12   290
-## 148                                                       Bulky Appointment - May 13   207
-## 149                                                       Bulky Appointment - May 14   211
-## 150                                                       Bulky Appointment - May 15   215
-## 151                                                       Bulky Appointment - May 18   207
-## 152                                                       Bulky Appointment - May 19   237
-## 153                                                       Bulky Appointment - May 20   210
-## 154                                                       Bulky Appointment - May 21   205
-## 155                                                       Bulky Appointment - May 22   203
-## 156                                                       Bulky Appointment - May 26   144
-## 157                                                       Bulky Appointment - May 27   195
-## 158                                                       Bulky Appointment - May 28   211
-## 159                                                       Bulky Appointment - May 29   203
-## 160                                                       Bulky Appointment - May 30     1
-## 161                                                        Bulky Appointment - May 4    81
-## 162                                                        Bulky Appointment - May 5    93
-## 163                                                        Bulky Appointment - May 6   212
-## 164                                                        Bulky Appointment - May 7   224
-## 165                                                        Bulky Appointment - May 8   208
-## 166                                                        Bulky Appointment  DEC 10   209
-## 167                                                         Bulky Appointment DEC 02    61
-## 168                                                         Bulky Appointment DEC 03    85
-## 169                                                         Bulky Appointment DEC 04    78
-## 170                                                         Bulky Appointment DEC 05    68
-## 171                                                         Bulky Appointment DEC 08   165
-## 172                                                         Bulky Appointment DEC 09   231
-## 173                                                         Bulky Appointment DEC 11   215
-## 174                                                         Bulky Appointment DEC 12   163
-## 175                                                         Bulky Appointment DEC 13     1
-## 176                                                         Bulky Appointment DEC 15   187
-## 177                                                         Bulky Appointment DEC 16   214
-## 178                                                         Bulky Appointment DEC 17   208
-## 179                                                         Bulky Appointment DEC 18   214
-## 180                                                         Bulky Appointment DEC 19   223
-## 181                                                         Bulky Appointment DEC 20     1
-## 182                                                         Bulky Appointment DEC 21     2
-## 183                                                         Bulky Appointment DEC 22   111
-## 184                                                         Bulky Appointment DEC 23   136
-## 185                                                         Bulky Appointment DEC 24   193
-## 186                                                         Bulky Appointment DEC 27   125
-## 187                                                    Bulky Appointment December 01    67
-## 188                                                         Bulky Appointment FEB 02    40
-## 189                                                         Bulky Appointment FEB 03    56
-## 190                                                         Bulky Appointment FEB 04    66
-## 191                                                         Bulky Appointment FEB 05   163
-## 192                                                         Bulky Appointment FEB 06   129
-## 193                                                         Bulky Appointment FEB 09   154
-## 194                                                         Bulky Appointment FEB 10   207
-## 195                                                         Bulky Appointment FEB 11   205
-## 196                                                         Bulky Appointment FEB 12   208
-## 197                                                         Bulky Appointment FEB 13   227
-## 198                                                         Bulky Appointment JAN 02    54
-## 199                                                         Bulky Appointment JAN 03    53
-## 200                                                         Bulky Appointment JAN 05    78
-## 201                                                         Bulky Appointment JAN 06    97
-## 202                                                         Bulky Appointment JAN 07   111
-## 203                                                         Bulky Appointment JAN 08   222
-## 204                                                         Bulky Appointment JAN 09   157
-## 205                                                         Bulky Appointment JAN 12   188
-## 206                                                         Bulky Appointment JAN 13   231
-## 207                                                         Bulky Appointment JAN 14   247
-## 208                                                         Bulky Appointment JAN 15   204
-## 209                                                         Bulky Appointment JAN 16   229
-## 210                                                         Bulky Appointment JAN 20   173
-## 211                                                         Bulky Appointment JAN 21   207
-## 212                                                         Bulky Appointment JAN 22   190
-## 213                                                         Bulky Appointment JAN 23   233
-## 214                                                         Bulky Appointment JAN 26   125
-## 215                                                         Bulky Appointment JAN 27   147
-## 216                                                         Bulky Appointment JAN 28   210
-## 217                                                          Bulky Appointment JAN24   186
-## 218                                                             Bulky Pick-up Missed 15555
-## 219                                                Bulky Pick Up Due to Flood Damage   197
-## 220                                                          Capital Projects Office   739
-## 221                                                      Catch Basin Repair Referral   250
-## 222                                            Catch Basins and Storm Water Concerns 11063
-## 223                                              Childhood Lead Poisoning Prevention    15
-## 224                                                           City Clerks Office-All     1
-## 225                                                City Maintained Property Addition    35
-## 226                                                    City Maintained Property List  2529
-## 227                                              City Manager's Office-Action Center     5
-## 228                                             City Manager's Office-Administration     1
-## 229                      City Manager's Office-Capital Improvement Management Office     1
-## 230                                       City Manager's Office-Emergency Management     1
-## 231                      City Manager's Office-Public Improvement Advisory Committee     1
-## 232                                               City Managers Office-Action Center   392
-## 233                                              City Managers Office-Administration    68
-## 234                       City Managers Office-Capital Improvement Management Office   600
-## 235                                         City Managers Office-City Communications     8
-## 236                                        City Managers Office-Emergency Management    49
-## 237                       City Managers Office-Public Improvement Advisory Committee   733
-## 238                                       City Planning &amp; Development-Administration   181
-## 239                                                           Cleaning City Property    84
-## 240                                                  Cleaning vacant Land Trust Lots   871
-## 241                                                     Communicable Disease Control     3
-## 242                                        Completed Contractor Restoration Concerns   167
-## 243                                          Convention and Entertainment Center-All    29
-## 244                                                    Cooling Center Transportation     3
-## 245                      Crack Sealing -(South of 47th Street and West of Blue PKWY)    95
-## 246             Crack Sealing -(South of River to 47th Street and East of Blue PKWY)     7
-## 247                                                   Crack Sealing (North of River)   184
-## 248                                             Crack Sealing (South of 47th Street)    15
-## 249              Crack Sealing (South of River to 47th Street and East of Blue PKWY)    42
-## 250                                    Crack Sealing (South of River to 47th Street)     8
-## 251                                                               Dangerous Building  4557
-## 252                                        Dangerous Building and Emergency Board Up     4
-## 253                                                     Dangerous Building Emergency   385
-## 254                                                              Dead Animal Pick-up 25649
-## 255                                                     Dead Tree on Land Trust Lots    54
-## 256                                                   Demolition Debris and Landfill    60
-## 257                                 Dispute of Assessment for NCS Property Abatement    32
-## 258                                         Ditch Cleaning (North from 27th Street )  1092
-## 259                                                  Ditch Cleaning (North of River)     1
-## 260                                            Ditch Cleaning (South of 27th Street)  1295
-## 261                                            Ditch Cleaning (South of 47th Street)     2
-## 262                                   Ditch Cleaning (South of River to 47th Street)     1
-## 263                                                     Drug Abatement Response Team   374
-## 264                                                              Elevator Inspection    43
-## 265                                                      Emerald Ash Borer Questions    28
-## 266                                                   Emerald Ash Borer Tree Removal    17
-## 267                                           Emergency Animal Levacy Jackson County     4
-## 268                                                    Emergency Home Repair Program   181
-## 269                                                         Emergency Water Turn Off    37
-## 270                                                              Erosion or Sediment   180
-## 271                                                          Facilities - City Owned   154
-## 272                                                                    Fence or Wall   187
-## 273                                                        Field Services Escalation   741
-## 274                                                                    Finance - All    10
-## 275                                                                       Fire - All   300
-## 276                                                    Food Establishment Complaints  2053
-## 277                                                Forestry Customer Service Comment   154
-## 278                                                   Good Neighbor Award Nomination    58
-## 279                                    Google's FTTH Project Contractor Verification    25
-## 280                                          Graffiti - Park Property Central Region    18
-## 281                                            Graffiti - Park Property North Region    34
-## 282                                            Graffiti - Park Property South Region     6
-## 283                                                      Graffiti Abatement Training     5
-## 284                                                        Graffiti on City Property   286
-## 285                                                     Graffiti on Private Property  1910
-## 286                                                                Graffiti on Signs   683
-## 287                                                     Graffiti on Streetlight Pole   109
-## 288                                                      Graffiti Removed by Citizen     6
-## 289                                               Guard Rail Repair (North of River)    46
-## 290                   Guard Rail Repair (South of 47th Street and West of Blue PKWY)    32
-## 291                                         Guard Rail Repair (South of 47th Street)    10
-## 292      Guard Rail Repair (South of the River to 47th Street and East of Blue PKWY)    30
-## 293                            Guard Rail Repair (South of the River to 47th Street)     5
-## 294                                                              Hazardous Structure  3295
-## 295                                                                       Health-All  1236
-## 296                                                            Healthy Homes Program   139
-## 297                                                       High Water Bill Inspection     2
-## 298                                                                    Homeless Camp    12
-## 299                                                      Hotel and Motel Inspections   219
-## 300                                                          Hydrant Repair Referral  1275
-## 301                                                       Icing Caused by Water Leak  1465
-## 302                                                      Illegal Dumping on Property  5117
-## 303                                                  Illegal Dumping on Right of Way 12977
-## 304                                                           Info Center Escalation     4
-## 305                                             Information Request-Animal Emergency     1
-## 306                                       Information Request-Back to School Program     1
-## 307                                                    Information Request-Bulky Day     1
-## 308                                                 Information Request-Neighborhood     5
-## 309                                                       Information Request-Police     1
-## 310                                            Information Request-Railroad Property     1
-## 311                                             Information Request-Street &amp; Traffic     1
-## 312                                                         Information Request-Tree     1
-## 313                                                  Information Request-Water Other     1
-## 314                                      Information Request-WSD Account Maintenance     1
-## 315                                          Information Request-WSD Billing Concern     1
-## 316                                  Information Request-WSD General Billing Inquiry     2
-## 317                                               Information Request-WSD Scheduling     1
-## 318                            Information Request - Assessment for Private Property     3
-## 319                                         Information Request Storm Damage Pick Up     1
-## 320                                                       Information Technology-All    23
-## 321                                            Injury or Cruelty Involving an Animal  4407
-## 322                                               Issues on City Maintained Property   389
-## 323                                                           Land Trust Mowing List  2314
-## 324                                                 Landscaping and Blvd/Pkwy Mowing    73
-## 325                                                                          Law-All     2
-## 326                                                    Leaf and Brush Pick-up Missed  8823
-## 327                                                                Mayors Office-All     1
-## 328                                           Metal Plate in Street (North of River)     1
-## 329                                     Metal Plate in Street (South of 47th Street)     3
-## 330                            Metal Plate in Street (South of River to 47th Street)     1
-## 331                                                            Meter Leak or Problem 15848
-## 332                                                        Minor Home Repair Program    16
-## 333                                                             Mowing City Property   656
-## 334                                     Mowing of Private Property with No Structure   556
-## 335                                                        Mowing on Land Trust Lots  1213
-## 336                                                       Mowing on the Right of Way  2145
-## 337                                                                     Mud and silt   249
-## 338                               Neighborhood and Community Services Administration   562
-## 339                                         Neighborhood Preservation Administration   154
-## 340                                        Neighborhood Preservation Priority Review   740
-## 341                                                                New Water Service     1
-## 342                                                          No Known Property Owner    14
-## 343                                                           No Water Bill Received     5
-## 344                                                                 Noise Complaints  1030
-## 345                                                              Nuisance Violations 41397
-## 346                         Nuisance Violations on Private Property Vacant Structure  8138
-## 347                                                              Outdoor Air Quality   650
-## 348                                                                    Paint Program    86
-## 349                                                  Park Maintenance Central Region  1485
-## 350                                                    Park Maintenance North Region  1162
-## 351                                                    Park Maintenance South Region   909
-## 352                                                             Parking Meter Repair   408
-## 353                                                   Parking Meter Repair or Damage    44
-## 354                                                         Parking Ticket Complaint   139
-## 355                                              Parks and Recreation Administration   265
-## 356                                                   Parks Capital Project Referral   245
-## 357                                                         Parks Community Services   150
-## 358                                         Parks Drinking Fountain Central Referral     3
-## 359                                           Parks Drinking Fountain North Referral     1
-## 360                                           Parks Drinking Fountain South Referral     3
-## 361                                    Parks Facility Indoor Plumbing North Referral     2
-## 362                                            Parks Facility Maintenance C Referral    15
-## 363                                            Parks Facility Maintenance N Referral    15
-## 364                                              Parks Facility Maintenance Referral   225
-## 365                                               Parks Facility Maintenance S Refer     7
-## 366                                 Parks Facility Outdoor Plumbing Central Referral     2
-## 367                                                  Parks Lighting Central Referral    16
-## 368                                                    Parks Lighting North Referral    19
-## 369                                                    Parks Lighting South Referral     1
-## 370                                                     Pending Restoration Referral    60
-## 371                                        Permit for Private Removal of a City Tree     3
-## 372                                    Permit to prune, remove, or plant a City Tree   174
-## 373                                                    PIAC Referral From Department   145
-## 374                                                      Pipeline Barricade Referral   145
-## 375                                                Pipeline Code 1 Repair - Referral   105
-## 376                                                Pipeline Code 2 Repair - Referral   612
-## 377                                                Pipeline Code 3 Repair - Referral   402
-## 378                                                  Pipeline Contractor Restoration  2608
-## 379                                                  PIPELINE CONTRACTOR RESTORATION   127
-## 380                                           Pipeline Pavement Restoration Referral  3902
-## 381                                          Pipeline Repair or Restoration Concerns  1463
-## 382                                                         Pipeline Repair Referral  2294
-## 383                                                    PIPELINE RESTORATION CONCERNS     8
-## 384                                                           Pipeline Turf Referral  2487
-## 385                                                                     Plate Hazard   604
-## 386                                                                  Plate in Street   853
-## 387                                                         Pothole (North of River)  2544
-## 388                       Pothole (River south to 47th Street and East of Blue PKWY)  2384
-## 389                                             Pothole (River south to 47th Street)   476
-## 390                             Pothole (South of 47th Street and West Of Blue PKWY)  4438
-## 391                                                   Pothole (South of 47th Street)  1069
-## 392                                          Pothole (South of River to 47th Street)   215
-## 393                                         Project Planning for Streets and Traffic    18
-## 394                                                 Property and Nuisance Violations 15728
-## 395                                                             Property Maintenance    26
-## 396                                                              Property Violations 97222
-## 397                                                          Public Pool Inspections    73
-## 398                                                       Public Restroom Sanitation    65
-## 399                                                      Public Works Administration  1189
-## 400                                                           Questions or  Comments    24
-## 401                                                            Rat Control Education   649
-## 402                                                            Rat Control Treatment  6440
-## 403                                                              Recycle Bin Damaged   196
-## 404                                                          Recycle Bin New Service  1257
-## 405                                                                 Recycling Missed  1981
-## 406                                          Referral for Sewage on Private Property    45
-## 407                                                             Regulated Industries   121
-## 408                                                                 Rural ROW Mowing  1145
-## 409                                                       Salvage Yard Investigation   248
-## 410                                              Service or Curb Box Repair Referral  1290
-## 411                                                       Sewer Assessment Questions   132
-## 412                                         Sewer Cleaning or Deodorizing - Referral     4
-## 413                                 Sewer Cleaning or Repair and Waste Water Concern  7762
-## 414                                                     Sewer Deodorizing - Referral  2147
-## 415                                       Sewer Investigation and Repairs - Referral   278
-## 416                                                     Sewer Investigation Referral  1243
-## 417                                              Sewer Pavement Restoration Referral   298
-## 418                                                                   Sewer Projects   269
-## 419                                                            Sewer Repair Referral   814
-## 420                                                Sewer Turf Restoration - Referral   198
-## 421                                                          Sewer Water in Basement  1291
-## 422                                               Sewer Water in Basement - Referral  3075
-## 423                                                               Sidewalk Hazardous  1891
-## 424                                                    Sidewalk or Curb in Disrepair   755
-## 425                               Sidewalk projects that are funded by GO Bond funds    39
-## 426                                      Sidewalk to be replaced Due to City Project   686
-## 427                                                                     Sign Missing   449
-## 428                                          Sign Missing or Damaged - Non-emergency  6303
-## 429                                                            Sign Violation Zoning   465
-## 430                                              Sinkhole or Sewer Repair - Referral     8
-## 431                                            SLA0 Streetlight Pole Down or Leaning   821
-## 432                                        SLB0 Streetlight Wire Down or Hanging Arm   196
-## 433                           SLD0 Streetlight Out - Multiple Outage of Five or More  1139
-## 434                                          SLG0 Streetlight Out - Single Light Out  5647
-## 435                                             SLG1 Streetlight Blinking Off and On  1677
-## 436                                              SLG2 Streetlight Burning During Day  1221
-## 437                                       SLG3 Streetlights Out - Two to Four Lights  1132
-## 438                                                   SLP0 Streetlight Miscellaneous   646
-## 439                                 SLQ0 Streetlight Problem Identification Referral     5
-## 440                                                               Smoking Complaints   169
-## 441                                                      Snow and Ice Administration  1277
-## 442                                                          Snow or Ice on Sidewalk   151
-## 443                                           Snow or Ice on Street (North of River)  1820
-## 444               Snow or Ice on Street (South of 47th Street and West of Blue PKWY)   490
-## 445                                     Snow or Ice on Street (South of 47th Street)  1536
-## 446             Snow or Ice on Street (South of River to 47th Street and East of Blu   461
-## 447                            Snow or Ice on Street (South of River to 47th Street)  1149
-## 448                                                 Snow or Ice on Street District 1  6203
-## 449                                                 Snow or Ice on Street District 2  4929
-## 450                                                 Snow or Ice on Street District 3  5615
-## 451                                                     Solid Waste Customer Service 21178
-## 452                                                 Staff Complaints for Solid Waste   114
-## 453                                                Staff Compliments for Solid Waste    18
-## 454                                                                Storm Damage East     7
-## 455                                                               Stormwater Charges     9
-## 456                                                              Stormwater Projects   195
-## 457                                                            Stray Animal Confined  2496
-## 458                                                Street and Traffic Administration   658
-## 459                                                        Street and Traffic Permit   426
-## 460                                                      Street Light Malfunctioning  2459
-## 461                                                                 Street Light New   173
-## 462                                                                 Street Light Out  3513
-## 463                                        Street Light Pole Damage, Rust, Vandalism   680
-## 464                                                Street Light Restoration Referral   477
-## 465                                                       Street Maintenance General    11
-## 466                                  Street Maintenance General (North of the River)  2498
-## 467          Street Maintenance General (South of 47th Street and West of Blue PKWY)  3130
-## 468                                Street Maintenance General (South of 47th Street)   533
-## 469 Street Maintenance General (South of River to 47th Street and East of Blue PKWY)  2488
-## 470                       Street Maintenance General (South of River to 47th Street)   518
-## 471                                                          Street Markings Painted   452
-## 472                                                   Street Preservation or Overlay  2003
-## 473                                                               Street Sign Damage  2943
-## 474                                                              Street Sign Missing   137
-## 475                                                 Street Sweeping (North of River)     1
-## 476                                           Street Sweeping (South of 47th Street)     2
-## 477                                  Street Sweeping (South of River to 47th Street)     2
-## 478                                                         Street Sweeping Citywide   931
-## 479                                                      Tow Services Administration   549
-## 480                                          Traffic Engineering and Traffic Studies  4857
-## 481                                                              Traffic Sign Damage   338
-## 482                                                     Traffic Sign Down or Missing    21
-## 483                                         Traffic Sign Down or Missing - Emergency  3348
-## 484                                                       Traffic Signal Malfunction  6629
-## 485                                                               Traffic Signal Out  1143
-## 486                                      Traffic Signal Pole Damage, Rust, Vandalism   654
-## 487                        Traffic Study for Signs, Reduced Speed, Signal, Crosswalk    74
-## 488                                                        Trahs-Recycle Bin Damaged     4
-## 489                                                    Trahs-Recycle Bin New Service     3
-## 490                                              Trash-Leaf and Brush Pick-up Missed     1
-## 491                                                               Trash-Missed Bulky     1
-## 492                                                           Trash-Recycling Missed  3132
-## 493                                          Trash-Staff Compliments for Solid Waste   247
-## 494                                                           Trash - Missed by City 17058
-## 495                                                     Trash - Missed by Contractor 13087
-## 496                                                 Trash - Multi Unit Investigation   443
-## 497                                                      Trash - Recycle Bin Damaged  1033
-## 498                                                  Trash - Recycle Bin New Service  4966
-## 499                                             Trash - Roll-Out Cart Administration   534
-## 500                                          Trash - Roll-out Cart Damaged or Broken    47
-## 501                                                    Trash - Roll-out Cart Missing  1149
-## 502                                             Trash - Solid Waste Customer Service     3
-## 503                                         Trash - Staff Complaints for Solid Waste  1274
-## 504                                                               Trash Cart Damaged    14
-## 505                                                               Trash Cart Missing   102
-## 506                                                 Trash Missed by Contractor North  5626
-## 507                                                 Trash Missed by Contractor South  8520
-## 508                                                   Trash Multi Unit Investigation   106
-## 509                                         Trash Recycle Missed by Contractor North  2229
-## 510                                         Trash Recycle Missed by Contractor South  2000
-## 511                                                   Trash Recycling Missed by City  3319
-## 512                                             Trash Recycling Missed by Contractor  2893
-## 513                                           Trash Roll Out Cart Damaged or Missing    23
-## 514                                                      Trash Roll Out Cart Missing   194
-## 515                                                              Trash Storm Cleanup   450
-## 516                                  Trash was missed for Tuesday pickup for 2 bags.     1
-## 517                                        Tree Damage to City Tree from Storm Event  3477
-## 518                                               Tree Disease, Insects or Vandalism   301
-## 519                                              Tree Inspection on Private Property    62
-## 520                      Tree Limb and Brush Removal from City Tree - Central Region   343
-## 521                        Tree Limb and Brush Removal from City Tree - North Region   182
-## 522                        Tree Limb and Brush Removal from City Tree - South Region   239
-## 523                                         Tree Limb or Brush Removal for City Tree  1749
-## 524                                                                Tree Live Removal     6
-## 525                                                        Tree Maintenance Seasonal    18
-## 526                                                    Tree or Limb Down Due to Snow   322
-## 527                                                     Tree Planting Central Region   179
-## 528                                                       Tree Planting for New Tree   335
-## 529                                                       Tree Planting North Region   113
-## 530                                                       Tree Planting South Region   108
-## 531                                                           Tree Pruning for Block    16
-## 532                                                      Tree Removal Central Region  1232
-## 533                                                        Tree Removal North Region   662
-## 534                                                      Tree Removal of a City Tree  5272
-## 535                                                        Tree Removal South Region   796
-## 536                                                            Tree Staff Compliment     2
-## 537                                            Tree Staff Customer Service Complaint    74
-## 538                                                 Tree Storm Damage Central Region   588
-## 539                                                   Tree Storm Damage North Region   468
-## 540                                                   Tree Storm Damage South Region   358
-## 541                                                Tree Stump Removal Central Region   135
-## 542                                                 Tree Stump Removal for City Tree   707
-## 543                                                  Tree Stump Removal North Region    54
-## 544                                                  Tree Stump Removal South Region    81
-## 545                                                    Tree Trimming at Intersection   882
-## 546                                                     Tree Trimming Central Region  1333
-## 547                                                      Tree Trimming for City Tree  5102
-## 548                                 Tree Trimming from Electric Wire or Street Light   604
-## 549                                                  Tree Trimming from Street Light   584
-## 550                                                       Tree Trimming North Region   604
-## 551                                                 Tree Trimming on Land Trust Lots    32
-## 552                                                       Tree Trimming South Region   841
-## 553                                              Turn Off Water Service For A Repair    11
-## 554                              Turn On Water Services - Internal Repairs Completed    13
-## 555                                             Turn On Water Services For Paid Bill     1
-## 556                                                   Vacant Structure Open to Entry 13288
-## 557                                                            Valve Repair Referral   846
-## 558                                                         Vehicle Illegally Parked  1751
-## 559                 Vehicle Towed From Lot Without Owner's Permission by Tow Company    15
-## 560                                 Violations and Encroachments on the Right of Way  2237
-## 561                                           Visibility Problems at an Intersection   428
-## 562                                                     Volunteer Inspection Program   330
-## 563                                                     Wastewater Code 1 - Referral    20
-## 564                                                     Wastewater Code 2 - Referral     3
-## 565                                                     Wastewater Code 3 - Referral     2
-## 566                                                             Wastewater Treatment    17
-## 567                                                           Water Bill Admin Tasks     3
-## 568                                                              Water Bill Concerns    42
-## 569                                                 Water Facilities and Engineering     8
-## 570                                      Water Facilities and Stormwater Engineering  1038
-## 571                                                   Water Industrial Waste Control    62
-## 572                                                   Water Leak or Pressure Problem 30034
-## 573                                                                 Water Main Break    50
-## 574                                                              Water Main Projects  1041
-## 575                                                       Water Main Repair Referral  1178
-## 576                                                          Water Payment or Refund     1
-## 577                                                         Water Pipeline Barricade   153
-## 578                                              Water Quality - Laboratory Services  1938
-## 579                                                     Water Repair and Restoration  3242
-## 580                                                       Water Restoration Contract    86
-## 581                                                    Water Services Administration  2138
-## 582                                              Water Services Pavement Restoration   649
-## 583                                                  Water Services Same Day Service     1
-## 584                                                  Water Services Turf Restoration     3
-## 585                                                            Water Theft and Fraud     4
-## 586                                                           Weatherization Program   326
-## 587                                                                 Web Info Request     7
-## 588                                               Web SR - Street Maintenance / Snow     1
-## 589                                                                         Wildlife  2281
-## 590                                                Zoning Inspections and Violations  2556</code></pre>
+<pre><code>##                                                                                 Var1   Freq
+## 1                                                                  311 Action Center    518
+## 2                                                                  Abandoned Vehicle  17786
+## 3                                                      Accelerated Abatement Program    358
+## 4                                                           Action Center Escalation    107
+## 5                                                                  ADA Accessibility     20
+## 6                                                    Additional Information Required   1247
+## 7                                                Alley Cleaning (North of the River)     22
+## 8                        Alley Cleaning (South of 47th Street and West of BLue PKWY)    104
+## 9                                              Alley Cleaning (South of 47th Street)     47
+## 10              Alley Cleaning (South of River to 47th Street and East of Blue PKWY)   1053
+## 11                                    Alley Cleaning (South of River to 47th Street)    405
+## 12                                                            Animal Admin Call Back   1210
+## 13                                                                   Animal At Large  13337
+## 14                                                                       Animal Bite   1331
+## 15                                            Animal Concerns Buckner Jackson County    103
+## 16                                          Animal Concerns Greenwood Jackson County    149
+## 17                                             Animal Concerns Levacy Jackson County      8
+## 18                                          Animal Concerns Lone Jack Jackson County     58
+## 19                                             Animal Concerns Sibley Jackson County     50
+## 20                                        Animal Concerns Sugar Creek Jackson County      3
+## 21                                     Animal Concerns Unincorporated Jackson County    200
+## 22                                      Animal Concerns Unity Village Jackson County      5
+## 23                                       Animal Concers Unicorporated Jackson County    673
+## 24                                                                    Animal Control  34638
+## 25                                                     Animal Control Administration   1013
+## 26                                                                  Animal Emergency  14329
+## 27                                           Animal Emergency Buckner Jackson County     34
+## 28                                         Animal Emergency Greenwood Jackson County     34
+## 29                                         Animal Emergency Lone Jack Jackson County     23
+## 30                                            Animal Emergency Sibley Jackson County     22
+## 31                                       Animal Emergency Sugar Creek Jackson County      3
+## 32                                    Animal Emergency Unincorporated Jackson County    212
+## 33                                     Animal Emergency Unity Village Jackson County      4
+## 34                                                              Animal Investigation   3978
+## 35                                                           Automatic Meter Reading     28
+## 36                                                     Automatic Meter Reading - VSI    195
+## 37                                                                    Aviation - All     85
+## 38                                                               Back Office Support    642
+## 39                                                                       Barking Dog   3608
+## 40                                                           Barrier Removal Program      3
+## 41                                                                   Bedbugs Problem    255
+## 42                                                       Bicycle or Pedestrian Trail      8
+## 43                                                     Bridge Repair (All Districts)    453
+## 44                                                           Bruce R Watkins Freeway     34
+## 45                                                           Brush Creek Maintenance     14
+## 46                                               Building Code and Permit Violations   1937
+## 47                                                          Bulky Address Validation   1635
+## 48                                                                 Bulky Appointment  11159
+## 49                                                     Bulky Appointment-  August 10     42
+## 50                                                     Bulky Appointment-  August 17      1
+## 51                                                     Bulky Appointment-  August 21     15
+## 52                                                     Bulky Appointment-  August 24      1
+## 53                                                      Bulky Appointment-  August 5      1
+## 54                                                          Bulky Appointment- Apr 1    106
+## 55                                                         Bulky Appointment- Apr 10    202
+## 56                                                         Bulky Appointment- Apr 13    221
+## 57                                                         Bulky Appointment- Apr 14    244
+## 58                                                         Bulky Appointment- Apr 15    205
+## 59                                                         Bulky Appointment- Apr 16    212
+## 60                                                         Bulky Appointment- Apr 17    209
+## 61                                                          Bulky Appointment- Apr 2    109
+## 62                                                         Bulky Appointment- Apr 20    205
+## 63                                                         Bulky Appointment- Apr 21    208
+## 64                                                         Bulky Appointment- Apr 22    210
+## 65                                                         Bulky Appointment- Apr 23    224
+## 66                                                         Bulky Appointment- Apr 24    192
+## 67                                                          Bulky Appointment- Apr 3     88
+## 68                                                          Bulky Appointment- Apr 6    134
+## 69                                                          Bulky Appointment- Apr 7    117
+## 70                                                          Bulky Appointment- Apr 8    233
+## 71                                                          Bulky Appointment- Apr 9    234
+## 72                                                      Bulky Appointment- August 14     38
+## 73                                                         Bulky Appointment- FEB 23    136
+## 74                                                         Bulky Appointment- FEB 24    210
+## 75                                                         Bulky Appointment- FEB 25    216
+## 76                                                         Bulky Appointment- FEB 26    211
+## 77                                                         Bulky Appointment- FEB 27    184
+## 78                                                         Bulky Appointment- July 1      2
+## 79                                                        Bulky Appointment- July 10    203
+## 80                                                        Bulky Appointment- July 13    217
+## 81                                                        Bulky Appointment- July 15    143
+## 82                                                        Bulky Appointment- July 16    175
+## 83                                                        Bulky Appointment- July 17    212
+## 84                                                        Bulky Appointment- July 20    155
+## 85                                                        Bulky Appointment- July 21    161
+## 86                                                        Bulky Appointment- July 24      1
+## 87                                                        Bulky Appointment- July 27      1
+## 88                                                         Bulky Appointment- July 3      3
+## 89                                                         Bulky Appointment- July 6      1
+## 90                                                         Bulky Appointment- July 7      2
+## 91                                                         Bulky Appointment- July 8    213
+## 92                                                         Bulky Appointment- July 9    220
+## 93                                                         Bulky Appointment- June 1     69
+## 94                                                        Bulky Appointment- June 10    237
+## 95                                                        Bulky Appointment- June 11    219
+## 96                                                        Bulky Appointment- June 12    201
+## 97                                                        Bulky Appointment- June 15    200
+## 98                                                        Bulky Appointment- June 16    218
+## 99                                                        Bulky Appointment- June 17    205
+## 100                                                       Bulky Appointment- June 18    200
+## 101                                                       Bulky Appointment- June 19    222
+## 102                                                        Bulky Appointment- June 2    109
+## 103                                                       Bulky Appointment- June 22    138
+## 104                                                       Bulky Appointment- June 23    168
+## 105                                                       Bulky Appointment- June 24    167
+## 106                                                       Bulky Appointment- June 25    168
+## 107                                                       Bulky Appointment- June 26    162
+## 108                                                        Bulky Appointment- June 3     97
+## 109                                                        Bulky Appointment- June 4    193
+## 110                                                        Bulky Appointment- June 5    203
+## 111                                                        Bulky Appointment- June 8    206
+## 112                                                        Bulky Appointment- June 9    224
+## 113                                                        Bulky Appointment- MAR 10    212
+## 114                                                        Bulky Appointment- MAR 11    228
+## 115                                                        Bulky Appointment- MAR 12    201
+## 116                                                        Bulky Appointment- MAR 13    184
+## 117                                                        Bulky Appointment- MAR 16    164
+## 118                                                        Bulky Appointment- MAR 17    180
+## 119                                                        Bulky Appointment- MAR 18    148
+## 120                                                        Bulky Appointment- MAR 19    166
+## 121                                                         Bulky Appointment- MAR 2     52
+## 122                                                        Bulky Appointment- MAR 20    238
+## 123                                                        Bulky Appointment- MAR 23    117
+## 124                                                        Bulky Appointment- MAR 24    202
+## 125                                                        Bulky Appointment- MAR 25    222
+## 126                                                        Bulky Appointment- MAR 26    240
+## 127                                                        Bulky Appointment- MAR 27    179
+## 128                                                         Bulky Appointment- MAR 3     85
+## 129                                                         Bulky Appointment- MAR 4    121
+## 130                                                         Bulky Appointment- MAR 5    129
+## 131                                                         Bulky Appointment- MAR 6     74
+## 132                                                         Bulky Appointment- MAR 9    176
+## 133                                                     Bulky Appointment - April 27    153
+## 134                                                     Bulky Appointment - April 28    169
+## 135                                                    Bulky Appointment - August 11    162
+## 136                                                    Bulky Appointment - August 12    199
+## 137                                                    Bulky Appointment - August 13    171
+## 138                                                       Bulky Appointment - DEC 26    181
+## 139                                                       Bulky Appointment - FEB 17    166
+## 140                                                       Bulky Appointment - FEB 18    208
+## 141                                                       Bulky Appointment - FEB 19    162
+## 142                                                       Bulky Appointment - FEB 20    191
+## 143                                                       Bulky Appointment - FEB 21    215
+## 144                                                      Bulky Appointment - July 14    219
+## 145                                                        Bulky Appointment - May 1    109
+## 146                                                       Bulky Appointment - May 11    207
+## 147                                                       Bulky Appointment - May 12    290
+## 148                                                       Bulky Appointment - May 13    207
+## 149                                                       Bulky Appointment - May 14    211
+## 150                                                       Bulky Appointment - May 15    215
+## 151                                                       Bulky Appointment - May 18    207
+## 152                                                       Bulky Appointment - May 19    237
+## 153                                                       Bulky Appointment - May 20    210
+## 154                                                       Bulky Appointment - May 21    205
+## 155                                                       Bulky Appointment - May 22    203
+## 156                                                       Bulky Appointment - May 26    144
+## 157                                                       Bulky Appointment - May 27    195
+## 158                                                       Bulky Appointment - May 28    211
+## 159                                                       Bulky Appointment - May 29    203
+## 160                                                       Bulky Appointment - May 30      1
+## 161                                                        Bulky Appointment - May 4     81
+## 162                                                        Bulky Appointment - May 5     93
+## 163                                                        Bulky Appointment - May 6    212
+## 164                                                        Bulky Appointment - May 7    224
+## 165                                                        Bulky Appointment - May 8    208
+## 166                                                        Bulky Appointment  DEC 10    209
+## 167                                                         Bulky Appointment DEC 02     61
+## 168                                                         Bulky Appointment DEC 03     85
+## 169                                                         Bulky Appointment DEC 04     78
+## 170                                                         Bulky Appointment DEC 05     68
+## 171                                                         Bulky Appointment DEC 08    165
+## 172                                                         Bulky Appointment DEC 09    231
+## 173                                                         Bulky Appointment DEC 11    215
+## 174                                                         Bulky Appointment DEC 12    163
+## 175                                                         Bulky Appointment DEC 13      1
+## 176                                                         Bulky Appointment DEC 15    187
+## 177                                                         Bulky Appointment DEC 16    214
+## 178                                                         Bulky Appointment DEC 17    208
+## 179                                                         Bulky Appointment DEC 18    214
+## 180                                                         Bulky Appointment DEC 19    223
+## 181                                                         Bulky Appointment DEC 20      1
+## 182                                                         Bulky Appointment DEC 21      2
+## 183                                                         Bulky Appointment DEC 22    111
+## 184                                                         Bulky Appointment DEC 23    136
+## 185                                                         Bulky Appointment DEC 24    193
+## 186                                                         Bulky Appointment DEC 27    125
+## 187                                                    Bulky Appointment December 01     67
+## 188                                                         Bulky Appointment FEB 02     40
+## 189                                                         Bulky Appointment FEB 03     56
+## 190                                                         Bulky Appointment FEB 04     66
+## 191                                                         Bulky Appointment FEB 05    163
+## 192                                                         Bulky Appointment FEB 06    129
+## 193                                                         Bulky Appointment FEB 09    154
+## 194                                                         Bulky Appointment FEB 10    207
+## 195                                                         Bulky Appointment FEB 11    205
+## 196                                                         Bulky Appointment FEB 12    208
+## 197                                                         Bulky Appointment FEB 13    227
+## 198                                                         Bulky Appointment JAN 02     54
+## 199                                                         Bulky Appointment JAN 03     53
+## 200                                                         Bulky Appointment JAN 05     78
+## 201                                                         Bulky Appointment JAN 06     97
+## 202                                                         Bulky Appointment JAN 07    111
+## 203                                                         Bulky Appointment JAN 08    222
+## 204                                                         Bulky Appointment JAN 09    157
+## 205                                                         Bulky Appointment JAN 12    188
+## 206                                                         Bulky Appointment JAN 13    231
+## 207                                                         Bulky Appointment JAN 14    247
+## 208                                                         Bulky Appointment JAN 15    204
+## 209                                                         Bulky Appointment JAN 16    229
+## 210                                                         Bulky Appointment JAN 20    173
+## 211                                                         Bulky Appointment JAN 21    207
+## 212                                                         Bulky Appointment JAN 22    190
+## 213                                                         Bulky Appointment JAN 23    233
+## 214                                                         Bulky Appointment JAN 26    125
+## 215                                                         Bulky Appointment JAN 27    147
+## 216                                                         Bulky Appointment JAN 28    210
+## 217                                                          Bulky Appointment JAN24    186
+## 218                                                             Bulky Pick-up Missed  15822
+## 219                                                Bulky Pick Up Due to Flood Damage    197
+## 220                                                          Capital Projects Office    792
+## 221                                                      Catch Basin Repair Referral    321
+## 222                                            Catch Basins and Storm Water Concerns  11368
+## 223                                              Childhood Lead Poisoning Prevention     16
+## 224                                                           City Clerks Office-All      1
+## 225                                                City Maintained Property Addition     35
+## 226                                                    City Maintained Property List   2529
+## 227                                              City Manager's Office-Action Center      5
+## 228                                             City Manager's Office-Administration      1
+## 229                      City Manager's Office-Capital Improvement Management Office      1
+## 230                                       City Manager's Office-Emergency Management      1
+## 231                      City Manager's Office-Public Improvement Advisory Committee      1
+## 232                                               City Managers Office-Action Center    398
+## 233                                              City Managers Office-Administration     68
+## 234                       City Managers Office-Capital Improvement Management Office    600
+## 235                                         City Managers Office-City Communications      9
+## 236                                        City Managers Office-Emergency Management     49
+## 237                       City Managers Office-Public Improvement Advisory Committee    754
+## 238                                       City Planning &amp; Development-Administration    187
+## 239                                                           Cleaning City Property     84
+## 240                                                  Cleaning vacant Land Trust Lots    871
+## 241                                                     Communicable Disease Control      3
+## 242                                        Completed Contractor Restoration Concerns    187
+## 243                                          Convention and Entertainment Center-All     30
+## 244                                                    Cooling Center Transportation      3
+## 245                      Crack Sealing -(South of 47th Street and West of Blue PKWY)    102
+## 246             Crack Sealing -(South of River to 47th Street and East of Blue PKWY)      7
+## 247                                                   Crack Sealing (North of River)    198
+## 248                                             Crack Sealing (South of 47th Street)     15
+## 249              Crack Sealing (South of River to 47th Street and East of Blue PKWY)     43
+## 250                                    Crack Sealing (South of River to 47th Street)      8
+## 251                                                               Dangerous Building   4684
+## 252                                        Dangerous Building and Emergency Board Up      4
+## 253                                                     Dangerous Building Emergency    394
+## 254                                                              Dead Animal Pick-up  26401
+## 255                                                     Dead Tree on Land Trust Lots     54
+## 256                                                   Demolition Debris and Landfill     64
+## 257                                 Dispute of Assessment for NCS Property Abatement     32
+## 258                                         Ditch Cleaning (North from 27th Street )   1137
+## 259                                                  Ditch Cleaning (North of River)      1
+## 260                                            Ditch Cleaning (South of 27th Street)   1326
+## 261                                            Ditch Cleaning (South of 47th Street)      2
+## 262                                   Ditch Cleaning (South of River to 47th Street)      1
+## 263                                                     Drug Abatement Response Team    380
+## 264                                                              Elevator Inspection     47
+## 265                                                      Emerald Ash Borer Questions     42
+## 266                                                   Emerald Ash Borer Tree Removal     27
+## 267                                           Emergency Animal Levacy Jackson County      4
+## 268                                                    Emergency Home Repair Program    182
+## 269                                                         Emergency Water Turn Off     37
+## 270                                                              Erosion or Sediment    185
+## 271                                                          Facilities - City Owned    159
+## 272                                                                    Fence or Wall    190
+## 273                                                        Field Services Escalation    741
+## 274                                                                    Finance - All     10
+## 275                                                                       Fire - All    313
+## 276                                                    Food Establishment Complaints   2182
+## 277                                                Forestry Customer Service Comment    203
+## 278                                                   Good Neighbor Award Nomination     58
+## 279                                    Google's FTTH Project Contractor Verification     25
+## 280                                          Graffiti - Park Property Central Region     18
+## 281                                            Graffiti - Park Property North Region     34
+## 282                                            Graffiti - Park Property South Region      6
+## 283                                                      Graffiti Abatement Training      5
+## 284                                                        Graffiti on City Property    294
+## 285                                                     Graffiti on Private Property   1910
+## 286                                                                Graffiti on Signs    698
+## 287                                                     Graffiti on Streetlight Pole    110
+## 288                                                      Graffiti Removed by Citizen      7
+## 289                                               Guard Rail Repair (North of River)     48
+## 290                   Guard Rail Repair (South of 47th Street and West of Blue PKWY)     33
+## 291                                         Guard Rail Repair (South of 47th Street)     10
+## 292      Guard Rail Repair (South of the River to 47th Street and East of Blue PKWY)     31
+## 293                            Guard Rail Repair (South of the River to 47th Street)      5
+## 294                                                              Hazardous Structure   3282
+## 295                                                                       Health-All   1236
+## 296                                                            Healthy Homes Program    157
+## 297                                                             High Bill Adjustment      1
+## 298                                                       High Water Bill Inspection      2
+## 299                                                                    Homeless Camp     27
+## 300                                                      Hotel and Motel Inspections    232
+## 301                                                          Hydrant Repair Referral   1302
+## 302                                                       Icing Caused by Water Leak   1465
+## 303                                                      Illegal Dumping on Property   5317
+## 304                                                  Illegal Dumping on Right of Way  13419
+## 305                                                           Info Center Escalation      4
+## 306                                             Information Request-Animal Emergency      1
+## 307                                       Information Request-Back to School Program      1
+## 308                                                    Information Request-Bulky Day      1
+## 309                                                 Information Request-Neighborhood      5
+## 310                                                       Information Request-Police      1
+## 311                                            Information Request-Railroad Property      1
+## 312                                             Information Request-Street &amp; Traffic      1
+## 313                                                         Information Request-Tree      1
+## 314                                                  Information Request-Water Other      1
+## 315                                      Information Request-WSD Account Maintenance      1
+## 316                                          Information Request-WSD Billing Concern      1
+## 317                                  Information Request-WSD General Billing Inquiry      2
+## 318                                               Information Request-WSD Scheduling      1
+## 319                            Information Request - Assessment for Private Property      3
+## 320                                         Information Request Storm Damage Pick Up      1
+## 321                                                       Information Technology-All     24
+## 322                                            Injury or Cruelty Involving an Animal   4866
+## 323                                                 Integrated Pest Management Class      2
+## 324                                               Issues on City Maintained Property    686
+## 325                                                           Land Trust Mowing List   2314
+## 326                                                 Landscaping and Blvd/Pkwy Mowing     87
+## 327                                                                          Law-All      2
+## 328                                                    Leaf and Brush Pick-up Missed   8823
+## 329                                                                Mayors Office-All      1
+## 330                                           Metal Plate in Street (North of River)      1
+## 331                                     Metal Plate in Street (South of 47th Street)      3
+## 332                            Metal Plate in Street (South of River to 47th Street)      1
+## 333                                                            Meter Leak or Problem  16081
+## 334                                                        Minor Home Repair Program     16
+## 335                                                             Mowing City Property    656
+## 336                                     Mowing of Private Property with No Structure    556
+## 337                                                        Mowing on Land Trust Lots   1213
+## 338                                                       Mowing on the Right of Way   2204
+## 339                                                                     Mud and silt    254
+## 340                               Neighborhood and Community Services Administration    571
+## 341                                         Neighborhood Preservation Administration    175
+## 342                                        Neighborhood Preservation Priority Review    741
+## 343                                                                New Water Service      1
+## 344                                                          No Known Property Owner     14
+## 345                                                           No Water Bill Received      5
+## 346                                                                 Noise Complaints   1087
+## 347                                                              Nuisance Violations  41397
+## 348                         Nuisance Violations on Private Property Vacant Structure   8138
+## 349                                                              Outdoor Air Quality    679
+## 350                                                                    Paint Program     86
+## 351                                                  Park Maintenance Central Region   1580
+## 352                                                    Park Maintenance North Region   1196
+## 353                                                    Park Maintenance South Region    967
+## 354                                                             Parking Meter Repair    417
+## 355                                                   Parking Meter Repair or Damage     44
+## 356                                                         Parking Ticket Complaint    142
+## 357                                              Parks and Recreation Administration    273
+## 358                                                   Parks Capital Project Referral    272
+## 359                                                         Parks Community Services    158
+## 360                                         Parks Drinking Fountain Central Referral      3
+## 361                                           Parks Drinking Fountain North Referral      1
+## 362                                           Parks Drinking Fountain South Referral      3
+## 363                                    Parks Facility Indoor Plumbing North Referral      2
+## 364                                            Parks Facility Maintenance C Referral     15
+## 365                                            Parks Facility Maintenance N Referral     15
+## 366                                              Parks Facility Maintenance Referral    241
+## 367                                               Parks Facility Maintenance S Refer      7
+## 368                                 Parks Facility Outdoor Plumbing Central Referral      2
+## 369                                                  Parks Lighting Central Referral     16
+## 370                                                    Parks Lighting North Referral     19
+## 371                                                    Parks Lighting South Referral      1
+## 372                                                     Pending Restoration Referral     60
+## 373                                        Permit for Private Removal of a City Tree      3
+## 374                                    Permit to prune, remove, or plant a City Tree    178
+## 375                                                    PIAC Referral From Department    151
+## 376                                                      Pipeline Barricade Referral    145
+## 377                                                Pipeline Code 1 Repair - Referral    105
+## 378                                                Pipeline Code 2 Repair - Referral    612
+## 379                                                Pipeline Code 3 Repair - Referral    402
+## 380                                                  Pipeline Contractor Restoration   2873
+## 381                                                  PIPELINE CONTRACTOR RESTORATION    127
+## 382                                           Pipeline Pavement Restoration Referral   3902
+## 383                                          Pipeline Repair or Restoration Concerns   1566
+## 384                                                         Pipeline Repair Referral   2294
+## 385                                                    PIPELINE RESTORATION CONCERNS      8
+## 386                                                           Pipeline Turf Referral   2487
+## 387                                                                     Plate Hazard    639
+## 388                                                                  Plate in Street    877
+## 389                                                         Pothole (North of River)   2619
+## 390                       Pothole (River south to 47th Street and East of Blue PKWY)   2438
+## 391                                             Pothole (River south to 47th Street)    476
+## 392                             Pothole (South of 47th Street and West Of Blue PKWY)   4566
+## 393                                                   Pothole (South of 47th Street)   1069
+## 394                                          Pothole (South of River to 47th Street)    215
+## 395                                         Project Planning for Streets and Traffic     18
+## 396                                                 Property and Nuisance Violations  15728
+## 397                                                             Property Maintenance     26
+## 398                                                              Property Violations 103015
+## 399                                                          Public Pool Inspections     75
+## 400                                                       Public Restroom Sanitation     74
+## 401                                                      Public Works Administration   1222
+## 402                                                           Questions or  Comments     30
+## 403                                                            Rat Control Education    649
+## 404                                                            Rat Control Treatment   6770
+## 405                                                              Recycle Bin Damaged    196
+## 406                                                          Recycle Bin New Service   1257
+## 407                                                                 Recycling Missed   1981
+## 408                                          Referral for Sewage on Private Property     45
+## 409                                                             Regulated Industries    130
+## 410                                                                 Rural ROW Mowing   1347
+## 411                                                       Salvage Yard Investigation    248
+## 412                                              Service or Curb Box Repair Referral   1330
+## 413                                                       Sewer Assessment Questions    132
+## 414                                         Sewer Cleaning or Deodorizing - Referral      4
+## 415                                 Sewer Cleaning or Repair and Waste Water Concern   7874
+## 416                                            Sewer Contractor Restoration Referral     18
+## 417                                                     Sewer Deodorizing - Referral   2325
+## 418                                       Sewer Investigation and Repairs - Referral    278
+## 419                                                     Sewer Investigation Referral   1325
+## 420                                              Sewer Pavement Restoration Referral    313
+## 421                                                                   Sewer Projects    282
+## 422                                                            Sewer Repair Referral    899
+## 423                                                Sewer Turf Restoration - Referral    203
+## 424                                                          Sewer Water in Basement   1291
+## 425                                               Sewer Water in Basement - Referral   3272
+## 426                                                               Sidewalk Hazardous   1891
+## 427                                                    Sidewalk or Curb in Disrepair    854
+## 428                               Sidewalk projects that are funded by GO Bond funds     39
+## 429                                      Sidewalk to be replaced Due to City Project    719
+## 430                                                                     Sign Missing    449
+## 431                                          Sign Missing or Damaged - Non-emergency   6538
+## 432                                                            Sign Violation Zoning    488
+## 433                                              Sinkhole or Sewer Repair - Referral      8
+## 434                                            SLA0 Streetlight Pole Down or Leaning    869
+## 435                                        SLB0 Streetlight Wire Down or Hanging Arm    205
+## 436                           SLD0 Streetlight Out - Multiple Outage of Five or More   1201
+## 437                                          SLG0 Streetlight Out - Single Light Out   5888
+## 438                                             SLG1 Streetlight Blinking Off and On   1710
+## 439                                              SLG2 Streetlight Burning During Day   1320
+## 440                                       SLG3 Streetlights Out - Two to Four Lights   1198
+## 441                                                   SLP0 Streetlight Miscellaneous    695
+## 442                                 SLQ0 Streetlight Problem Identification Referral      5
+## 443                                                               Smoking Complaints    175
+## 444                                                      Snow and Ice Administration   1278
+## 445                                                          Snow or Ice on Sidewalk    151
+## 446                                           Snow or Ice on Street (North of River)   1820
+## 447               Snow or Ice on Street (South of 47th Street and West of Blue PKWY)    490
+## 448                                     Snow or Ice on Street (South of 47th Street)   1536
+## 449             Snow or Ice on Street (South of River to 47th Street and East of Blu    461
+## 450                            Snow or Ice on Street (South of River to 47th Street)   1149
+## 451                                                 Snow or Ice on Street District 1   6203
+## 452                                                 Snow or Ice on Street District 2   4929
+## 453                                                 Snow or Ice on Street District 3   5615
+## 454                                                     Solid Waste Customer Service  21555
+## 455                                                 Staff Complaints for Solid Waste    114
+## 456                                                Staff Compliments for Solid Waste     18
+## 457                                                                Storm Damage East      7
+## 458                                                               Stormwater Charges      9
+## 459                                                              Stormwater Projects    211
+## 460                                                            Stray Animal Confined   2729
+## 461                                                Street and Traffic Administration    707
+## 462                                                        Street and Traffic Permit    444
+## 463                                                      Street Light Malfunctioning   2459
+## 464                                                                 Street Light New    177
+## 465                                                                 Street Light Out   3513
+## 466                                        Street Light Pole Damage, Rust, Vandalism    680
+## 467                                                Street Light Restoration Referral    477
+## 468                                                       Street Maintenance General     11
+## 469                                  Street Maintenance General (North of the River)   2607
+## 470          Street Maintenance General (South of 47th Street and West of Blue PKWY)   3304
+## 471                                Street Maintenance General (South of 47th Street)    533
+## 472 Street Maintenance General (South of River to 47th Street and East of Blue PKWY)   2619
+## 473                       Street Maintenance General (South of River to 47th Street)    518
+## 474                                                          Street Markings Painted    472
+## 475                                                   Street Preservation or Overlay   2085
+## 476                                                               Street Sign Damage   3029
+## 477                                                              Street Sign Missing    137
+## 478                                                 Street Sweeping (North of River)      1
+## 479                                           Street Sweeping (South of 47th Street)      2
+## 480                                  Street Sweeping (South of River to 47th Street)      2
+## 481                                                         Street Sweeping Citywide    969
+## 482                                                      Tow Services Administration    559
+## 483                                          Traffic Engineering and Traffic Studies   5028
+## 484                                                              Traffic Sign Damage    367
+## 485                                                     Traffic Sign Down or Missing     21
+## 486                                         Traffic Sign Down or Missing - Emergency   3481
+## 487                                                       Traffic Signal Malfunction   6833
+## 488                                                               Traffic Signal Out   1187
+## 489                                      Traffic Signal Pole Damage, Rust, Vandalism    685
+## 490                        Traffic Study for Signs, Reduced Speed, Signal, Crosswalk     74
+## 491                                                        Trahs-Recycle Bin Damaged      4
+## 492                                                    Trahs-Recycle Bin New Service      3
+## 493                                              Trash-Leaf and Brush Pick-up Missed      1
+## 494                                                               Trash-Missed Bulky      1
+## 495                                                           Trash-Recycling Missed   3132
+## 496                                          Trash-Staff Compliments for Solid Waste    247
+## 497                                                           Trash - Missed by City  17411
+## 498                                                     Trash - Missed by Contractor  13087
+## 499                                                 Trash - Multi Unit Investigation    443
+## 500                                                      Trash - Recycle Bin Damaged   1033
+## 501                                                  Trash - Recycle Bin New Service   4966
+## 502                                             Trash - Roll-Out Cart Administration    534
+## 503                                          Trash - Roll-out Cart Damaged or Broken     47
+## 504                                                    Trash - Roll-out Cart Missing   1149
+## 505                                             Trash - Solid Waste Customer Service      3
+## 506                                         Trash - Staff Complaints for Solid Waste   1291
+## 507                                                               Trash Cart Damaged     14
+## 508                                                               Trash Cart Missing    102
+## 509                                                 Trash Missed by Contractor North   5832
+## 510                                                 Trash Missed by Contractor South   8735
+## 511                                                   Trash Multi Unit Investigation    108
+## 512                                         Trash Recycle Missed by Contractor North   2423
+## 513                                         Trash Recycle Missed by Contractor South   2039
+## 514                                                   Trash Recycling Missed by City   3450
+## 515                                             Trash Recycling Missed by Contractor   2893
+## 516                                           Trash Roll Out Cart Damaged or Missing     23
+## 517                                                      Trash Roll Out Cart Missing    194
+## 518                                                              Trash Storm Cleanup    450
+## 519                                  Trash was missed for Tuesday pickup for 2 bags.      1
+## 520                                        Tree Damage to City Tree from Storm Event   3791
+## 521                                               Tree Disease, Insects or Vandalism    325
+## 522                                              Tree Inspection on Private Property     62
+## 523                      Tree Limb and Brush Removal from City Tree - Central Region    343
+## 524                        Tree Limb and Brush Removal from City Tree - North Region    182
+## 525                        Tree Limb and Brush Removal from City Tree - South Region    239
+## 526                                         Tree Limb or Brush Removal for City Tree   1918
+## 527                                                                Tree Live Removal      6
+## 528                                                        Tree Maintenance Seasonal     18
+## 529                                                    Tree or Limb Down Due to Snow    322
+## 530                                                     Tree Planting Central Region    179
+## 531                                                       Tree Planting for New Tree    359
+## 532                                                       Tree Planting North Region    113
+## 533                                                       Tree Planting South Region    108
+## 534                                                           Tree Pruning for Block     44
+## 535                                                      Tree Removal Central Region   1232
+## 536                                                        Tree Removal North Region    662
+## 537                                                      Tree Removal of a City Tree   5618
+## 538                                                        Tree Removal South Region    796
+## 539                                                            Tree Staff Compliment      2
+## 540                                            Tree Staff Customer Service Complaint     74
+## 541                                                 Tree Storm Damage Central Region    588
+## 542                                                   Tree Storm Damage North Region    468
+## 543                                                   Tree Storm Damage South Region    358
+## 544                                                Tree Stump Removal Central Region    135
+## 545                                                 Tree Stump Removal for City Tree    785
+## 546                                                  Tree Stump Removal North Region     54
+## 547                                                  Tree Stump Removal South Region     81
+## 548                                                    Tree Trimming at Intersection    960
+## 549                                                     Tree Trimming Central Region   1333
+## 550                                                      Tree Trimming for City Tree   5737
+## 551                                 Tree Trimming from Electric Wire or Street Light    604
+## 552                                                  Tree Trimming from Street Light    629
+## 553                                                       Tree Trimming North Region    604
+## 554                                                 Tree Trimming on Land Trust Lots     32
+## 555                                                       Tree Trimming South Region    841
+## 556                                              Turn Off Water Service For A Repair     11
+## 557                              Turn On Water Services - Internal Repairs Completed     13
+## 558                                             Turn On Water Services For Paid Bill      1
+## 559                                                   Vacant Structure Open to Entry  13699
+## 560                                                            Valve Repair Referral    857
+## 561                                                         Vehicle Illegally Parked   1751
+## 562                 Vehicle Towed From Lot Without Owner's Permission by Tow Company     15
+## 563                                 Violations and Encroachments on the Right of Way   2414
+## 564                                           Visibility Problems at an Intersection    428
+## 565                                                     Volunteer Inspection Program    358
+## 566                                                     Wastewater Code 1 - Referral     20
+## 567                                                     Wastewater Code 2 - Referral      3
+## 568                                                     Wastewater Code 3 - Referral      2
+## 569                                                             Wastewater Treatment     16
+## 570                                                           Water Bill Admin Tasks      3
+## 571                                                              Water Bill Concerns     42
+## 572                                                 Water Facilities and Engineering      8
+## 573                                      Water Facilities and Stormwater Engineering   1038
+## 574                                                   Water Industrial Waste Control     68
+## 575                                                   Water Leak or Pressure Problem  30628
+## 576                                                                 Water Main Break     50
+## 577                                                              Water Main Projects   1104
+## 578                                                       Water Main Repair Referral   1207
+## 579                                                          Water Payment or Refund      1
+## 580                                                         Water Pipeline Barricade    153
+## 581                                              Water Quality - Laboratory Services   1963
+## 582                                                     Water Repair and Restoration   3242
+## 583                                                       Water Restoration Contract     86
+## 584                                                    Water Services Administration   2189
+## 585                                              Water Services Pavement Restoration    649
+## 586                                                  Water Services Same Day Service      1
+## 587                                                  Water Services Turf Restoration      3
+## 588                                                            Water Theft and Fraud      4
+## 589                                                           Weatherization Program    326
+## 590                                                                 Web Info Request      7
+## 591                                               Web SR - Street Maintenance / Snow      1
+## 592                                                                         Wildlife   2597
+## 593                                                Zoning Inspections and Violations   2653</code></pre>
 </div>
 </div>
 
@@ -673,12 +675,12 @@ $(document).ready(function () {
 
 </script>
 
-<!-- dynamically load mathjax for compatibility with --self-contained -->
+<!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
